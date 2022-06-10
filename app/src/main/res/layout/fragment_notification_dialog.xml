@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="@dimen/_8sdp"
+    app:cardUseCompatPadding="true"
+    tools:context=".Fragments.Dialogs.NotificationDialogFragment">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/basic"
+            android:orientation="vertical"
+            android:padding="@dimen/_24sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+            android:text="@string/notification_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_24sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+            android:text="@string/notification_subtitle"
+            android:textColor="@color/inActive"
+            android:textSize="@dimen/_14sdp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_24sdp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:text="@string/confirm"
+                style="@style/blue_btn"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:text="@string/dismiss"
+                style="@style/blue_btn"
+                android:backgroundTint="@color/purple"
+                android:layout_marginTop="@dimen/_12sdp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:text="@string/chancel"
+                style="@style/blue_btn"
+                android:backgroundTint="@color/btn_cancel"
+                android:layout_marginTop="@dimen/_12sdp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_144sdp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_32sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/_80sdp"
+            android:gravity="center_vertical"
+            android:background="@color/btn_cancel">
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp"
+                android:singleLine="true"
+                android:fontFamily="@font/ibm_plex_sans_arabic_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical">
+
+                <TextView
+                    android:id="@+id/company_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@string/company_location"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                    android:gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_location"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical">
+
+                <TextView
+                    android:id="@+id/company_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:text="@string/company_major"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                    android:gravity="center_vertical"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_business"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_104sdp"
+        android:layout_height="@dimen/_104sdp"
+        app:cardElevation="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView3"
+            android:scaleType="centerCrop"
+            android:src="@drawable/company" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

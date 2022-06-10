@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".Fragments.CategoryItemFragment">
+
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_80sdp"
+    android:background="@color/basic"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" >
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/toolbarTitle"
+        android:text="@string/category_name"/>
+</androidx.appcompat.widget.Toolbar>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rv_category_items"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_4sdp"
+    tools:listitem="@layout/custom_company_item"/>
+
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.OnBoarding.OnBoardingFragment" >
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onboarding_slider"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@+id/getStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_52sdp"
+        android:layout_marginStart="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/dot_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_7sdp"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="@dimen/_10sdp"
+            app:tabIndicatorAnimationMode="linear">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/_52sdp"
+            android:layout_height="@dimen/_52sdp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_blue"
+            android:src="@drawable/ic_arrow_forward"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/getStarted"
+        style="@style/blue_btn"
+        android:text="@string/getStarted"
+        android:visibility="invisible"
+        android:layout_marginStart="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

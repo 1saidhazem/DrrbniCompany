@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/edit_profileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/bg_gray_image"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/tv_add_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@color/gray_bg"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_medium"
+                    android:text="@string/edit_img_profile"
+                    android:textColor="@color/gray_bg"
+                    android:textSize="@dimen/_16sdp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_et_name"
+                    style="@style/editText"
+                    android:layout_below="@+id/tv_add_img"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:background="@color/gray_bg"
+                    android:inputType="textEmailAddress" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_et_email"
+                    style="@style/editText"
+                    android:layout_below="@+id/edit_profile_et_name"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@color/gray_bg"
+                    android:inputType="textEmailAddress" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_profile_et_categories"
+                    style="@style/editText"
+                    android:layout_below="@+id/edit_profile_et_email"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@color/gray_bg"
+                    android:inputType="textEmailAddress" />
+
+                <TextView
+                    android:id="@+id/tv_edit_contact_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_profile_et_categories"
+                    android:layout_alignEnd="@+id/edit_profile_et_categories"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_medium"
+                    android:text="@string/edit_contact_information"
+                    android:background="@color/gray_bg"
+                    android:textColor="@color/gray_bg"
+                    android:textSize="@dimen/_16sdp" />
+
+                <TextView
+                    android:id="@+id/tv_edit_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_edit_contact_information"
+                    android:layout_alignEnd="@+id/edit_profile_et_categories"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_medium"
+                    android:text="@string/edit_address"
+                    android:background="@color/gray_bg"
+                    android:textColor="@color/gray_bg"
+                    android:textSize="@dimen/_16sdp" />
+
+                <TextView
+                    android:id="@+id/tv_change_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_edit_address"
+                    android:layout_alignEnd="@+id/edit_profile_et_categories"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/ibm_plex_sans_arabic_medium"
+                    android:text="@string/change_password"
+                    android:background="@color/gray_bg"
+                    android:textColor="@color/gray_bg"
+                    android:textSize="@dimen/_16sdp" />
+
+
+                <Button
+                    android:id="@+id/btn_ok"
+                    style="@style/blue_btn"
+                    android:layout_below="@+id/tv_change_password"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:background="@color/gray_bg" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

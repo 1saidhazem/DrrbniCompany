@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.drrbnicompany.Fragments.SplashScreenFragment"
+        android:label="splashScreenFragment"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreen_to_onboarding"
+            app:destination="@id/onboardingFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.drrbnicompany.Fragments.OnBoarding.OnBoardingFragment"
+        android:label="onboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboarding_to_login"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.drrbnicompany.Fragments.Auth.SignIn.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_signUpAddressFragment"
+            app:destination="@id/signUpAddressFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_signUpContactInformationFragment"
+            app:destination="@id/signUpContactInformationFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.drrbnicompany.Fragments.Auth.ForgotPasswordFragment"
+        android:label="forgotPasswordFragment">
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpAddressFragment"
+        android:name="com.example.drrbnicompany.Fragments.Auth.SignUp.SignUpAddressFragment"
+        android:label="signUpAddressFragment">
+        <action
+            android:id="@+id/action_signUpAddressFragment_to_signUpContactInformationFragment"
+            app:destination="@id/signUpContactInformationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpAddImgFragment"
+        android:name="com.example.drrbnicompany.Fragments.Auth.SignUp.SignUpAddImgFragment"
+        android:label="SignUpAddImgFragment"
+        >
+
+        <action
+            android:id="@+id/action_signUpAddImgFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_signUpAddImgFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.drrbnicompany.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/signUpContactInformationFragment"
+        android:name="com.example.drrbnicompany.Fragments.Auth.SignUp.SignUpContactInformationFragment"
+        android:label="SignUpContactInformationFragment">
+
+        <action
+            android:id="@+id/action_signUpContactInformationFragment_to_signUpAddImgFragment"
+            app:destination="@id/signUpAddImgFragment">
+
+        </action>
+    </fragment>
+
+</navigation>

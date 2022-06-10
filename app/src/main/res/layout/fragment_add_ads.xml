@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Fragments.AddAdsFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <androidx.appcompat.widget.Toolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_80sdp"
+           android:background="@color/basic"
+           android:theme="?attr/actionBarTheme"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" >
+
+           <TextView
+               style="@style/toolbarTitle"
+               android:text="@string/add_ads"/>
+       </androidx.appcompat.widget.Toolbar>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:elevation="@dimen/_4sdp"
+           app:cardCornerRadius="@dimen/_8sdp"
+           app:cardUseCompatPadding="true"
+           android:layout_marginTop="@dimen/_24sdp"
+           android:layout_marginLeft="@dimen/_16sdp"
+           android:layout_marginRight="@dimen/_16sdp">
+
+       <ImageView
+           android:id="@+id/ads_image"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_160sdp"
+           android:src="@drawable/add_image"
+           android:padding="@dimen/_2sdp"/>
+
+       </androidx.cardview.widget.CardView>
+
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:elevation="@dimen/_4sdp"
+           app:cardCornerRadius="@dimen/_8sdp"
+           app:cardUseCompatPadding="true"
+           android:layout_marginLeft="@dimen/_16sdp"
+           android:layout_marginRight="@dimen/_16sdp"
+           android:layout_marginTop="@dimen/_16sdp">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_52sdp"
+               android:hint="@string/ads_title"
+               app:boxStrokeWidthFocused="0dp"
+               app:boxStrokeWidth="0dp"
+               app:hintTextColor="@color/subtitle_text"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/ads_title"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:textCursorDrawable="@drawable/text_cursor"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:elevation="@dimen/_4sdp"
+           app:cardCornerRadius="@dimen/_8sdp"
+           app:cardUseCompatPadding="true"
+           android:layout_marginLeft="@dimen/_16sdp"
+           android:layout_marginRight="@dimen/_16sdp"
+           android:layout_marginTop="@dimen/_16sdp">
+
+           <Spinner
+               android:id="@+id/major"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_52sdp"
+               android:entries="@array/majors_array"
+               android:theme="@style/spinner"/>
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:elevation="@dimen/_4sdp"
+           app:cardCornerRadius="@dimen/_8sdp"
+           app:cardUseCompatPadding="true"
+           android:layout_marginLeft="@dimen/_16sdp"
+           android:layout_marginRight="@dimen/_16sdp"
+           android:layout_marginTop="@dimen/_16sdp">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_100sdp"
+               android:hint="@string/description1"
+               app:boxStrokeWidthFocused="0dp"
+               app:boxStrokeWidth="0dp"
+               app:hintTextColor="@color/subtitle_text"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/ads_description"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:gravity="top"
+                   android:textCursorDrawable="@drawable/text_cursor"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:elevation="@dimen/_4sdp"
+           app:cardCornerRadius="@dimen/_8sdp"
+           app:cardUseCompatPadding="true"
+           android:layout_marginLeft="@dimen/_16sdp"
+           android:layout_marginRight="@dimen/_16sdp"
+           android:layout_marginTop="@dimen/_16sdp">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_100sdp"
+               android:hint="@string/ads_requirements"
+               app:boxStrokeWidthFocused="0dp"
+               app:boxStrokeWidth="0dp"
+               app:hintTextColor="@color/subtitle_text"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/requirements"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:gravity="top"
+                   android:textCursorDrawable="@drawable/text_cursor"/>
+
+           </com.google.android.material.textfield.TextInputLayout>
+       </androidx.cardview.widget.CardView>
+
+
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <Button
+               android:id="@+id/btn_add_ads"
+               style="@style/blue_btn"
+               android:layout_marginStart="@dimen/_16sdp"
+               android:layout_marginTop="@dimen/_16sdp"
+               android:layout_marginEnd="@dimen/_16sdp"
+               android:layout_marginBottom="@dimen/_16sdp"
+               android:text="@string/add" />
+
+
+           <com.google.android.material.progressindicator.CircularProgressIndicator
+               android:id="@+id/progressBar"
+               style="@style/ProgressBar"
+               android:layout_alignEnd="@+id/btn_add_ads"
+               app:indicatorColor="@color/white"
+               app:indicatorSize="25dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:trackCornerRadius="5dp" />
+
+       </RelativeLayout>
+
+   </LinearLayout>
+
+</ScrollView>

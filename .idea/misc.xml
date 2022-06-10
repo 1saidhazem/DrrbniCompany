@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/drawable/ic_category.xml" value="0.114" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/drawable/ic_college.xml" value="0.114" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/drawable/ic_email.xml" value="0.114" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/drawable/ic_whatsapp.xml" value="0.114" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/activity_main.xml" value="0.1685185185185185" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/custom_post_item.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/edit_profile_address_placeholder.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/edit_profile_contact_information_placeholder.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/edit_profile_placeholder.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_add_ads.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_add_job.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_edit_contact_information.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_edit_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_show_and_edit_ads.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_sign_up.xml" value="0.1685185185185185" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_sign_up_add_img.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/fragment_sign_up_address.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/profile_student_placeholder.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/layout/show_and_edit_ads_placeholder.xml" value="0.16944444444444445" />
+        <entry key="..\:/AndroidStudioProjects/DrrbniCompany/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17552083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

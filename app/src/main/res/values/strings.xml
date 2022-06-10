@@ -1,0 +1,144 @@
+<resources>
+    <string name="app_name">Drrbni Company</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Onbording Titles-->
+    <string name="onboarding1_title">مرحبا</string>
+    <string name="onboarding2_title">أنشر إعلانات التدريب</string>
+    <string name="onboarding3_title">أختر متدربينك</string>
+    <string name="onboarding4_title">أستعرض معارض الأعمال</string>
+    <!-- Onbording Sub Titles-->
+    <string name="onboarding1_subtitle">تطبيق درّبني يساعد الباحثين عن فرصة التدريب الميداني ويساعد الجهات التدريبية لتقديم الخدمة بتدريب الشباب والشابات وتهيئتهم لسوق العمل</string>
+    <string name="onboarding2_subtitle">استقطب الطلاب من كافة الجامعات والكليات من شتى المجالات  وأعطائهم فرصة للتدريب الميداني</string>
+    <string name="onboarding3_subtitle"> أختر الطلاب المناسبين الذين ترغب في تدريبهم بعد الأطلاع على معرض أعمالهم ومهارتهم وقبول طلبات التدريب الخاص بهم</string>
+    <string name="onboarding4_subtitle">يمكنك الأطللاع على معارض الأعمال وفرزها حسب التخصص المطلوب</string>
+
+    <!-- Login -->
+    <string name="getStarted">البدء</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+
+
+    <string name="title_activity_home">Drrbni</string>
+    <string name="title_profile">الملف الشخصي</string>
+    <string name="title_notifications">الاشعارات</string>
+    <string name="title_categories">التصنيفات</string>
+    <string name="title_home">الرئيسية</string>
+    <string name="filter">الفلتر</string>
+    <string name="sortBy">الترتيب حسب المنطقة</string>
+    <string name="custom_item_post">عندما أقف أمام الله في نهاية حياتي ، أتمنى ألا يتبقى لديّ القليل من الموهبة وأستطيع القول ، لقد استخدمت كل ما أعطيتني إياه.</string>
+    <string name="custom_item_date">5 فبراير</string>
+    <string name="custom_item_name">شركة تكنولوجيا المعلومات</string>
+    <string name="next">التالي</string>
+    <string name="chancel">إلغاء</string>
+    <string name="ok">موافق</string>
+    <string name="post_title">اعلان تدريب رقم 1 لبلدية جباليا</string>
+    <string name="post_description">الوصف</string>
+    <string name="description">"تعلن بلدية جباليا عن قبولها طلبات التدريب من كافة الجامعات المعتمدة بقطاع غزة من كلا الجنسين "</string>
+    <string name="requirements">توفر الأجهزة والمعدّات المهنية الإلكترونية اللازمة مثل أجهزة الكمبيوتر.  توفير شبكة خاصة بالإنترنت للتدريب المهني الالكتروني والتدريب المهني عن بعد. الحاجة إلى المدرب المهني المتخصص، بحيث يكون ماهر وذو يجب توفر الإرادة القوية لدى المدرب المهني والمتدربين من أفراد وموظفين، بحيث يتوجب عليهم التعرُّف على أهمية التدريب المهني للعمل وكيفية الحصول عليه بطريقة سهلة مثل التدريب المهني الإلكتروني</string>
+    <string name="post_requirements">المتطلبات</string>
+    <string name="training_request">طلب فرصة تدريب</string>
+    <string name="student_name">غادة احمد العطار</string>
+    <string name="collage_name">الكلية الجامعية للعلوم التطبيقية</string>
+    <string name="major_name">برمجيات وقواعد البيانات</string>
+    <string name="description1">الوصف</string>
+    <string name="add">اضافة</string>
+    <string name="add_description">كتابة وصف</string>
+    <string name="job_link">رابط العمل</string>
+    <string name="category">التخصص</string>
+    <string name="add_major">اختيار تخصص</string>
+    <string name="job_name">أسم العمل</string>
+    <string name="add_ads">"إضافة إعلان"</string>
+    <string name="company_name">شركة المستقبل للتكنولوجيا</string>
+    <string name="company_location">غزة - مفترق الصناعة</string>
+    <string name="company_major">تكنولوجيا المعلومات</string>
+    <string name="category_title">اسم التصنيف</string>
+    <string name="notification_description">رفضت شركة المستقبل طلب التدريب الخاص بك نتمنى لك حظا اوفر في المرة القادمة</string>
+    <string name="notification_subtitle">قامت شركة المستقبل بتحديد موعد المقابلة يوم الاربعاء 24 اكتوبر الساعة 9:00 صباحا</string>
+    <string name="notification_title">موعد المقابلة</string>
+    <string name="confirm">تأكيد الحضور</string>
+    <string name="dismiss">عدم الحضور</string>
+    <string name="categories_title">التصنيفات</string>
+    <string name="Complete_the_registration_process">إكمال عملية التسجيل</string>
+    <string name="name">الاسم</string>
+    <string name="forgot_password">نسيت كلمة المرور</string>
+    <string name="governorate">المحافظة</string>
+    <string name="address">العنوان</string>
+    <string name="Contact_Information">معلومات التواصل</string>
+    <string name="whatsapp">رقم واتس آب</string>
+    <string name="facebook">Facebook</string>
+    <string name="gmail">Gmail</string>
+    <string name="link_facebook">رابط الفيسبوك</string>
+    <string name="add_img">إضافة صورة</string>
+    <string name="skip">تخطي</string>
+    <string name="add_img_profile">إضافة صورة ملف شخصي</string>
+    <string name="take_picture">إلتقاط صورة</string>
+    <string name="Choose_from_the_library">اختيار من المكتبة</string>
+    <string name="restore_password">أستعادة كلمة المرور</string>
+    <string name="get_code">الحصول على رمز</string>
+    <string name="verification_code">رمز التحقق</string>
+    <string name="verification">التحقق</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="conf_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="select_img">أختيار من المكتبة</string>
+    <string name="email_address">mm@gmail.com</string>
+    <string name="whatsapp_num">+09720208783</string>
+    <string name="education_information">معلومات التعليم</string>
+    <string name="college">الجامعة</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="edit_img_profile">تعديل صورة ملف شخصي</string>
+    <string name="edit_contact_information">تعديل معلومات التواصل</string>
+    <string name="edit_address">تعديل العنوان</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="category_name">اسم التصنيف</string>
+    <string name="current_password">كلمة المرور الحالية</string>
+    <string name="ads_title">عنوان الإعلان</string>
+    <string name="ads_requirements">المتطلبات</string>
+
+    <string-array name="category_array">
+        <item>أختر التصنيف</item>
+        <item>تكنولوجيا المعلومات</item>
+        <item>المحاسبة</item>
+        <item>الصحافة والاعلام</item>
+        <item>الهندسة</item>
+        <item>التصميم والديكور</item>
+        <item>التسويق</item>
+        <item>البلديات</item>
+    </string-array>
+
+
+    <string-array name="governorate_array">
+        <item>أختر المحافظة</item>
+        <item>شمال غزة</item>
+        <item>غزة</item>
+        <item>الوسطى</item>
+        <item>خانيونس</item>
+        <item>رفح</item>
+    </string-array>
+
+    <string-array name="majors_array">
+        <item>التخصص المطلوب</item>
+        <item>تكنولوجيا الوسائط المتعددة</item>
+        <item>البرمجيات وقواعد البيانات</item>
+        <item>تصميم وتطوير مواقع الويب</item>
+        <item>أمن المعلومات السيبراني</item>
+        <item>علم البيانات والذكاء الإصطناعي</item>
+        <item>شبكات الحاسوب والإنترنت</item>
+        <item>الهندسة المعمارية</item>
+        <item>الهندسة المدنية</item>
+        <item>هندسة التشييد وإدارة المشاريع</item>
+        <item>هندسة المساحة</item>
+        <item>نظم المعلومات الجغرافية</item>
+        <item>المحاسبة</item>
+        <item>إداراة أتمتة المكاتب</item>
+        <item>التسويق الإلكتروني</item>
+        <item>الإعلام الرقمي</item>
+        <item>العلاقات العامة والإعلان</item>
+    </string-array>
+
+
+</resources>

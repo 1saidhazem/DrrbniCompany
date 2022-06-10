@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/profileNested"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/title_profile" />
+
+    <item
+        android:id="@+id/notificationsNested"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/title_notifications" />
+
+    <item
+        android:id="@+id/categoriesNested"
+        android:icon="@drawable/ic_categories"
+        android:title="@string/title_categories" />
+
+    <item
+        android:id="@+id/homeNested"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home" />
+
+</menu>

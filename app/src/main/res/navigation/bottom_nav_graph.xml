@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeNested">
+
+    <navigation android:id="@+id/homeNested"
+        app:startDestination="@id/homeFragment">
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.HomeFragment"
+            android:label="homeFragment"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_homeFragment_to_showPostFragment"
+                app:destination="@id/showPostFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/showPostFragment"
+            android:name="com.example.drrbnicompany.Fragments.ShowPostFragment"
+            android:label="fragment_show_post"
+            tools:layout="@layout/fragment_show_post" />
+    </navigation>
+
+    <navigation android:id="@+id/profileNested"
+        app:startDestination="@id/profileFragment">
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.ProfileFragment"
+            android:label="profileFragment"
+            tools:layout="@layout/fragment_profile">
+            <action
+                android:id="@+id/action_profileFragment_to_addAdsFragment"
+                app:destination="@id/addAdsFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_editProfileFragment"
+                app:destination="@id/editProfileFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_showAndEditAdsFragment"
+
+                app:destination="@id/showAndEditAdsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/addAdsFragment"
+            android:name="com.example.drrbnicompany.Fragments.AddAdsFragment"
+            android:label="fragment_add_job"
+            tools:layout="@layout/fragment_add_ads" />
+        <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.example.drrbnicompany.Fragments.EditProfile.EditProfileFragment"
+            android:label="EditProfileFragment"
+            tools:layout="@layout/fragment_edit_profile"
+            >
+
+            <action
+                android:id="@+id/action_editProfileFragment_to_editContactInformationFragment"
+                app:destination="@id/editContactInformationFragment" />
+            <action
+                android:id="@+id/action_editProfileFragment_to_editAddressFragment"
+                app:destination="@id/editAddressFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/showAndEditAdsFragment"
+            android:name="com.example.drrbnicompany.ShowAndEditAdsFragment"
+            android:label="fragment_show_and_edit_job"
+            tools:layout="@layout/fragment_show_and_edit_ads" >
+            <argument
+                android:name="adsId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/editContactInformationFragment"
+            android:name="com.example.drrbnicompany.Fragments.EditProfile.EditContactInformationFragment"
+            android:label="EditContactInformationFragment"
+            tools:layout="@layout/fragment_edit_contact_information"
+            />
+        <fragment
+            android:id="@+id/editAddressFragment"
+            android:name="com.example.drrbnicompany.Fragments.EditProfile.EditAddressFragment"
+            android:label="EditAddressFragment"
+            tools:layout="@layout/fragment_edit_address"
+            />
+    </navigation>
+
+    <navigation android:id="@+id/categoriesNested"
+        app:startDestination="@id/categoriesFragment">
+        <fragment
+            android:id="@+id/categoriesFragment"
+            android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.CategoriesFragment"
+            android:label="categoriesFragment"
+            tools:layout="@layout/fragment_categories">
+            <action
+                android:id="@+id/action_categoriesFragment_to_categoryItemFragment"
+                app:destination="@id/categoryItemFragment" >
+                <argument
+                    android:name="category_Id"
+                    app:argType="string"
+                    app:nullable="true"
+                    />
+                <argument
+                    android:name="name"
+                    app:argType="string"
+                    app:nullable="true"
+                    />
+            </action>
+        </fragment>
+        <fragment
+            android:id="@+id/categoryItemFragment"
+            android:name="com.example.drrbnicompany.Fragments.CategoryItemFragment"
+            android:label="fragment_category_item"
+            tools:layout="@layout/fragment_category_items">
+            <argument
+                android:name="category_Id"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <argument
+                android:name="name"
+                app:argType="string"
+                app:nullable="true"
+                />
+            <action
+                android:id="@+id/action_categoryItemFragment_to_companyProfileFragment"
+                app:destination="@id/companyProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/companyProfileFragment"
+            android:name="com.example.drrbnicompany.Fragments.CompanyProfileFragment"
+            android:label="fragment_company_profile"
+            tools:layout="@layout/fragment_company_profile" />
+    </navigation>
+
+    <navigation android:id="@+id/notificationsNested"
+        app:startDestination="@id/notificationsFragment">
+        <fragment
+            android:id="@+id/notificationsFragment"
+            android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.NotificationsFragment"
+            android:label="notificationsFragment"
+            tools:layout="@layout/fragment_notifications" />
+    </navigation>
+
+
+</navigation>

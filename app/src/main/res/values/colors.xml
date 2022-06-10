@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="basic">#2A2E43</color>
+    <color name="title_text">#454F63</color>
+    <color name="subtitle_text">#78849E</color>
+    <color name="secondary">#3ACCE1</color>
+    <color name="btn_cancel">#454F63</color>
+    <color name="indicator">#78849E</color>
+    <color name="gray_bg">#DDDDDD</color>
+    <color name="gray_bg2">#C8C3C3</color>
+
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+
+    <color name="gradient_start_color">#4c84ff</color>
+    <color name="gradient_end_color">#18a3fe</color>
+
+
+    <color name="inActive">#FFFFFFFF</color>
+    <color name="purple">#665EFF</color>
+
+
+</resources>

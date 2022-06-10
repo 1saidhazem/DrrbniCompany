@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/basic">
+            <TextView
+                style="@style/toolbarTitle"
+                android:text="@string/add_img"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_camera"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/tv_add_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_img_profile"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_below="@id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_regular" />
+
+            <Button
+                android:id="@+id/add_img_btn_add"
+                style="@style/blue_btn"
+                android:layout_below="@+id/tv_add_img"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:layout_marginRight="@dimen/_24sdp"
+                android:text="@string/add_img" />
+
+
+
+            <RelativeLayout
+                android:id="@+id/add_img_layout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:visibility="gone"
+                android:layout_below="@+id/add_img_btn_add">
+
+                <Button
+                    android:id="@+id/add_img_btn_next"
+                    style="@style/blue_btn"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:backgroundTint="@color/purple"
+                    android:text="@string/next" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    style="@style/ProgressBar"
+                    android:layout_alignEnd="@+id/add_img_btn_next"
+                    android:layout_centerVertical="true"
+                    app:indicatorColor="@color/white"
+                    app:indicatorSize="25dp"
+                    app:trackCornerRadius="5dp" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_img_btn_skip"
+            style="@style/blue_btn"
+            android:layout_marginLeft="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:backgroundTint="@color/btn_cancel"
+            android:layout_centerVertical="true"
+            android:text="@string/skip" />
+
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>

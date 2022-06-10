@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/edit_profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:src="@drawable/camera"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="1dp" />
+
+                    <TextView
+                        android:id="@+id/tv_add_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/profile_image"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_medium"
+                        android:text="@string/edit_img_profile"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_et_name"
+                        style="@style/editText"
+                        android:layout_below="@+id/tv_add_img"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:hint="@string/name"
+                        android:inputType="textEmailAddress" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_et_email"
+                        style="@style/editText"
+                        android:layout_below="@+id/edit_profile_et_name"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_et_categories"
+                        style="@style/editText"
+                        android:layout_below="@+id/edit_profile_et_email"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:hint="التصنيف"
+                        android:inputType="textEmailAddress" />
+
+                    <TextView
+                        android:id="@+id/tv_edit_contact_information"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/edit_profile_et_categories"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                        android:text="@string/edit_contact_information"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_edit_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_edit_contact_information"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                        android:text="@string/edit_address"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_change_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_edit_address"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                        android:text="@string/change_password"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_change_password">
+
+                        <Button
+                            android:id="@+id/btn_ok"
+                            style="@style/blue_btn"
+                            android:layout_marginLeft="@dimen/_24sdp"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_24sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:text="@string/ok" />
+
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progressBar"
+                            style="@style/ProgressBar"
+                            android:layout_alignEnd="@+id/btn_ok"
+                            app:indicatorColor="@color/white"
+                            app:indicatorSize="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:trackCornerRadius="5dp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/edit_profile_placeholder" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</LinearLayout>
