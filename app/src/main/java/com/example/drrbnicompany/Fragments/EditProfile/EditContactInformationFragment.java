@@ -25,7 +25,8 @@ public class EditContactInformationFragment extends Fragment {
     private EditContactInformationViewModel contactInformationViewModel;
     private Company thiCompany;
 
-    public EditContactInformationFragment() {}
+    public EditContactInformationFragment() {
+    }
 
     public static EditContactInformationFragment newInstance() {
         return new EditContactInformationFragment();
@@ -45,7 +46,7 @@ public class EditContactInformationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEditContactInformationBinding
-                .inflate(getLayoutInflater(),container,false);
+                .inflate(getLayoutInflater(), container, false);
 
         load();
 
@@ -72,18 +73,20 @@ public class EditContactInformationFragment extends Fragment {
                 contactInformationViewModel.editContactInformation(whatsapp, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
-                            Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
-
-                        stopUpdate();
+                        if (value) {
+                            stopUpdate();
+                            requireActivity().getSupportFragmentManager().popBackStack();
+                            Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 }, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
-                            Snackbar.make(view , "فشل التعديل" , Snackbar.LENGTH_LONG).show();
-
-                        stopUpdate();
+                        if (value) {
+                            stopUpdate();
+                            requireActivity().getSupportFragmentManager().popBackStack();
+                            Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 });
             }

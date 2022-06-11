@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.drrbnicompany.Models.Company;
 
+import java.util.List;
+
 public class EditProfileViewModel extends AndroidViewModel {
 
     private Repository repository;
@@ -38,6 +40,10 @@ public class EditProfileViewModel extends AndroidViewModel {
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
         repository.editProfileDataWithoutImage(companyName, email, category, isSuccessful, isFailure);
+    }
+
+    public void getCategoriesName(MyListener<List<String>> isSuccessful) {
+        repository.getCategoriesName(isSuccessful);
     }
 
 }

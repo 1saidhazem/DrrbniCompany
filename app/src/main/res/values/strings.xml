@@ -40,7 +40,9 @@
     <string name="requirements">توفر الأجهزة والمعدّات المهنية الإلكترونية اللازمة مثل أجهزة الكمبيوتر.  توفير شبكة خاصة بالإنترنت للتدريب المهني الالكتروني والتدريب المهني عن بعد. الحاجة إلى المدرب المهني المتخصص، بحيث يكون ماهر وذو يجب توفر الإرادة القوية لدى المدرب المهني والمتدربين من أفراد وموظفين، بحيث يتوجب عليهم التعرُّف على أهمية التدريب المهني للعمل وكيفية الحصول عليه بطريقة سهلة مثل التدريب المهني الإلكتروني</string>
     <string name="post_requirements">المتطلبات</string>
     <string name="training_request">طلب فرصة تدريب</string>
-    <string name="student_name">غادة احمد العطار</string>
+    <string name="student_name">سعيد حازم دلول</string>
+    <string name="university_name">الكلية الجامعية للعلوم التطبيقية</string>
+    <string name="specialization_name">برمجيات وقواعد البيانات</string>
     <string name="collage_name">الكلية الجامعية للعلوم التطبيقية</string>
     <string name="major_name">برمجيات وقواعد البيانات</string>
     <string name="description1">الوصف</string>
@@ -68,6 +70,7 @@
     <string name="address">العنوان</string>
     <string name="Contact_Information">معلومات التواصل</string>
     <string name="whatsapp">رقم واتس آب</string>
+    <string name="whatsapp2">Whatsapp</string>
     <string name="facebook">Facebook</string>
     <string name="gmail">Gmail</string>
     <string name="link_facebook">رابط الفيسبوك</string>
@@ -98,6 +101,8 @@
     <string name="current_password">كلمة المرور الحالية</string>
     <string name="ads_title">عنوان الإعلان</string>
     <string name="ads_requirements">المتطلبات</string>
+    <string name="test_job_desc">تم انشاء هذا المشروع من قبل طلبةة الكلية الجامعية للعلوم التطبيقية تخصص البرمجيات وقواعد البيانات</string>
+    <string name="test_job_name">مشروع 1</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

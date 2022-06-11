@@ -26,20 +26,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
     private Company company;
     private MyListener<String> listener;
 
-    public AdsAdapter() {
-    }
+    public AdsAdapter() {}
 
     public AdsAdapter(List<Ads> adsList, Company company, MyListener<String> listener) {
         this.adsList = adsList;
         this.company = company;
         this.listener = listener;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public AdsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        return new AdsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_post_item , parent , false));
+        return new AdsViewHolder(LayoutInflater.from(context).inflate(R.layout.custom_post_item , parent , false));
     }
 
     @Override

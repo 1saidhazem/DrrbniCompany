@@ -62,7 +62,7 @@
         </fragment>
         <fragment
             android:id="@+id/showAndEditAdsFragment"
-            android:name="com.example.drrbnicompany.ShowAndEditAdsFragment"
+            android:name="com.example.drrbnicompany.Fragments.ShowAndEditAdsFragment"
             android:label="fragment_show_and_edit_job"
             tools:layout="@layout/fragment_show_and_edit_ads" >
             <argument
@@ -121,14 +121,29 @@
                 app:nullable="true"
                 />
             <action
-                android:id="@+id/action_categoryItemFragment_to_companyProfileFragment"
-                app:destination="@id/companyProfileFragment" />
+                android:id="@+id/action_categoryItemFragment_to_studentProfileFragment"
+                app:destination="@id/studentProfileFragment" >
+                <argument
+                    android:name="userId"
+                    app:argType="string"
+                    app:nullable="true"
+                    />
+            </action>
+
         </fragment>
         <fragment
-            android:id="@+id/companyProfileFragment"
-            android:name="com.example.drrbnicompany.Fragments.CompanyProfileFragment"
-            android:label="fragment_company_profile"
-            tools:layout="@layout/fragment_company_profile" />
+            android:id="@+id/studentProfileFragment"
+            android:name="com.example.drrbnicompany.Fragments.StudentProfileFragment"
+            android:label="StudentProfileFragment"
+            tools:layout="@layout/fragment_student_profile"
+            >
+            <argument
+                android:name="userId"
+                app:argType="string"
+                app:nullable="true"
+                />
+        </fragment>
+
     </navigation>
 
     <navigation android:id="@+id/notificationsNested"

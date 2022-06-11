@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/layout_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -46,8 +50,7 @@
                 android:id="@+id/sign_up_category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:entries="@array/category_array"
-                android:theme="@style/spinner"/>
+                android:theme="@style/spinner" />
 
         </FrameLayout>
 
@@ -77,9 +80,25 @@
                 app:trackCornerRadius="5dp" />
 
             </RelativeLayout>
+
         </LinearLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <include layout="@layout/sign_up_placeholder" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </RelativeLayout>
 
 
 </ScrollView>
