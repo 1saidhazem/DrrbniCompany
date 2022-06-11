@@ -186,7 +186,8 @@ public class Repository {
     }
 
     public void signIn(String email, String password, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
@@ -217,7 +218,8 @@ public class Repository {
     }
 
     public void resetPassword(String email, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
-        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -254,7 +256,9 @@ public class Repository {
     public void storeAdsData(String uid, Uri image, String adsName, String major, String adsRequirements,
                              String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        firebaseStorage.getReference().child("AdsImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        firebaseStorage.getReference()
+                .child("AdsImages/" + System.currentTimeMillis() + image.getLastPathSegment())
+                .putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -340,7 +344,10 @@ public class Repository {
     public void editProfileData(Uri image, String companyName, String email, String category
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        firebaseStorage.getReference().child("Images/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        firebaseStorage.getReference()
+                .child("companyProfilePictures/" + System.currentTimeMillis() + image.getLastPathSegment())
+                .putFile(image)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
