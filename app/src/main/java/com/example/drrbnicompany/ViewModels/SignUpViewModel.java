@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.List;
+
 public class SignUpViewModel extends AndroidViewModel {
 
     private Repository repository;
@@ -25,4 +27,9 @@ public class SignUpViewModel extends AndroidViewModel {
             ,MyListener<Boolean> isSuccessful  ){
         repository.storeSignUpData(firebaseUser , name , category , isSuccessful);
     }
+
+    public void getCategoriesName(MyListener<List<String>> isSuccessful) {
+        repository.getCategoriesName(isSuccessful);
+    }
+
 }

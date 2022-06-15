@@ -29,7 +29,8 @@ public class AddAdsFragment extends Fragment {
     private ActivityResultLauncher<String> permission;
     private Uri image;
 
-    public AddAdsFragment() {}
+    public AddAdsFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,11 +86,11 @@ public class AddAdsFragment extends Fragment {
                 String adsRequirements = binding.requirements.getText().toString().trim();
                 String adsDescription = binding.adsDescription.getText().toString().trim();
 
-                if (image == null){
+                if (image == null) {
                     stopLoad();
                     Snackbar.make(view, "أختر صورة", Snackbar.LENGTH_LONG).show();
                     return;
-                }else if (TextUtils.isEmpty(adsName)) {
+                } else if (TextUtils.isEmpty(adsName)) {
                     stopLoad();
                     Snackbar.make(view, "أدخل عنوان الإعلان", Snackbar.LENGTH_LONG).show();
                     return;
@@ -101,7 +102,7 @@ public class AddAdsFragment extends Fragment {
                     stopLoad();
                     Snackbar.make(view, "أدخل وصف الإعلان", Snackbar.LENGTH_LONG).show();
                     return;
-                }else if (TextUtils.isEmpty(adsRequirements)) {
+                } else if (TextUtils.isEmpty(adsRequirements)) {
                     stopLoad();
                     Snackbar.make(view, "أدخل متطلبات التدريب", Snackbar.LENGTH_LONG).show();
                     return;
@@ -111,14 +112,18 @@ public class AddAdsFragment extends Fragment {
                         adsRequirements, adsDescription, new MyListener<Boolean>() {
                             @Override
                             public void onValuePosted(Boolean value) {
-                                stopLoad();
-                                getActivity().getSupportFragmentManager().popBackStack();
+                                if (value) {
+                                    stopLoad();
+                                    requireActivity().getSupportFragmentManager().popBackStack();
+                                }
                             }
                         }, new MyListener<Boolean>() {
                             @Override
                             public void onValuePosted(Boolean value) {
-                                stopLoad();
-                                Snackbar.make(view, "فشل التحميل", Snackbar.LENGTH_LONG).show();
+                                if (value) {
+                                    stopLoad();
+                                    Snackbar.make(view, "فشل التحميل", Snackbar.LENGTH_LONG).show();
+                                }
                             }
                         });
             }
@@ -128,13 +133,13 @@ public class AddAdsFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void load(){
+    public void load() {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.btnAddAds.setEnabled(false);
         binding.btnAddAds.setClickable(false);
     }
 
-    public void stopLoad(){
+    public void stopLoad() {
         binding.progressBar.setVisibility(View.GONE);
         binding.btnAddAds.setEnabled(true);
         binding.btnAddAds.setClickable(true);

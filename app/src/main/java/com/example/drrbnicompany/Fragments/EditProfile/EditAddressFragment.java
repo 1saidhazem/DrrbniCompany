@@ -25,7 +25,8 @@ public class EditAddressFragment extends Fragment {
     private EditAddressViewModel editAddressViewModel;
     private Company thisCompany;
 
-    public EditAddressFragment() {}
+    public EditAddressFragment() {
+    }
 
     public static EditAddressFragment newInstance() {
         return new EditAddressFragment();
@@ -44,7 +45,7 @@ public class EditAddressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEditAddressBinding
-                .inflate(getLayoutInflater(),container,false);
+                .inflate(getLayoutInflater(), container, false);
 
         load();
 
@@ -54,22 +55,22 @@ public class EditAddressFragment extends Fragment {
                 if (getActivity() == null) return;
                 thisCompany = company;
                 int position;
-                if (company.getGovernorate().equals("أختر المحافظة")){
+                if (company.getGovernorate().equals("أختر المحافظة")) {
                     position = 0;
                     binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("شمال غزة")){
+                } else if (company.getGovernorate().equals("شمال غزة")) {
                     position = 1;
                     binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("غزة")){
+                } else if (company.getGovernorate().equals("غزة")) {
                     position = 2;
                     binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("الوسطى")){
+                } else if (company.getGovernorate().equals("الوسطى")) {
                     position = 3;
                     binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("خانيونس")){
+                } else if (company.getGovernorate().equals("خانيونس")) {
                     position = 4;
                     binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("رفح")){
+                } else if (company.getGovernorate().equals("رفح")) {
                     position = 5;
                     binding.spGovernorate.setSelection(position);
                 }
@@ -83,7 +84,6 @@ public class EditAddressFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 update();
-
                 String governorate = (String) binding.spGovernorate.getSelectedItem();
                 String address = binding.etAddress.getText().toString().trim();
 
@@ -95,18 +95,20 @@ public class EditAddressFragment extends Fragment {
                 editAddressViewModel.EditAddress(governorate, address, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
-                            Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
-
-                        stopUpdate();
+                        if (value) {
+                            stopUpdate();
+                            requireActivity().getSupportFragmentManager().popBackStack();
+                            Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 }, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
-                            Snackbar.make(view , "فشل التعديل" , Snackbar.LENGTH_LONG).show();
-
-                        stopUpdate();
+                        if (value) {
+                            stopUpdate();
+                            requireActivity().getSupportFragmentManager().popBackStack();
+                            Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
@@ -132,6 +134,7 @@ public class EditAddressFragment extends Fragment {
         binding.shimmerView.stopShimmerAnimation();
         binding.editProfileAddressLayout.setVisibility(View.VISIBLE);
     }
+
     public void update() {
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.btnOk.setEnabled(false);

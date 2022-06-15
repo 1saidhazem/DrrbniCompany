@@ -4,10 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.R;
@@ -66,10 +64,13 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
         public void bind(Job job) {
             this.job = job;
-            Glide.with(context).load(job.getImg()).placeholder(R.drawable.anim_progress).into(binding.jobImage);
+            if (job.getImg() == null){
+                binding.jobImage.setImageResource(R.drawable.defult_job_img);
+            }else {
+                Glide.with(context).load(job.getImg()).placeholder(R.drawable.anim_progress).into(binding.jobImage);
+            }
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
-
         }
     }
 

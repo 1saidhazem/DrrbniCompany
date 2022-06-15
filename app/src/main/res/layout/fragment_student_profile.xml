@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.BottomNavigationScreens.ProfileFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,6 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -45,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
+            android:layout_marginBottom="@dimen/_48sdp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
@@ -56,18 +56,16 @@
                 android:paddingTop="@dimen/_16sdp">
 
                 <TextView
-                    android:id="@+id/company_name"
+                    android:id="@+id/student_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
                     android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                    android:gravity="right"
-                    android:text="@string/company_name"
+                    android:text="@string/student_name"
                     android:textColor="@color/title_text"
                     android:textSize="@dimen/_30sdp" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,20 +74,20 @@
                     android:gravity="right|center_vertical">
 
                     <TextView
-                        android:id="@+id/category_name"
+                        android:id="@+id/tv_university_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/company_major"
+                        android:text="@string/university_name"
                         android:textColor="@color/title_text"
                         android:textSize="@dimen/_14sdp" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_category" />
+                    <!--                <ImageView-->
+                    <!--                    android:layout_width="@dimen/_20sdp"-->
+                    <!--                    android:layout_height="@dimen/_20sdp"-->
+                    <!--                    android:src="@drawable/ic_location_gray" />-->
 
                 </LinearLayout>
 
@@ -101,59 +99,92 @@
                     android:gravity="right|center_vertical">
 
                     <TextView
-                        android:id="@+id/company_email"
+                        android:id="@+id/tv_specialization_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/email_address"
+                        android:text="@string/specialization_name"
                         android:textColor="@color/title_text"
                         android:textSize="@dimen/_14sdp" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_email" />
+                    <!--                <ImageView-->
+                    <!--                    android:layout_width="@dimen/_20sdp"-->
+                    <!--                    android:layout_height="@dimen/_20sdp"-->
+                    <!--                    android:src="@drawable/ic_business_gray"/>-->
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/company_whatsapp_group"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    app:cardCornerRadius="@dimen/_8sdp"
+                    app:cardElevation="@dimen/_8sdp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/company_whatsapp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
-                        android:gravity="center_vertical"
-                        android:text="@string/whatsapp_num"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_14sdp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_68sdp"
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_whatsapp" />
+                        <LinearLayout
+                            android:id="@+id/whatsapp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                </LinearLayout>
+                            <ImageView
+                                android:layout_width="@dimen/_24sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_marginBottom="@dimen/_4sdp"
+                                android:src="@drawable/ic_whatsapp" />
 
-                <Button
-                    android:id="@+id/company_btn_edit_profile"
-                    style="@style/blue_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginLeft="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_24sdp"
-                    android:background="@drawable/btn_small"
-                    android:text="@string/edit_profile" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/whatsapp2"
+                                android:textColor="@color/title_text"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="@dimen/_1sdp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:background="@color/subtitle_text" />
+
+                        <LinearLayout
+                            android:id="@+id/Gmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/_24sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_marginBottom="@dimen/_4sdp"
+                                android:src="@drawable/ic_gmail" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gmail"
+                                android:textColor="@color/title_text"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <View
                     style="@style/divider"
@@ -161,27 +192,18 @@
                     android:layout_marginRight="@dimen/_16sdp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_ads"
+                    android:id="@+id/rv_jobs"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_6sdp"
                     tools:listitem="@layout/custom_job_item" />
 
-
             </LinearLayout>
+
+
         </androidx.core.widget.NestedScrollView>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_ads"
-            android:layout_width="@dimen/_52sdp"
-            android:layout_height="@dimen/_52sdp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:src="@drawable/ic_add"
-            app:fabCustomSize="@dimen/_52sdp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

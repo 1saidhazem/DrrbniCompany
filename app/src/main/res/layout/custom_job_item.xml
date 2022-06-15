@@ -39,7 +39,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_16sdp"
-            android:text="مشروع 1"
+            android:text="@string/test_job_name"
             android:gravity="right"
             android:maxLines="1"
             android:singleLine="true"
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:text="تم انشاء هذا المشروع من قبل طلبةة الكلية الجامعية للعلوم التطبيقية تخصص البرمجيات وقواعد البيانات"
+            android:text="@string/test_job_desc"
             android:maxLines="1"
             android:singleLine="true"
             android:gravity="right"
@@ -64,16 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/job_title"
             app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/dropDown"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_down" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
