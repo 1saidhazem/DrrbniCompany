@@ -42,11 +42,13 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+            <!--        android:layout_marginBottom="@dimen/_48sdp"  ^^^    -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,6 +69,30 @@
                     android:textColor="@color/title_text"
                     android:textSize="@dimen/_30sdp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                        android:gravity="center_vertical"
+                        android:text="@string/company_location"
+                        android:textColor="@color/title_text"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_location_gray" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,7 +192,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
-                    tools:listitem="@layout/custom_job_item" />
+                    tools:listitem="@layout/custom_post_item" />
 
 
             </LinearLayout>
@@ -199,5 +225,6 @@
         <include layout="@layout/profile_student_placeholder"/>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,7 @@ public class EditContactInformationFragment extends Fragment {
     private EditContactInformationViewModel contactInformationViewModel;
     private Company thiCompany;
 
-    public EditContactInformationFragment() {
-    }
+    public EditContactInformationFragment() {}
 
     public static EditContactInformationFragment newInstance() {
         return new EditContactInformationFragment();
@@ -36,19 +35,19 @@ public class EditContactInformationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        auth = FirebaseAuth.getInstance();
-        contactInformationViewModel = new ViewModelProvider(this).get(EditContactInformationViewModel.class);
-        contactInformationViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEditContactInformationBinding
-                .inflate(getLayoutInflater(), container, false);
+                .inflate(getLayoutInflater(),container,false);
 
         load();
+
+        auth = FirebaseAuth.getInstance();
+        contactInformationViewModel = new ViewModelProvider(this).get(EditContactInformationViewModel.class);
+        contactInformationViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
 
         contactInformationViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override
@@ -73,20 +72,18 @@ public class EditContactInformationFragment extends Fragment {
                 contactInformationViewModel.editContactInformation(whatsapp, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value) {
-                            stopUpdate();
-                            requireActivity().getSupportFragmentManager().popBackStack();
-                            Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
-                        }
+                        if (value = true)
+                            Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
+
+                        stopUpdate();
                     }
                 }, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value) {
-                            stopUpdate();
-                            requireActivity().getSupportFragmentManager().popBackStack();
-                            Snackbar.make(view, "فشل التعديل", Snackbar.LENGTH_LONG).show();
-                        }
+                        if (value = true)
+                            Snackbar.make(view , "فشل التعديل" , Snackbar.LENGTH_LONG).show();
+
+                        stopUpdate();
                     }
                 });
             }

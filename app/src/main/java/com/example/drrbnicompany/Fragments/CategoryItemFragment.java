@@ -1,12 +1,11 @@
 package com.example.drrbnicompany.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -14,30 +13,29 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.drrbnicompany.Adapters.CategoryStudentAdapter;
-import com.example.drrbnicompany.Fragments.BottomNavigationScreens.ProfileFragmentDirections;
+import com.example.drrbnicompany.Adapters.JobAdapter;
+import com.example.drrbnicompany.Adapters.StudentAdapter;
+import com.example.drrbnicompany.Fragments.BottomNavigationScreens.CategoriesFragmentDirections;
+import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Student;
-import com.example.drrbnicompany.ViewModels.CategoryViewModel;
+import com.example.drrbnicompany.ViewModels.CategoryItemViewModel;
+import com.example.drrbnicompany.ViewModels.MajorViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.databinding.FragmentCategoryItemsBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 public class CategoryItemFragment extends Fragment {
 
     private FragmentCategoryItemsBinding binding;
-    private CategoryStudentAdapter adapter;
-    private CategoryViewModel categoryViewModel;
+    private StudentAdapter studentAdapter;
+    private CategoryItemViewModel categoryItemViewModel;
+
     public CategoryItemFragment() {}
 
     public static CategoryItemFragment newInstance() {
         return new CategoryItemFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
     }
 
     @Override
@@ -46,35 +44,39 @@ public class CategoryItemFragment extends Fragment {
         binding = FragmentCategoryItemsBinding
                 .inflate(getLayoutInflater(),container,false);
 
+
+        String majorName = getArguments().getString("majorName").trim();
+        binding.title.setText(majorName);
+
+        categoryItemViewModel = new ViewModelProvider(this).get(CategoryItemViewModel.class);
+
         load();
-
-        String categoryId = CategoryItemFragmentArgs.fromBundle(requireArguments()).getCategoryId();
-        String major = CategoryItemFragmentArgs.fromBundle(requireArguments()).getName();
-        binding.title.setText(major);
-
-
-        categoryViewModel.getStudentsByMajor(major,new MyListener<List<Student>>() {
+        categoryItemViewModel.getAllStudentByMajor(majorName, new MyListener<List<Student>>() {
             @Override
             public void onValuePosted(List<Student> value) {
-                stopLoad();
-                adapter = new CategoryStudentAdapter(value, new MyListener<String>() {
+                if (getActivity() == null) return;
+
+                studentAdapter = new StudentAdapter(value, new MyListener<String>() {
                     @Override
                     public void onValuePosted(String value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
                         navController.navigate(CategoryItemFragmentDirections
-                                .actionCategoryItemFragmentToStudentProfileFragment(value));
+                        .actionCategoryItemFragmentToStudentProfileFragment(value));
                     }
                 });
+                stopLoad();
                 initRV();
             }
-        }, new MyListener<String>() {
+        }, new MyListener<Boolean>() {
             @Override
-            public void onValuePosted(String value) {
+            public void onValuePosted(Boolean value) {
+                if (value){
+                    stopLoad();
+                    Snackbar.make(requireView() , "فشل التحميل" , Snackbar.LENGTH_LONG).show();
+                }
 
             }
         });
-
-
 
         return binding.getRoot();
     }
@@ -89,7 +91,7 @@ public class CategoryItemFragment extends Fragment {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
         binding.rvCategoryItems.setLayoutManager(lm);
         binding.rvCategoryItems.setHasFixedSize(true);
-        binding.rvCategoryItems.setAdapter(adapter);
+        binding.rvCategoryItems.setAdapter(studentAdapter);
     }
 
     public void load() {
@@ -103,5 +105,4 @@ public class CategoryItemFragment extends Fragment {
         binding.shimmerView.stopShimmerAnimation();
         binding.rvCategoryItems.setVisibility(View.VISIBLE);
     }
-
 }

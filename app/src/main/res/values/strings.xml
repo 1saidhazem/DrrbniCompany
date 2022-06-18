@@ -49,7 +49,7 @@
     <string name="add">اضافة</string>
     <string name="add_description">كتابة وصف</string>
     <string name="job_link">رابط العمل</string>
-    <string name="category">التخصص</string>
+    <string name="major">التخصص</string>
     <string name="add_major">اختيار تخصص</string>
     <string name="job_name">أسم العمل</string>
     <string name="add_ads">"إضافة إعلان"</string>
@@ -103,6 +103,8 @@
     <string name="ads_requirements">المتطلبات</string>
     <string name="test_job_desc">تم انشاء هذا المشروع من قبل طلبةة الكلية الجامعية للعلوم التطبيقية تخصص البرمجيات وقواعد البيانات</string>
     <string name="test_job_name">مشروع 1</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

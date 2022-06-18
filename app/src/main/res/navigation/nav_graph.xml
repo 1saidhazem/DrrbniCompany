@@ -101,11 +101,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.drrbnicompany.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/signUpContactInformationFragment"
         android:name="com.example.drrbnicompany.Fragments.Auth.SignUp.SignUpContactInformationFragment"

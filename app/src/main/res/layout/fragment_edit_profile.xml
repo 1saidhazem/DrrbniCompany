@@ -7,12 +7,12 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/edit_profileLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <LinearLayout
-            android:id="@+id/edit_profileLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -68,32 +68,20 @@
                         android:hint="@string/email"
                         android:inputType="textEmailAddress" />
 
-                    <FrameLayout
-                        android:id="@+id/fl_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_52sdp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_profile_et_categories"
                         style="@style/editText"
-                        android:background="@drawable/edittext_background"
-                        android:layout_marginTop="@dimen/_24sdp"
-                        android:layout_marginLeft="@dimen/_24sdp"
-                        android:layout_marginRight="@dimen/_24sdp"
                         android:layout_below="@+id/edit_profile_et_email"
-                        android:elevation="@dimen/_8sdp">
-
-                        <Spinner
-                            android:id="@+id/edit_profile_sp_category"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:theme="@style/spinner" />
-
-                    </FrameLayout>
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:hint="التصنيف"
+                        android:inputType="textEmailAddress" />
 
                     <TextView
                         android:id="@+id/tv_edit_contact_information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/fl_spinner"
-                        android:layout_alignEnd="@+id/fl_spinner"
+                        android:layout_below="@id/edit_profile_et_categories"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                         android:text="@string/edit_contact_information"
@@ -104,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_edit_contact_information"
-                        android:layout_alignEnd="@+id/tv_edit_contact_information"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                         android:text="@string/edit_address"
@@ -115,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tv_edit_address"
-                        android:layout_alignEnd="@+id/tv_edit_address"
+                        android:layout_alignEnd="@+id/edit_profile_et_categories"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                         android:text="@string/change_password"
@@ -159,7 +147,7 @@
         android:id="@+id/shimmer_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

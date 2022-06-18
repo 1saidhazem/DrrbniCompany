@@ -1,38 +1,32 @@
 package com.example.drrbnicompany.Models;
 
 public class Student {
-    private String email, img, name, major, college, governorate, address, whatsApp, UserId;
-    private int typeUser;
+    private String UserId , name , email , college ,
+            major , address , governorate , whatsApp , img ;
+    private int typeUser ;
 
-    public Student(String email, String img, String name, String specialization, String college, String governorate, String address, String whatsApp, String UserId, int typeUser) {
-        this.email = email;
-        this.img = img;
+    public Student(String userId, String name, String email, String college, String major, String address, String governorate, String whatsApp, String img, int typeUser) {
+        UserId = userId;
         this.name = name;
-        this.major = specialization;
+        this.email = email;
         this.college = college;
-        this.governorate = governorate;
+        this.major = major;
         this.address = address;
+        this.governorate = governorate;
         this.whatsApp = whatsApp;
-        this.UserId = this.UserId;
+        this.img = img;
         this.typeUser = typeUser;
     }
 
-    public Student() {}
-
-    public String getEmail() {
-        return email;
+    public Student() {
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUserId() {
+        return UserId;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
+    public void setUserId(String userId) {
+        UserId = userId;
     }
 
     public String getName() {
@@ -43,12 +37,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getMajor() {
-        return major;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCollege() {
@@ -59,12 +53,12 @@ public class Student {
         this.college = college;
     }
 
-    public String getGovernorate() {
-        return governorate;
+    public String getMajor() {
+        return major;
     }
 
-    public void setGovernorate(String governorate) {
-        this.governorate = governorate;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getAddress() {
@@ -75,6 +69,14 @@ public class Student {
         this.address = address;
     }
 
+    public String getGovernorate() {
+        return governorate;
+    }
+
+    public void setGovernorate(String governorate) {
+        this.governorate = governorate;
+    }
+
     public String getWhatsApp() {
         return whatsApp;
     }
@@ -83,12 +85,12 @@ public class Student {
         this.whatsApp = whatsApp;
     }
 
-    public String getUserId() {
-        return UserId;
+    public String getImg() {
+        return img;
     }
 
-    public void setUserId(String userId) {
-        this.UserId = userId;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getTypeUser() {

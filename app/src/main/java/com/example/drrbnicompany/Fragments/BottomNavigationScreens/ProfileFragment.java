@@ -1,7 +1,6 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +13,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.AdsAdapter;
+import com.example.drrbnicompany.Adapters.JobAdapter;
 import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentProfileBinding;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -33,7 +33,6 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth auth;
     private ProfileViewModel profileViewModel;
     private AdsAdapter adsAdapter;
-    private Company thisCompany;
 
     public ProfileFragment() {
     }
@@ -45,14 +44,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        auth = FirebaseAuth.getInstance();
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        try {
-            profileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-            profileViewModel.requestAdsJobs(auth.getCurrentUser().getUid());
-        }catch (Exception e){
-            Log.e("ttt",e.getMessage());
-        }
 
     }
 
@@ -63,40 +54,27 @@ public class ProfileFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         load();
-        try {
-            profileViewModel.getStateActiveAccount(auth.getCurrentUser().getEmail(), new MyListener<Boolean>() {
-                @Override
-                public void onValuePosted(Boolean value) {
-                    if (value) {return;}
-                    else {
-                        Snackbar.make(container , "انتهت الجلسة" , Snackbar.LENGTH_LONG).show();
-                        profileViewModel.signOut();
-//                    NavController navController = Navigation.findNavController(binding.getRoot());
-//                    navController.navigate(R.id.action_mainFragment_to_loginFragment);
-                    }
 
-                }
-            });
-        }catch (Exception e){
-            Log.e("ttt",e.getMessage());
-        }
-
+        auth = FirebaseAuth.getInstance();
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        profileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
+        profileViewModel.requestAdsJobs(auth.getCurrentUser().getUid());
 
         profileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override
             public void onChanged(Company company) {
-                if (requireActivity() == null) return;
-                thisCompany = company;
+                if (getActivity() == null)
+                    return;
 
                 if (company.getImg() == null) {
                     binding.appBarImage.setImageResource(R.drawable.company_defult_image);
                 } else {
-                    Glide.with(requireActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                    Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 }
                 binding.companyName.setText(company.getName());
                 binding.companyEmail.setText(company.getEmail());
-                binding.categoryName.setText(company.getCategory());
                 binding.companyWhatsapp.setText(company.getWhatsApp());
+                binding.address.setText(company.getGovernorate() + " _ " +company.getAddress() );
                 stopLoad();
             }
         });
@@ -105,14 +83,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(List<Ads> ads) {
                 if (getActivity() == null) return;
-                adsAdapter = new AdsAdapter(ads, thisCompany, new MyListener<String>() {
-                    @Override
-                    public void onValuePosted(String value) {
-                        NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(ProfileFragmentDirections
-                                .actionProfileFragmentToShowAndEditAdsFragment(value));
-                    }
-                });
+                adsAdapter = new AdsAdapter(ads,profileViewModel,auth.getCurrentUser().getUid() );
                 initRV();
             }
         });

@@ -44,7 +44,7 @@
         <fragment
             android:id="@+id/addAdsFragment"
             android:name="com.example.drrbnicompany.Fragments.AddAdsFragment"
-            android:label="fragment_add_job"
+            android:label="fragment_add_ads"
             tools:layout="@layout/fragment_add_ads" />
         <fragment
             android:id="@+id/editProfileFragment"
@@ -59,6 +59,9 @@
             <action
                 android:id="@+id/action_editProfileFragment_to_editAddressFragment"
                 app:destination="@id/editAddressFragment" />
+            <action
+                android:id="@+id/action_editProfileFragment_to_changePasswordFragment"
+                app:destination="@id/changePasswordFragment" />
         </fragment>
         <fragment
             android:id="@+id/showAndEditAdsFragment"
@@ -81,6 +84,11 @@
             android:label="EditAddressFragment"
             tools:layout="@layout/fragment_edit_address"
             />
+        <fragment
+            android:id="@+id/changePasswordFragment"
+            android:name="com.example.drrbnicompany.Fragments.ChangePasswordFragment"
+            android:label="fragment_change_password"
+            tools:layout="@layout/fragment_change_password" />
     </navigation>
 
     <navigation android:id="@+id/categoriesNested"
@@ -92,56 +100,34 @@
             tools:layout="@layout/fragment_categories">
             <action
                 android:id="@+id/action_categoriesFragment_to_categoryItemFragment"
-                app:destination="@id/categoryItemFragment" >
-                <argument
-                    android:name="category_Id"
-                    app:argType="string"
-                    app:nullable="true"
-                    />
-                <argument
-                    android:name="name"
-                    app:argType="string"
-                    app:nullable="true"
-                    />
-            </action>
+                app:destination="@id/categoryItemFragment" />
         </fragment>
+
         <fragment
             android:id="@+id/categoryItemFragment"
             android:name="com.example.drrbnicompany.Fragments.CategoryItemFragment"
             android:label="fragment_category_item"
             tools:layout="@layout/fragment_category_items">
-            <argument
-                android:name="category_Id"
-                app:argType="string"
-                app:nullable="true"
-                />
-            <argument
-                android:name="name"
-                app:argType="string"
-                app:nullable="true"
-                />
+
             <action
                 android:id="@+id/action_categoryItemFragment_to_studentProfileFragment"
-                app:destination="@id/studentProfileFragment" >
-                <argument
-                    android:name="userId"
-                    app:argType="string"
-                    app:nullable="true"
-                    />
-            </action>
+                app:destination="@id/studentProfileFragment" />
+            <argument
+                android:name="majorName"
+                app:argType="string" />
+
 
         </fragment>
+
         <fragment
             android:id="@+id/studentProfileFragment"
             android:name="com.example.drrbnicompany.Fragments.StudentProfileFragment"
             android:label="StudentProfileFragment"
-            tools:layout="@layout/fragment_student_profile"
-            >
+            tools:layout="@layout/fragment_student_profile">
+
             <argument
                 android:name="userId"
-                app:argType="string"
-                app:nullable="true"
-                />
+                app:argType="string" />
         </fragment>
 
     </navigation>

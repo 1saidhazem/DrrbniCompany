@@ -1,22 +1,22 @@
 package com.example.drrbnicompany.Models;
 
-public class Category {
-    private String category_Id,image,name;
+public class Major {
+    private String majorId,image,name;
 
-    public Category() {}
+    public Major() {}
 
-    public Category(String category_Id, String image, String name) {
-        this.category_Id = category_Id;
+    public Major(String majorId, String image, String name) {
+        this.majorId = majorId;
         this.image = image;
         this.name = name;
     }
 
-    public String getCategory_Id() {
-        return category_Id;
+    public String getMajorId() {
+        return majorId;
     }
 
-    public void setCategory_Id(String category_Id) {
-        this.category_Id = category_Id;
+    public void setMajorId(String majorId) {
+        this.majorId = majorId;
     }
 
     public String getImage() {

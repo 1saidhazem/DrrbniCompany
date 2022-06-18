@@ -1,10 +1,10 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,25 +13,21 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.drrbnicompany.Adapters.CategoryAdapter;
-import com.example.drrbnicompany.Models.Category;
-import com.example.drrbnicompany.ViewModels.CategoryViewModel;
+import com.example.drrbnicompany.Models.Major;
+import com.example.drrbnicompany.ViewModels.MajorViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.databinding.FragmentCategoriesBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
 public class CategoriesFragment extends Fragment {
 
     private FragmentCategoriesBinding binding;
-    private FirebaseAuth auth;
     private CategoryAdapter adapter;
-    private CategoryViewModel categoryViewHolder;
-
-    public CategoriesFragment() {
-    }
+    private MajorViewModel majorViewModel;
+    public CategoriesFragment() {}
 
     public static CategoriesFragment newInstance() {
         return new CategoriesFragment();
@@ -40,8 +36,7 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        categoryViewHolder = new ViewModelProvider(this).get(CategoryViewModel.class);
-        auth = FirebaseAuth.getInstance();
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -49,37 +44,19 @@ public class CategoriesFragment extends Fragment {
         binding = FragmentCategoriesBinding
                 .inflate(inflater, container, false);
 
+        majorViewModel = new ViewModelProvider(this).get(MajorViewModel.class);
+
         load();
-
-        // Check state active account
-        try {
-            categoryViewHolder.getStateActiveAccount(auth.getCurrentUser().getEmail(), new MyListener<Boolean>() {
-                @Override
-                public void onValuePosted(Boolean value) {
-                    if (value) return;
-                    Snackbar.make(container, "انتهت الجلسة", Snackbar.LENGTH_LONG).show();
-                    categoryViewHolder.signOut();
-//                    NavController navController = Navigation.findNavController(binding.getRoot());
-//                    navController.navigate(R.id.action_mainFragment_to_loginFragment);
-                }
-            });
-        }
-        catch (Exception e) {
-            Log.e("ttt", e.getMessage());
-        }
-
-
-        categoryViewHolder.getCategories(new MyListener<List<Category>>() {
+        majorViewModel.getMajors(new MyListener<List<Major>>() {
             @Override
-            public void onValuePosted(List<Category> values) {
-                if (getActivity() == null) return;
-                adapter = new CategoryAdapter(values, new MyListener<Integer>() {
+            public void onValuePosted(List<Major> value) {
+                if (getActivity()==null) return;
+                adapter = new CategoryAdapter(value, new MyListener<String>() {
                     @Override
-                    public void onValuePosted(Integer value) {
+                    public void onValuePosted(String value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
                         navController.navigate(CategoriesFragmentDirections
-                                .actionCategoriesFragmentToCategoryItemFragment
-                                        (values.get(value).getCategory_Id(), values.get(value).getName()));
+                        .actionCategoriesFragmentToCategoryItemFragment(value));
                     }
                 });
                 stopLoad();
@@ -97,7 +74,7 @@ public class CategoriesFragment extends Fragment {
         binding = null;
     }
 
-    void initRV() {
+    void initRV(){
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
         binding.rvCategories.setLayoutManager(lm);
         binding.rvCategories.setHasFixedSize(true);

@@ -1,12 +1,20 @@
 package com.example.drrbnicompany.Adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.ViewModels.MyListener;
@@ -63,14 +71,36 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
         }
 
         public void bind(Job job) {
+            load();
             this.job = job;
-            if (job.getImg() == null){
-                binding.jobImage.setImageResource(R.drawable.defult_job_img);
-            }else {
-                Glide.with(context).load(job.getImg()).placeholder(R.drawable.anim_progress).into(binding.jobImage);
-            }
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
+            binding.progressBar.setVisibility(View.VISIBLE);
+            Glide.with(context).load(job.getImg()).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    binding.progressBar.setVisibility(View.GONE);
+                    return false;
+                }
+            }).into(binding.jobImage);
+            stopLoad();
+        }
+
+        public void load() {
+            binding.shimmerView.setVisibility(View.VISIBLE);
+            binding.shimmerView.startShimmerAnimation();
+            binding.customJobsLayout.setVisibility(View.GONE);
+        }
+
+        public void stopLoad() {
+            binding.shimmerView.setVisibility(View.GONE);
+            binding.shimmerView.stopShimmerAnimation();
+            binding.customJobsLayout.setVisibility(View.VISIBLE);
         }
     }
 

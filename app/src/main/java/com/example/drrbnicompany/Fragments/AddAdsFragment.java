@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
@@ -29,17 +30,11 @@ public class AddAdsFragment extends Fragment {
     private ActivityResultLauncher<String> permission;
     private Uri image;
 
-    public AddAdsFragment() {
-    }
+    public AddAdsFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        auth = FirebaseAuth.getInstance();
-
-        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-
         getImg = registerForActivityResult(
                 new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
                     @Override
@@ -69,6 +64,9 @@ public class AddAdsFragment extends Fragment {
         binding = FragmentAddAdsBinding
                 .inflate(getLayoutInflater(), container, false);
 
+        auth = FirebaseAuth.getInstance();
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+
         binding.adsImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,11 +84,11 @@ public class AddAdsFragment extends Fragment {
                 String adsRequirements = binding.requirements.getText().toString().trim();
                 String adsDescription = binding.adsDescription.getText().toString().trim();
 
-                if (image == null) {
+                if (image == null){
                     stopLoad();
                     Snackbar.make(view, "أختر صورة", Snackbar.LENGTH_LONG).show();
                     return;
-                } else if (TextUtils.isEmpty(adsName)) {
+                }else if (TextUtils.isEmpty(adsName)) {
                     stopLoad();
                     Snackbar.make(view, "أدخل عنوان الإعلان", Snackbar.LENGTH_LONG).show();
                     return;
@@ -102,7 +100,7 @@ public class AddAdsFragment extends Fragment {
                     stopLoad();
                     Snackbar.make(view, "أدخل وصف الإعلان", Snackbar.LENGTH_LONG).show();
                     return;
-                } else if (TextUtils.isEmpty(adsRequirements)) {
+                }else if (TextUtils.isEmpty(adsRequirements)) {
                     stopLoad();
                     Snackbar.make(view, "أدخل متطلبات التدريب", Snackbar.LENGTH_LONG).show();
                     return;
@@ -112,18 +110,14 @@ public class AddAdsFragment extends Fragment {
                         adsRequirements, adsDescription, new MyListener<Boolean>() {
                             @Override
                             public void onValuePosted(Boolean value) {
-                                if (value) {
-                                    stopLoad();
-                                    requireActivity().getSupportFragmentManager().popBackStack();
-                                }
+                                stopLoad();
+                                Navigation.findNavController(binding.getRoot()).popBackStack();
                             }
                         }, new MyListener<Boolean>() {
                             @Override
                             public void onValuePosted(Boolean value) {
-                                if (value) {
-                                    stopLoad();
-                                    Snackbar.make(view, "فشل التحميل", Snackbar.LENGTH_LONG).show();
-                                }
+                                stopLoad();
+                                Snackbar.make(view, "فشل التحميل", Snackbar.LENGTH_LONG).show();
                             }
                         });
             }
@@ -133,13 +127,13 @@ public class AddAdsFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void load() {
+    public void load(){
         binding.progressBar.setVisibility(View.VISIBLE);
         binding.btnAddAds.setEnabled(false);
         binding.btnAddAds.setClickable(false);
     }
 
-    public void stopLoad() {
+    public void stopLoad(){
         binding.progressBar.setVisibility(View.GONE);
         binding.btnAddAds.setEnabled(true);
         binding.btnAddAds.setClickable(true);

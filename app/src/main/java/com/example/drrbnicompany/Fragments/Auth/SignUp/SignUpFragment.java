@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,8 +19,6 @@ import com.example.drrbnicompany.databinding.FragmentSignUpBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.List;
 
 
 public class SignUpFragment extends Fragment {
@@ -52,8 +49,6 @@ public class SignUpFragment extends Fragment {
         binding = FragmentSignUpBinding
                 .inflate(getLayoutInflater(),container,false);
 
-        loadShimmer();
-        getCategoriesName();
 
         binding.signUpBtnCompleteTheRegistrationProcess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,30 +118,6 @@ public class SignUpFragment extends Fragment {
 
 
         return binding.getRoot();
-    }
-
-    private void getCategoriesName() {
-        signUpViewModel.getCategoriesName(new MyListener<List<String>>() {
-            @Override
-            public void onValuePosted(List<String> value) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(),
-                        android.R.layout.simple_spinner_dropdown_item,value);
-                binding.signUpCategory.setAdapter(adapter);
-                stopLoadShimmer();
-            }
-        });
-    }
-
-    public void loadShimmer() {
-        binding.shimmerView.setVisibility(View.VISIBLE);
-        binding.shimmerView.startShimmerAnimation();
-        binding.layoutSignUp.setVisibility(View.GONE);
-    }
-
-    public void stopLoadShimmer() {
-        binding.shimmerView.setVisibility(View.GONE);
-        binding.shimmerView.stopShimmerAnimation();
-        binding.layoutSignUp.setVisibility(View.VISIBLE);
     }
 
     public void load(){

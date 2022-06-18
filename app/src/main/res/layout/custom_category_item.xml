@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_144sdp"
+    android:layout_height="@dimen/_180sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_4sdp"
@@ -26,16 +26,31 @@
         <TextView
             android:id="@+id/tv_category_name"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_56sdp"
+            android:layout_height="match_parent"
+            android:background="@drawable/major_shape"
+            android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+            android:gravity="bottom"
             android:paddingRight="@dimen/_16sdp"
-            android:gravity="top"
-            android:background="#80232323"
+            android:paddingBottom="@dimen/_16sdp"
             android:text="تكنولوجيا المعلومات"
             android:textColor="@color/white"
-            android:textSize="@dimen/_24sdp"
-            android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+            android:textSize="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            style="@style/ProgressBar"
+            app:indicatorColor="@color/basic"
+            app:indicatorSize="30dp"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/img_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackCornerRadius="3dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

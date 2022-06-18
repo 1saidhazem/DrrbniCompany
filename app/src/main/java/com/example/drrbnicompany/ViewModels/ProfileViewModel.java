@@ -10,11 +10,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Company;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 
 import java.util.List;
 
@@ -51,17 +46,12 @@ public class ProfileViewModel extends AndroidViewModel {
         return adsData;
     }
 
-    public void changePassword(String currentPassword, String newPassword, String confPassword, MyListener<String> isSuccessful, MyListener<String> isFailure) {
-        repository.changePassword(currentPassword, newPassword, confPassword, isSuccessful, isFailure);
+    public void getCompanyImgAndName(String uid , MyListener<Company> company){
+        repository.getCompanyImgAndName(uid, company);
     }
 
-    public void getStateActiveAccount(String email, MyListener<Boolean> isSuccessful) {
-        repository.getStateActiveAccount(email, isSuccessful);
+    public void deleteAds(String adsId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+        repository.deleteAds(adsId, isSuccessful, isFailure);
     }
-
-    public void signOut() {
-        repository.signOut();
-    }
-
 
 }

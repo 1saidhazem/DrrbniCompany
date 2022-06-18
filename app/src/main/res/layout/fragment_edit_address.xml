@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/editProfile_addressLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -32,54 +31,62 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/editProfile_addressLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_52sdp"
-            android:background="@drawable/edittext_background"
-            android:layout_marginTop="@dimen/_24sdp"
-            android:layout_marginLeft="@dimen/_24sdp"
-            android:layout_marginRight="@dimen/_24sdp"
-            android:elevation="@dimen/_8sdp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/sp_governorate"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:entries="@array/governorate_array"
-                android:theme="@style/spinner"/>
-
-        </FrameLayout>
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_address"
-            style="@style/editText"
-            android:hint="@string/address" />
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btn_ok"
-                style="@style/blue_btn"
+                android:layout_height="@dimen/_52sdp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="@dimen/_24sdp"
                 android:layout_marginLeft="@dimen/_24sdp"
-                android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginRight="@dimen/_24sdp"
-                android:layout_marginBottom="@dimen/_40sdp"
-                android:text="@string/ok" />
+                android:elevation="@dimen/_8sdp">
+
+                <Spinner
+                    android:id="@+id/sp_governorate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:entries="@array/governorate_array"
+                    android:theme="@style/spinner"/>
+
+            </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_address"
+                style="@style/editText"
+                android:hint="@string/address" />
 
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressBar"
-                style="@style/ProgressBar"
-                android:layout_alignEnd="@+id/btn_ok"
-                app:indicatorColor="@color/white"
-                app:indicatorSize="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:trackCornerRadius="5dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_ok"
+                    style="@style/blue_btn"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:text="@string/ok" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    style="@style/ProgressBar"
+                    android:layout_alignEnd="@+id/btn_ok"
+                    app:indicatorColor="@color/white"
+                    app:indicatorSize="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:trackCornerRadius="5dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

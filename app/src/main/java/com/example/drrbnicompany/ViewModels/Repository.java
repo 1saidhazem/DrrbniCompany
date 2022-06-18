@@ -2,23 +2,22 @@ package com.example.drrbnicompany.ViewModels;
 
 import static com.example.drrbnicompany.Constant.ACTIVATED;
 import static com.example.drrbnicompany.Constant.ADDRESS;
-import static com.example.drrbnicompany.Constant.ADS_TIMESTAMP;
-import static com.example.drrbnicompany.Constant.CATEGORY_NAME;
+import static com.example.drrbnicompany.Constant.ADS_DESCRIPTION;
+import static com.example.drrbnicompany.Constant.ADS_ID;
+import static com.example.drrbnicompany.Constant.ADS_REQUIREMENTS;
+import static com.example.drrbnicompany.Constant.ADS_TITLE;
 import static com.example.drrbnicompany.Constant.COLLECTION_ADS;
-import static com.example.drrbnicompany.Constant.COLLECTION_CATEGORIES;
 import static com.example.drrbnicompany.Constant.COLLECTION_JOBS;
 import static com.example.drrbnicompany.Constant.COLLECTION_MAJORS;
-import static com.example.drrbnicompany.Constant.COLLECTION_PROFILE_STUDENTS;
+import static com.example.drrbnicompany.Constant.COLLECTION_STUDENT_PROFILES;
 import static com.example.drrbnicompany.Constant.COLLECTION_USERS_PROFILES;
 import static com.example.drrbnicompany.Constant.EMAIL;
 import static com.example.drrbnicompany.Constant.GOVERNORATE;
 import static com.example.drrbnicompany.Constant.IMG;
 import static com.example.drrbnicompany.Constant.CATEGORY;
-import static com.example.drrbnicompany.Constant.MAJOR_NAME;
+import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
-import static com.example.drrbnicompany.Constant.PROFILE_STUDENTS_MAJOR;
-import static com.example.drrbnicompany.Constant.PROFILE_STUDENTS_USER_ID;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
 import static com.example.drrbnicompany.Constant.UID;
 import static com.example.drrbnicompany.Constant.USER_ID;
@@ -30,11 +29,12 @@ import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.drrbnicompany.Models.Ads;
-import com.example.drrbnicompany.Models.Category;
 import com.example.drrbnicompany.Models.Job;
+import com.example.drrbnicompany.Models.Major;
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.Models.Student;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,7 +49,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -116,7 +118,7 @@ public class Repository {
                 if (task.isSuccessful())
                     isSuccessful.onValuePosted(true);
                 else
-                    Log.d("kkkkk", task.getException().toString());
+                    Log.d("kkkkk" , task.getException().toString());
             }
         });
     }
@@ -186,8 +188,7 @@ public class Repository {
     }
 
     public void signIn(String email, String password, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
@@ -218,8 +219,7 @@ public class Repository {
     }
 
     public void resetPassword(String email, MyListener<Boolean> isSuccessful, MyListener<String> isFailure) {
-        firebaseAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -256,9 +256,7 @@ public class Repository {
     public void storeAdsData(String uid, Uri image, String adsName, String major, String adsRequirements,
                              String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        firebaseStorage.getReference()
-                .child("AdsImages/" + System.currentTimeMillis() + image.getLastPathSegment())
-                .putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        firebaseStorage.getReference().child("AdsImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -267,8 +265,9 @@ public class Repository {
 
                         DocumentReference docRef = firebaseFirestore.collection(COLLECTION_ADS).document();
                         Ads ads = new Ads(docRef.getId(), uid, adsName, major, adsRequirements, adsDescription
-                                , uri.toString(), new Timestamp(new Date()));
+                                , uri.toString() , new Timestamp(new Date()));
                         docRef.set(ads);
+
                         isSuccessful.onValuePosted(true);
                     }
                 });
@@ -284,29 +283,33 @@ public class Repository {
     public void requestGetAds(String uid) {
         firebaseFirestore.collection(COLLECTION_ADS)
                 .whereEqualTo(USER_ID, uid)
-//                .orderBy(ADS_TIMESTAMP, Query.Direction.DESCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<Ads> adsList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Ads ads = document.toObject(Ads.class);
-                                adsList.add(ads);
-                                adsData.postValue(adsList);
-                            }
-                        }
-                    }
-                });
+                .orderBy("timestamp" , Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value,
+                                @Nullable FirebaseFirestoreException error) {
+
+                if (error != null){
+                    return;
+                }
+
+                List<Ads> adsList = new ArrayList<>();
+                assert value != null;
+                for (QueryDocumentSnapshot doc : value) {
+                    Ads ads = doc.toObject(Ads.class);
+                    adsList.add(ads);
+                    adsData.postValue(adsList);
+                }
+
+            }
+        });
     }
 
     public MutableLiveData<List<Ads>> getAdsData() {
         return adsData;
     }
 
-    public void getAdsById(String adsId, MyListener<Ads> isSuccessful
-            , MyListener<Boolean> isFailure) {
+    public void getAdsById(String adsId ,MyListener<Ads> isSuccessful
+            , MyListener<Boolean> isFailure){
         firebaseFirestore.collection(COLLECTION_ADS)
                 .document(adsId)
                 .get()
@@ -314,28 +317,28 @@ public class Repository {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
+                           DocumentSnapshot document = task.getResult();
                             Ads ads = document.toObject(Ads.class);
                             isSuccessful.onValuePosted(ads);
-                        } else
+                        }else
                             isFailure.onValuePosted(true);
                     }
                 });
     }
 
-    public void getCategories(MyListener<List<Category>> isSuccessful) {
-        firebaseFirestore.collection(COLLECTION_CATEGORIES)
+    public void getMajors(MyListener<List<Major>> isSuccessful) {
+        firebaseFirestore.collection(COLLECTION_MAJORS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<Category> categoryList = new ArrayList<>();
+                            List<Major> majorList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Category category = document.toObject(Category.class);
-                                categoryList.add(category);
+                                Major major = document.toObject(Major.class);
+                                majorList.add(major);
                             }
-                            isSuccessful.onValuePosted(categoryList);
+                            isSuccessful.onValuePosted(majorList);
                         }
                     }
                 });
@@ -344,10 +347,7 @@ public class Repository {
     public void editProfileData(Uri image, String companyName, String email, String category
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        firebaseStorage.getReference()
-                .child("companyProfilePictures/" + System.currentTimeMillis() + image.getLastPathSegment())
-                .putFile(image)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        firebaseStorage.getReference().child("Images/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -359,10 +359,11 @@ public class Repository {
                         data.put(IMG, uri.toString());
                         data.put(CATEGORY, category);
 
+
                         firebaseUser.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
+                                if (task.isSuccessful()){
 
                                     firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                                             .document(firebaseUser.getUid())
@@ -374,7 +375,8 @@ public class Repository {
                                         }
                                     });
 
-                                }
+                                }else
+                                    Log.d("ddddddd" , task.getException().toString());
                             }
                         });
 
@@ -400,8 +402,8 @@ public class Repository {
         firebaseUser.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-
+                if (task.isSuccessful()){
+                    Log.d("ddddddddd" , "sucss");
                     firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                             .document(firebaseUser.getUid())
                             .update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -414,7 +416,9 @@ public class Repository {
                         }
                     });
 
-                }
+                }else
+                    Log.d("ddddddddd" , task.getException().toString());
+
             }
         });
     }
@@ -439,7 +443,7 @@ public class Repository {
     }
 
     public void editAddress(String governorate, String address
-            , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+            , MyListener<Boolean> isSuccessful , MyListener<Boolean> isFailure) {
         HashMap<String, Object> data = new HashMap<>();
         data.put(GOVERNORATE, governorate);
         data.put(ADDRESS, address);
@@ -459,20 +463,29 @@ public class Repository {
     }
 
 
-    public void changePassword(String currentPassword, String newPassword, String confPassword, MyListener<String> isSuccessful, MyListener<String> isFailure) {
-        AuthCredential credential = EmailAuthProvider.getCredential(firebaseUser.getEmail(), currentPassword);
+    public void changePassword(String currentPassword,String newPassword
+            ,MyListener<Boolean > isSuccessful , MyListener<String> isFailure){
+
+        AuthCredential credential = EmailAuthProvider.getCredential(firebaseUser.getEmail() ,currentPassword);
         firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                firebaseUser.updatePassword(newPassword)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    isSuccessful.onValuePosted("تم تحديث كلمة المرور");
-                                }
-                            }
-                        });
+
+               if (task.isSuccessful()){
+
+                   firebaseUser.updatePassword(newPassword)
+                           .addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
+                                   isSuccessful.onValuePosted(true);
+                               }
+                           }).addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           isFailure.onValuePosted(e.toString());
+                       }
+                   });
+               }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -482,70 +495,128 @@ public class Repository {
         });
     }
 
-    public void getCategoriesName(MyListener<List<String>> isSuccessful) {
-        firebaseFirestore.collection(COLLECTION_MAJORS)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<String> collegeList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                collegeList.add(document.getString(MAJOR_NAME));
-                            }
-                            isSuccessful.onValuePosted(collegeList);
-                        }
-                    }
-                });
-    }
-
-    public void getStateActiveAccount(String email, MyListener<Boolean> isSuccessful) {
+    public void getCompanyImgAndName(String uid , MyListener<Company> company){
         firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
-                .whereEqualTo(EMAIL, email)
+                .whereEqualTo(UID, uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                isSuccessful.onValuePosted(document.getBoolean(ACTIVATED));
+                                Company com = document.toObject(Company.class);
+                                company.onValuePosted(com);
                             }
                         }
                     }
                 });
     }
 
-    public void signOut() {
-        firebaseAuth.signOut();
-    }
-
-    public void getStudentsByMajor(String major, MyListener<List<Student>> isSuccessful, MyListener<String> isFailure) {
-        firebaseFirestore.collection(COLLECTION_PROFILE_STUDENTS)
-                .whereEqualTo(PROFILE_STUDENTS_MAJOR,major)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public void editAdsData(String adsId, Uri image, String adsTitle, String major, String adsRequirements,
+                             String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+        firebaseStorage.getReference().child("AdsImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<Student> students = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Student student = document.toObject(Student.class);
-                                students.add(student);
+                    public void onSuccess(Uri uri) {
+
+                        HashMap<String, Object> ads = new HashMap<>();
+                        ads.put(ADS_ID, adsId);
+                        ads.put(IMG, uri.toString());
+                        ads.put(MAJOR, major);
+                        ads.put(ADS_TITLE, adsTitle);
+                        ads.put(ADS_REQUIREMENTS, adsRequirements);
+                        ads.put(ADS_DESCRIPTION, adsDescription);
+
+
+                        firebaseFirestore.collection(COLLECTION_ADS)
+                                .document(adsId)
+                                .update(ads).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                    isSuccessful.onValuePosted(true);
                             }
-                            isSuccessful.onValuePosted(students);
-                        }
+                        });
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                isFailure.onValuePosted(e.getMessage());
+                isFailure.onValuePosted(true);
             }
         });
     }
 
-    public void getInfoStudentByUID(String UserId, MyListener<Student> isSuccessful, MyListener<String> isFailure) {
-        firebaseFirestore.collection(COLLECTION_PROFILE_STUDENTS)
-                .document(UserId)
+    public void editAdsDataWithoutImage(String adsId, String adsTitle, String major, String adsRequirements,
+                            String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+
+        HashMap<String, Object> ads = new HashMap<>();
+        ads.put(ADS_ID, adsId);
+        ads.put(MAJOR, major);
+        ads.put(ADS_TITLE, adsTitle);
+        ads.put(ADS_REQUIREMENTS, adsRequirements);
+        ads.put(ADS_DESCRIPTION, adsDescription);
+
+
+        firebaseFirestore.collection(COLLECTION_ADS)
+                .document(adsId)
+                .update(ads).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    isSuccessful.onValuePosted(true);
+                }else
+                    isFailure.onValuePosted(true);
+            }
+        });
+
+    }
+
+    public void deleteAds(String adsId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+        firebaseFirestore.collection(COLLECTION_ADS)
+                .document(adsId)
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            isSuccessful.onValuePosted(true);
+                        }else
+                            isFailure.onValuePosted(true);
+                    }
+                });
+    }
+
+    public void getAllStudentByMajor(String majorName , MyListener<List<Student>> isSuccessful
+            , MyListener<Boolean> isFailure){
+        firebaseFirestore.collection(COLLECTION_STUDENT_PROFILES)
+                .whereEqualTo(MAJOR , majorName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    List<Student> studentList = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Student student = document.toObject(Student.class);
+                        studentList.add(student);
+                    }
+                    isSuccessful.onValuePosted(studentList);
+                }else{
+                    isFailure.onValuePosted(true);
+                }
+
+            }
+        });
+    }
+
+    public void getStudentById(String studentId ,MyListener<Student> isSuccessful
+            , MyListener<Boolean> isFailure){
+        firebaseFirestore.collection(COLLECTION_STUDENT_PROFILES)
+                .document(studentId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -554,39 +625,32 @@ public class Repository {
                             DocumentSnapshot document = task.getResult();
                             Student student = document.toObject(Student.class);
                             isSuccessful.onValuePosted(student);
-                        }
+                        }else
+                            isFailure.onValuePosted(true);
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                isFailure.onValuePosted(e.getMessage());
-            }
-        });
+                });
     }
 
-    public void getJobsByUid(String Uid, MyListener<List<Job>> isSuccessful, MyListener<String> isFailure) {
+    public void getStudentJobsById(String uid , MyListener<List<Job>> isSuccessful
+            , MyListener<Boolean> isFailure){
+
         firebaseFirestore.collection(COLLECTION_JOBS)
-                .whereEqualTo(USER_ID,Uid)
+                .whereEqualTo(USER_ID , uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List<Job> jobs = new ArrayList<>();
+                        if (task.isSuccessful()){
+
+                            List<Job> jobList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Job job = document.toObject(Job.class);
-                                jobs.add(job);
+                                jobList.add(job);
                             }
-                            isSuccessful.onValuePosted(jobs);
-                        }
+                            isSuccessful.onValuePosted(jobList);
+                        }else
+                            isFailure.onValuePosted(true);
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                isFailure.onValuePosted(e.getMessage());
-            }
-        });
+                });
     }
-
-
 }

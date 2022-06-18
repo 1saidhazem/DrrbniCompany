@@ -15,7 +15,8 @@ public class ShowPostFragment extends Fragment {
     public ShowPostFragment() {}
 
     public static ShowPostFragment newInstance() {
-        return new ShowPostFragment();
+        ShowPostFragment fragment = new ShowPostFragment();
+        return fragment;
     }
 
     @Override

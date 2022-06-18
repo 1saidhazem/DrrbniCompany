@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Fragments.StudentProfileFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/profileLayout"
+        android:id="@+id/studentProfileLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -29,7 +29,7 @@
                 app:toolbarId="@+id/toolbar">
 
                 <ImageView
-                    android:id="@+id/app_bar_image"
+                    android:id="@+id/student_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -44,7 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
-            android:layout_marginBottom="@dimen/_48sdp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
@@ -62,9 +61,11 @@
                     android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginRight="@dimen/_16sdp"
                     android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                    android:text="@string/student_name"
+                    android:text="@string/company_name"
                     android:textColor="@color/title_text"
-                    android:textSize="@dimen/_30sdp" />
+                    android:textSize="@dimen/_30sdp"
+                    android:gravity="right"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,20 +75,20 @@
                     android:gravity="right|center_vertical">
 
                     <TextView
-                        android:id="@+id/tv_university_name"
+                        android:id="@+id/student_major"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/university_name"
+                        android:text="@string/company_major"
                         android:textColor="@color/title_text"
                         android:textSize="@dimen/_14sdp" />
 
-                    <!--                <ImageView-->
-                    <!--                    android:layout_width="@dimen/_20sdp"-->
-                    <!--                    android:layout_height="@dimen/_20sdp"-->
-                    <!--                    android:src="@drawable/ic_location_gray" />-->
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_college" />
 
                 </LinearLayout>
 
@@ -99,92 +100,48 @@
                     android:gravity="right|center_vertical">
 
                     <TextView
-                        android:id="@+id/tv_specialization_name"
+                        android:id="@+id/student_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_light"
                         android:gravity="center_vertical"
-                        android:text="@string/specialization_name"
+                        android:text="@string/email_address"
                         android:textColor="@color/title_text"
                         android:textSize="@dimen/_14sdp" />
 
-                    <!--                <ImageView-->
-                    <!--                    android:layout_width="@dimen/_20sdp"-->
-                    <!--                    android:layout_height="@dimen/_20sdp"-->
-                    <!--                    android:src="@drawable/ic_business_gray"/>-->
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_email" />
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
+                    android:id="@+id/student_whatsapp_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_12sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardElevation="@dimen/_8sdp"
-                    app:cardUseCompatPadding="true">
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:gravity="right|center_vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_68sdp"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/student_whatsapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                        android:gravity="center_vertical"
+                        android:text="@string/whatsapp_num"
+                        android:textColor="@color/title_text"
+                        android:textSize="@dimen/_14sdp" />
 
-                        <LinearLayout
-                            android:id="@+id/whatsapp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_whatsapp" />
 
-                            <ImageView
-                                android:layout_width="@dimen/_24sdp"
-                                android:layout_height="@dimen/_24sdp"
-                                android:layout_marginBottom="@dimen/_4sdp"
-                                android:src="@drawable/ic_whatsapp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/whatsapp2"
-                                android:textColor="@color/title_text"
-                                android:textSize="@dimen/_12sdp" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="@dimen/_1sdp"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginBottom="@dimen/_8sdp"
-                            android:background="@color/subtitle_text" />
-
-                        <LinearLayout
-                            android:id="@+id/Gmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="@dimen/_24sdp"
-                                android:layout_height="@dimen/_24sdp"
-                                android:layout_marginBottom="@dimen/_4sdp"
-                                android:src="@drawable/ic_gmail" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/gmail"
-                                android:textColor="@color/title_text"
-                                android:textSize="@dimen/_12sdp" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
                 <View
                     style="@style/divider"
@@ -192,18 +149,17 @@
                     android:layout_marginRight="@dimen/_16sdp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_jobs"
+                    android:id="@+id/student_rv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_6sdp"
-                    android:layout_marginRight="@dimen/_6sdp"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
                     tools:listitem="@layout/custom_job_item" />
 
             </LinearLayout>
 
 
         </androidx.core.widget.NestedScrollView>
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -223,3 +179,4 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

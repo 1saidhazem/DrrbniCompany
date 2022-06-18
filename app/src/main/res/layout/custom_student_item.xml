@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -27,10 +28,11 @@
                 android:id="@+id/student_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/student_name"
+                android:text="@string/company_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp"
                 android:singleLine="true"
+                android:gravity="right"
                 android:fontFamily="@font/ibm_plex_sans_arabic_regular"/>
 
             <LinearLayout
@@ -39,21 +41,21 @@
                 android:gravity="right|center_vertical">
 
                 <TextView
-                    android:id="@+id/university_name"
+                    android:id="@+id/student_collage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_8sdp"
                     android:singleLine="true"
-                    android:text="@string/university_name"
+                    android:text="@string/company_location"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/ibm_plex_sans_arabic_light"
                     android:gravity="center_vertical"/>
 
-<!--                <ImageView-->
-<!--                    android:layout_width="@dimen/_16sdp"-->
-<!--                    android:layout_height="@dimen/_16sdp"-->
-<!--                    android:src="@drawable/ic_location"/>-->
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_college_white"/>
 
             </LinearLayout>
 
@@ -63,21 +65,21 @@
                 android:gravity="right|center_vertical">
 
                 <TextView
-                    android:id="@+id/specialization_name"
+                    android:id="@+id/student_major"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_8sdp"
                     android:singleLine="true"
-                    android:text="@string/specialization_name"
+                    android:text="@string/company_major"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/ibm_plex_sans_arabic_light"
                     android:gravity="center_vertical"/>
 
-<!--                <ImageView-->
-<!--                    android:layout_width="@dimen/_16sdp"-->
-<!--                    android:layout_height="@dimen/_16sdp"-->
-<!--                    android:src="@drawable/ic_business"/>-->
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_college_white"/>
 
             </LinearLayout>
 
@@ -94,13 +96,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/image_student"
-            android:scaleType="centerCrop"
-            android:src="@drawable/onboarding3" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="match_parent">
 
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBar"
+                style="@style/ProgressBar"
+                app:indicatorColor="@color/basic"
+                app:indicatorSize="30dp"
+                app:trackCornerRadius="3dp"
+                android:layout_marginEnd="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/student_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/student_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/company"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

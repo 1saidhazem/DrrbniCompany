@@ -32,7 +32,6 @@ public class ForgotPasswordFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(SignInViewModel.class);
     }
 
     @Override
@@ -40,6 +39,7 @@ public class ForgotPasswordFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentForgotPasswordBinding.inflate(getLayoutInflater(), container, false);
 
+        viewModel = new ViewModelProvider(this).get(SignInViewModel.class);
 
         binding.forgotPasswordBtnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
