@@ -27,48 +27,23 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_24sdp" />
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/white"
             android:layout_marginTop="@dimen/_16sdp"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:elevation="@dimen/_8sdp">
 
             <Spinner
-                android:id="@+id/employment_spinner"
+                android:id="@+id/major"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_marginRight="@dimen/_16sdp"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_height="match_parent"
+                android:entries="@array/majors_array"
                 android:theme="@style/spinner"/>
 
-            <ImageView
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
-                android:src="@drawable/ic_business" />
+        </FrameLayout>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:gravity="right"
-            android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/location_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_marginRight="@dimen/_16sdp"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:theme="@style/spinner"/>
-
-            <ImageView
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
-                android:src="@drawable/ic_location" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,7 +1,8 @@
 package com.example.drrbnicompany.Adapters;
 
-import android.content.Context;
+
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,66 +18,60 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.R;
-import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.databinding.CustomJobItemBinding;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
 
-import java.util.List;
+public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
 
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
-    private List<Job> jobList;
-    private Context context;
-    private MyListener<Job> listener;
+    public interface OnJobSelectedListener {
 
-    public JobAdapter() {}
+        void onJobSelected(Job job);
 
-    public JobAdapter(List<Job> jobList , MyListener<Job> listener) {
-        this.jobList = jobList;
-        this.listener = listener;
-        notifyDataSetChanged();
     }
 
+    private OnJobSelectedListener mListener;
+
+    public HomeAdapter(Query query, OnJobSelectedListener mListener) {
+        super(query);
+        this.mListener = mListener;
+    }
 
     @NonNull
     @Override
-    public JobViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        return new JobViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_job_item , parent , false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_job_item , parent , false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
-        Job job = jobList.get(position);
-        holder.bind(job);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(getSnapshot(position), mListener);
+
     }
 
-    @Override
-    public int getItemCount() {
-        return jobList.size();
-    }
 
-    class JobViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         CustomJobItemBinding binding;
-        Job job;
-        public JobViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = CustomJobItemBinding.bind(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onValuePosted(job);
-                }
-            });
         }
 
-        public void bind(Job job) {
+
+
+        public void bind(final DocumentSnapshot snapshot,
+                         final OnJobSelectedListener listener) {
+
             load();
-            this.job = job;
+
+            Job job = snapshot.toObject(Job.class);
+
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
             binding.progressBar.setVisibility(View.VISIBLE);
-            Glide.with(context).load(job.getImg()).listener(new RequestListener<Drawable>() {
+            Glide.with(binding.jobImage.getContext()).load(job.getImg()).listener(new RequestListener<Drawable>() {
                 @Override
                 public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                     return false;
@@ -88,6 +83,14 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
                     return false;
                 }
             }).into(binding.jobImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onJobSelected(job);
+                }
+            });
+
             stopLoad();
         }
 
@@ -102,8 +105,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
             binding.shimmerView.stopShimmerAnimation();
             binding.customJobsLayout.setVisibility(View.VISIBLE);
         }
+
     }
 
+
 }
-
-

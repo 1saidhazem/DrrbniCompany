@@ -1,6 +1,8 @@
 package com.example.drrbnicompany.Models;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     private String jobId,userId,jobName,major,jobLink,jobDescription, img;
 
     public Job(String jobId, String userId , String jobName, String major, String jobLink, String jobDescription , String img) {

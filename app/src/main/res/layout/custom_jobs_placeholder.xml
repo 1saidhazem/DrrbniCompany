@@ -1,76 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/customJobsLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/job_image"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/gray_bg" />
-
-        <View
-            android:id="@+id/view"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/title_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_image" />
-
-        <TextView
-            android:id="@+id/job_title"
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:background="@color/gray_bg"
-            android:gravity="right"
-            android:maxLines="1"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:cardElevation="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_8sdp">
 
-        <TextView
-            android:id="@+id/job_description"
-            android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/job_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/gray_bg" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/title_text" />
+
+                        <TextView
+                            android:id="@+id/job_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:background="@color/gray_bg"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/job_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:maxLines="1"
+                            android:background="@color/gray_bg"
+                            android:singleLine="true"
+                            android:gravity="right"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:maxLines="1"
-            android:background="@color/gray_bg"
-            android:singleLine="true"
-            android:gravity="right"
-            android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_title"
-            app:layout_constraintVertical_bias="0.0" />
+            app:cardElevation="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_8sdp">
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressBar"
-            style="@style/ProgressBar"
-            app:indicatorColor="@color/basic"
-            app:indicatorSize="30dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginTop="@dimen/_45sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:trackCornerRadius="3dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/gray_bg" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/title_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:background="@color/gray_bg"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:maxLines="1"
+                            android:background="@color/gray_bg"
+                            android:singleLine="true"
+                            android:gravity="right"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_120sdp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/gray_bg" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/title_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:background="@color/gray_bg"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:maxLines="1"
+                            android:background="@color/gray_bg"
+                            android:singleLine="true"
+                            android:gravity="right"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>

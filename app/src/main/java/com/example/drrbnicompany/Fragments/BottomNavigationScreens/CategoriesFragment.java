@@ -36,7 +36,7 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        majorViewModel = new ViewModelProvider(this).get(MajorViewModel.class);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,7 +44,7 @@ public class CategoriesFragment extends Fragment {
         binding = FragmentCategoriesBinding
                 .inflate(inflater, container, false);
 
-        majorViewModel = new ViewModelProvider(this).get(MajorViewModel.class);
+
 
         load();
         majorViewModel.getMajors(new MyListener<List<Major>>() {

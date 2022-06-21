@@ -27,7 +27,7 @@
     <string name="title_categories">التصنيفات</string>
     <string name="title_home">الرئيسية</string>
     <string name="filter">الفلتر</string>
-    <string name="sortBy">الترتيب حسب المنطقة</string>
+    <string name="sortBy">الفرز حسب..</string>
     <string name="custom_item_post">عندما أقف أمام الله في نهاية حياتي ، أتمنى ألا يتبقى لديّ القليل من الموهبة وأستطيع القول ، لقد استخدمت كل ما أعطيتني إياه.</string>
     <string name="custom_item_date">5 فبراير</string>
     <string name="custom_item_name">شركة تكنولوجيا المعلومات</string>
@@ -105,6 +105,7 @@
     <string name="test_job_name">مشروع 1</string>
     <string name="edit">تعديل</string>
     <string name="delete">حذف</string>
+    <string name="move">إنتقال الى الملف الشخصي</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

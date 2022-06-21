@@ -66,6 +66,30 @@
                     android:textSize="@dimen/_30sdp"
                     android:gravity="right"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/student_collage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                        android:gravity="center_vertical"
+                        android:text="@string/company_major"
+                        android:textColor="@color/title_text"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_college" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

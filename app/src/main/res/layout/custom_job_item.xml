@@ -97,7 +97,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBaseline_toBottomOf="parent">
 
-            <include layout="@layout/custom_jobs_placeholder"/>
+            <include layout="@layout/custom_job_item_placeholder"/>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
     </LinearLayout>

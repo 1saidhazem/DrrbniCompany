@@ -1,120 +1,159 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.drrbnicompany.Adapters.HomeAdapter;
 import com.example.drrbnicompany.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbnicompany.Models.Filters;
-import com.example.drrbnicompany.R;
+import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.databinding.FragmentHomeBinding;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+import io.grpc.inprocess.AnonymousInProcessSocketAddress;
+
+public class HomeFragment extends Fragment implements FilterDialogFragment.FilterListener
+, HomeAdapter.OnJobSelectedListener{
 
     private FragmentHomeBinding binding;
-    private FilterDialogFragment filterDialog;
+    private FilterDialogFragment filter;
+    private FirebaseFirestore mFirestore;
+    private Query mQuery;
+    private HomeAdapter homeAdapter;
     public HomeFragment() {}
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding
                 .inflate(inflater, container, false);
 
+        load();
+        FirebaseFirestore.setLoggingEnabled(true);
+        initFirestore();
+        initRecyclerView();
+
+
+        filter = new FilterDialogFragment(this);
+
+        binding.filterBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter.show(getParentFragmentManager() , FilterDialogFragment.TAG);
+            }
+        });
+
+        binding.buttonClearFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClearFilter();
+                binding.buttonClearFilter.setVisibility(View.GONE);
+            }
+        });
 
         return binding.getRoot();
     }
 
+    private void initFirestore() {
+        mFirestore = FirebaseFirestore.getInstance();
+        mQuery = mFirestore.collection("Jobs");
+    }
+
+    private void initRecyclerView() {
+        homeAdapter = new HomeAdapter(mQuery, this) {
+            @Override
+            protected void onDataChanged() {
+                // Show/hide content if the query returns empty.
+                stopLoad();
+                if (getItemCount() == 0) {
+                    binding.rvPostItems.setVisibility(View.GONE);
+                    binding.noData.setVisibility(View.VISIBLE);
+                } else {
+                    binding.rvPostItems.setVisibility(View.VISIBLE);
+                    binding.noData.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                Log.d("sssssssss" , e.toString());
+            }
+
+        };
+
+        binding.rvPostItems.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvPostItems.setHasFixedSize(true);
+        binding.rvPostItems.setAdapter(homeAdapter);
+
+        homeAdapter.startListening();
+    }
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-    public void onFilterClicked() {
-        filterDialog.show(getParentFragmentManager(), FilterDialogFragment.TAG);
-    }
-
-    public void onClearFilterClicked() {
-        filterDialog.resetFilters();
-
-        onFilter(Filters.getDefault());
-    }
-
     public void onFilter(Filters filters) {
-        /*
-        // Construct query basic query
-        Query query = mFirestore.collection("restaurants");
 
-        // Major (equality filter)
-        if (filters.hasCategory()) {
-            query = query.whereEqualTo("category", filters.getCategory());
+        Query query = mFirestore.collection("Jobs");
+
+        if (filters.hasMajor()) {
+            query = query.whereEqualTo("major", filters.getMajor());
+            binding.textCurrentSortBy.setVisibility(View.VISIBLE);
+            binding.textCurrentSortBy.setText(filters.getMajor() );
+            binding.buttonClearFilter.setVisibility(View.VISIBLE);
         }
 
-        // City (equality filter)
-        if (filters.hasCity()) {
-            query = query.whereEqualTo("city", filters.getCity());
-        }
-
-        // Price (equality filter)
-        if (filters.hasPrice()) {
-            query = query.whereEqualTo("price", filters.getPrice());
-        }
-
-        // Sort by (orderBy with direction)
-        if (filters.hasSortBy()) {
-            query = query.orderBy(filters.getSortBy(), filters.getSortDirection());
-        }
-
-        // Limit items
-        query = query.limit(LIMIT);
-
-        // Update the query
         mQuery = query;
-        mAdapter.setQuery(query);
+        homeAdapter.setQuery(query);
 
-        // Set header
-        mCurrentSearchView.setText(Html.fromHtml(filters.getSearchDescription(this)));
-        mCurrentSortByView.setText(filters.getOrderDescription(this));
+    }
 
-        // Save filters
-        // mViewModel.setFilters(filters);
-         */
+    public void load() {
+        binding.shimmerView.setVisibility(View.VISIBLE);
+        binding.shimmerView.startShimmerAnimation();
+        binding.homeLayout.setVisibility(View.GONE);
+    }
+
+    public void stopLoad() {
+        binding.shimmerView.setVisibility(View.GONE);
+        binding.shimmerView.stopShimmerAnimation();
+        binding.homeLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void onClearFilter(){
+        filter.resetFilters();
+        mQuery = mFirestore.collection("Jobs");
+        homeAdapter.setQuery(mQuery);
+        binding.textCurrentSortBy.setVisibility(View.GONE);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.filter_bar_container:
-                onFilterClicked();
-//                onSearchClicked();
-                break;
-            case R.id.button_clear_filter:
-//                onCancelClicked();
-                onClearFilterClicked();
-                break;
-        }
-    }
-
-    public void onSearchClicked() {
-        /*
-        if (mFilterListener != null) {
-            mFilterListener.onFilter(getFilters());
-        }
-
-        dismiss();
-         */
-    }
-
-    public void onCancelClicked() {
-//        dismiss();
+    public void onJobSelected(Job job) {
+        NavController navController = Navigation.findNavController(binding.getRoot());
+        navController.navigate(HomeFragmentDirections
+                .actionHomeFragmentToShowPostFragment(job));
     }
 
 }

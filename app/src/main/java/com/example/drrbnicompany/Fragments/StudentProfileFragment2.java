@@ -14,29 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.JobAdapter;
-import com.example.drrbnicompany.Adapters.StudentAdapter;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Student;
 import com.example.drrbnicompany.R;
-import com.example.drrbnicompany.ViewModels.CategoryItemViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.StudentProfileViewModel;
-
 import com.example.drrbnicompany.databinding.FragmentStudentProfileBinding;
 
 import java.util.List;
 
 
-public class StudentProfileFragment extends Fragment {
+public class StudentProfileFragment2 extends Fragment {
 
     private FragmentStudentProfileBinding binding;
     private JobAdapter jobAdapter;
     private StudentProfileViewModel studentProfileViewModel;
 
-    public StudentProfileFragment() {}
+    public StudentProfileFragment2() {}
 
-    public static StudentProfileFragment newInstance() {
-        return new StudentProfileFragment();
+    public static StudentProfileFragment2 newInstance() {
+        return new StudentProfileFragment2();
     }
 
     @Override
@@ -83,8 +80,8 @@ public class StudentProfileFragment extends Fragment {
                     @Override
                     public void onValuePosted(Job value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
-                        navController.navigate(StudentProfileFragmentDirections
-                                .actionStudentProfileFragmentToShowJobFragment2(value));
+                        navController.navigate(StudentProfileFragment2Directions
+                        .actionStudentProfileFragment2ToShowJobFragment22(value));
                     }
                 });
                 initRV();

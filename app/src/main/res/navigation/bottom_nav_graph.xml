@@ -7,6 +7,21 @@
 
     <navigation android:id="@+id/homeNested"
         app:startDestination="@id/homeFragment">
+
+
+        <fragment
+            android:id="@+id/showJobFragment2"
+            android:name="com.example.drrbnicompany.Fragments.ShowJobFragment"
+            android:label="fragment_show_job"
+            tools:layout="@layout/fragment_show_job">
+            <argument
+                android:name="jobObject"
+                app:argType="com.example.drrbnicompany.Models.Job" />
+            <argument
+                android:name="showBtn"
+                app:argType="boolean"
+                android:defaultValue="true" />
+        </fragment>
         <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.HomeFragment"
@@ -16,15 +31,40 @@
                 android:id="@+id/action_homeFragment_to_showPostFragment"
                 app:destination="@id/showPostFragment" />
         </fragment>
+
         <fragment
             android:id="@+id/showPostFragment"
-            android:name="com.example.drrbnicompany.Fragments.ShowPostFragment"
+            android:name="com.example.drrbnicompany.Fragments.ShowJobFragment"
             android:label="fragment_show_post"
-            tools:layout="@layout/fragment_show_post" />
+            tools:layout="@layout/fragment_show_job" >
+            <argument
+                android:name="jobObject"
+                app:argType="com.example.drrbnicompany.Models.Job" />
+            <action
+                android:id="@+id/action_showPostFragment_to_studentProfileFragment2"
+                app:destination="@id/studentProfileFragment2" />
+            <argument
+                android:name="showBtn"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </fragment>
+        <fragment
+            android:id="@+id/studentProfileFragment2"
+            android:name="com.example.drrbnicompany.Fragments.StudentProfileFragment2"
+            android:label="StudentProfileFragment2" >
+            <argument
+                android:name="userId"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_studentProfileFragment2_to_showJobFragment22"
+                app:destination="@id/showJobFragment2" />
+        </fragment>
+
     </navigation>
 
     <navigation android:id="@+id/profileNested"
         app:startDestination="@id/profileFragment">
+
         <fragment
             android:id="@+id/profileFragment"
             android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.ProfileFragment"
@@ -41,6 +81,7 @@
 
                 app:destination="@id/showAndEditAdsFragment" />
         </fragment>
+
         <fragment
             android:id="@+id/addAdsFragment"
             android:name="com.example.drrbnicompany.Fragments.AddAdsFragment"
@@ -50,8 +91,7 @@
             android:id="@+id/editProfileFragment"
             android:name="com.example.drrbnicompany.Fragments.EditProfile.EditProfileFragment"
             android:label="EditProfileFragment"
-            tools:layout="@layout/fragment_edit_profile"
-            >
+            tools:layout="@layout/fragment_edit_profile">
 
             <action
                 android:id="@+id/action_editProfileFragment_to_editContactInformationFragment"
@@ -63,6 +103,7 @@
                 android:id="@+id/action_editProfileFragment_to_changePasswordFragment"
                 app:destination="@id/changePasswordFragment" />
         </fragment>
+
         <fragment
             android:id="@+id/showAndEditAdsFragment"
             android:name="com.example.drrbnicompany.Fragments.ShowAndEditAdsFragment"
@@ -72,27 +113,30 @@
                 android:name="adsId"
                 app:argType="string" />
         </fragment>
+
         <fragment
             android:id="@+id/editContactInformationFragment"
             android:name="com.example.drrbnicompany.Fragments.EditProfile.EditContactInformationFragment"
             android:label="EditContactInformationFragment"
-            tools:layout="@layout/fragment_edit_contact_information"
-            />
+            tools:layout="@layout/fragment_edit_contact_information" />
+
         <fragment
             android:id="@+id/editAddressFragment"
             android:name="com.example.drrbnicompany.Fragments.EditProfile.EditAddressFragment"
             android:label="EditAddressFragment"
-            tools:layout="@layout/fragment_edit_address"
-            />
+            tools:layout="@layout/fragment_edit_address" />
+
         <fragment
             android:id="@+id/changePasswordFragment"
             android:name="com.example.drrbnicompany.Fragments.ChangePasswordFragment"
             android:label="fragment_change_password"
             tools:layout="@layout/fragment_change_password" />
+
     </navigation>
 
     <navigation android:id="@+id/categoriesNested"
         app:startDestination="@id/categoriesFragment">
+
         <fragment
             android:id="@+id/categoriesFragment"
             android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.CategoriesFragment"
@@ -115,8 +159,6 @@
             <argument
                 android:name="majorName"
                 app:argType="string" />
-
-
         </fragment>
 
         <fragment
@@ -128,6 +170,22 @@
             <argument
                 android:name="userId"
                 app:argType="string" />
+            <action
+                android:id="@+id/action_studentProfileFragment_to_showJobFragment2"
+                app:destination="@id/showJobFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/showJobFragment2"
+            android:name="com.example.drrbnicompany.Fragments.ShowJobFragment"
+            android:label="fragment_show_job"
+            tools:layout="@layout/fragment_show_job" >
+            <argument
+                android:name="jobObject"
+                app:argType="com.example.drrbnicompany.Models.Job" />
+            <argument
+                android:name="showBtn"
+                app:argType="boolean"
+                android:defaultValue="true" />
         </fragment>
 
     </navigation>
