@@ -56,6 +56,11 @@ public class CategoryItemFragment extends Fragment {
             public void onValuePosted(List<Student> value) {
                 if (getActivity() == null) return;
 
+                if (value.isEmpty()) {
+                    binding.noData.setVisibility(View.VISIBLE);
+                    binding.rvCategoryItems.setVisibility(View.GONE);
+                }
+
                 studentAdapter = new StudentAdapter(value, new MyListener<String>() {
                     @Override
                     public void onValuePosted(String value) {

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.drrbnicompany.Models.Company;
+import com.example.drrbnicompany.SpinnerPosition;
 import com.example.drrbnicompany.ViewModels.EditAddressViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
@@ -24,6 +25,7 @@ public class EditAddressFragment extends Fragment {
     private FirebaseAuth auth;
     private EditAddressViewModel editAddressViewModel;
     private Company thisCompany;
+    private SpinnerPosition spinnerPosition;
 
     public EditAddressFragment() {}
 
@@ -48,33 +50,14 @@ public class EditAddressFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         editAddressViewModel = new ViewModelProvider(this).get(EditAddressViewModel.class);
         editAddressViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
+        spinnerPosition = new SpinnerPosition();
 
         editAddressViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override
             public void onChanged(Company company) {
                 if (getActivity() == null) return;
                 thisCompany = company;
-                int position;
-                if (company.getGovernorate().equals("أختر المحافظة")){
-                    position = 0;
-                    binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("شمال غزة")){
-                    position = 1;
-                    binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("غزة")){
-                    position = 2;
-                    binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("الوسطى")){
-                    position = 3;
-                    binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("خانيونس")){
-                    position = 4;
-                    binding.spGovernorate.setSelection(position);
-                } else if (company.getGovernorate().equals("رفح")){
-                    position = 5;
-                    binding.spGovernorate.setSelection(position);
-                }
-
+                binding.spGovernorate.setSelection(spinnerPosition.getGovernoratePosition(company.getGovernorate()));
                 binding.etAddress.setText(company.getAddress());
                 stopLoad();
             }

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.R;
+import com.example.drrbnicompany.SpinnerPosition;
 import com.example.drrbnicompany.ViewModels.EditProfileViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ShowAndEditAdsViewModel;
@@ -36,6 +37,7 @@ public class ShowAndEditAdsFragment extends Fragment {
     private ActivityResultLauncher<String> getImg;
     private ActivityResultLauncher<String> permission;
     private Uri image;
+    private SpinnerPosition spinnerPosition;
 
     public ShowAndEditAdsFragment newInstance() {
         return new ShowAndEditAdsFragment();
@@ -79,6 +81,7 @@ public class ShowAndEditAdsFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         adsViewModel = new ViewModelProvider(this).get(ShowAndEditAdsViewModel.class);
+        spinnerPosition = new SpinnerPosition();
 
         String adsId = getArguments().getString("adsId");
         adsViewModel.getAdsById(adsId, new MyListener<Ads>() {
@@ -87,6 +90,7 @@ public class ShowAndEditAdsFragment extends Fragment {
                 Glide.with(requireActivity()).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.adsImage);
                 binding.adsTitle.setText(value.getAdsTitle());
                 binding.adsDescription.setText(value.getAdsDescription());
+                binding.major.setSelection(spinnerPosition.getMajorPosition(value.getMajor()));
                 binding.requirements.setText(value.getAdsRequirements());
                 stopLoad();
             }
@@ -108,6 +112,7 @@ public class ShowAndEditAdsFragment extends Fragment {
         binding.btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                update();
 
                 String adsTitle = binding.adsTitle.getText().toString().trim();
                 String adsMajor = binding.major.getSelectedItem().toString();
@@ -129,8 +134,6 @@ public class ShowAndEditAdsFragment extends Fragment {
                 }
 
                 if (image == null){
-
-                    update();
 
                     adsViewModel.editAdsDataWithoutImage(adsId, adsTitle, adsMajor
                             , adsRequirements, adsDescription, new MyListener<Boolean>() {

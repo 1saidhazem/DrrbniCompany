@@ -2,15 +2,18 @@ package com.example.drrbnicompany.Models;
 
 import com.google.firebase.Timestamp;
 
+import java.util.ArrayList;
+
 public class Ads {
 
     private String adsId,userId, adsTitle,major,adsRequirements,adsDescription, img;
     private Timestamp timestamp;
+    private ArrayList<String> requests;
 
     public Ads() {
     }
 
-    public Ads(String adsId, String userId, String adsTitle, String major, String adsRequirements, String adsDescription, String img, Timestamp timestamp) {
+    public Ads(String adsId, String userId, String adsTitle, String major, String adsRequirements, String adsDescription, String img, Timestamp timestamp, ArrayList<String> requests) {
         this.adsId = adsId;
         this.userId = userId;
         this.adsTitle = adsTitle;
@@ -19,6 +22,15 @@ public class Ads {
         this.adsDescription = adsDescription;
         this.img = img;
         this.timestamp = timestamp;
+        this.requests = requests;
+    }
+
+    public ArrayList<String> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(ArrayList<String> requests) {
+        this.requests = requests;
     }
 
     public Timestamp getTimestamp() {

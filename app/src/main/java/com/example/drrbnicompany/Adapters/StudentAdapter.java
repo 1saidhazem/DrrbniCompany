@@ -90,9 +90,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentH
                         return false;
                     }
                 }).into(binding.studentImage);
-            }else
-                binding.studentImage.setImageResource(R.drawable.defult_img_student);
-
+            }
 
             binding.studentName.setText(student.getName());
             binding.studentMajor.setText(student.getMajor());

@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,9 +21,9 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.R;
+import com.example.drrbnicompany.SpinnerPosition;
 import com.example.drrbnicompany.ViewModels.EditProfileViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
-import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentEditProfileBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +37,7 @@ public class EditProfileFragment extends Fragment {
     private ActivityResultLauncher<String> permission;
     private Uri image;
     private Company thiCompany;
+    private SpinnerPosition spinnerPosition;
 
     public EditProfileFragment() {
     }
@@ -82,7 +82,7 @@ public class EditProfileFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         editProfileViewModel = new ViewModelProvider(this).get(EditProfileViewModel.class);
         editProfileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-
+        spinnerPosition = new SpinnerPosition();
 
         editProfileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override
@@ -90,13 +90,13 @@ public class EditProfileFragment extends Fragment {
                 if (getActivity() == null) return;
                 thiCompany =company ;
                 if (company.getImg() == null) {
-                    binding.profileImage.setImageResource(R.drawable.company_defult_image);
+                    binding.profileImage.setImageResource(R.drawable.company_default_image);
                 } else {
                     Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.profileImage);
                 }
                 binding.editProfileEtName.setText(company.getName());
                 binding.editProfileEtEmail.setText(company.getEmail());
-                binding.editProfileEtCategories.setText(company.getCategory());
+                binding.editProfileSpCategories.setSelection(spinnerPosition.getCategoryPosition(company.getCategory()));
                 stopLoad();
             }
         });
@@ -116,14 +116,14 @@ public class EditProfileFragment extends Fragment {
 
                 String name = binding.editProfileEtName.getText().toString().trim();
                 String email = binding.editProfileEtEmail.getText().toString().trim();
-                //TODO change ET to spinner
-                String category = binding.editProfileEtCategories.getText().toString().trim();
+                //TODO change ET to spinnerPosition
+                String category = binding.editProfileSpCategories.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(name))
                     name = thiCompany.getName();
                 else if (TextUtils.isEmpty(email))
                     email = thiCompany.getEmail();
-                else if (TextUtils.isEmpty(category))
+                else if (binding.editProfileSpCategories.getSelectedItemPosition() < 1)
                     category = thiCompany.getCategory();
 
                 if (image == null ){
@@ -134,6 +134,7 @@ public class EditProfileFragment extends Fragment {
                             if (value){
                                 stopUpdate();
                                 Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
+                                Navigation.findNavController(binding.getRoot()).popBackStack();
                             }
                         }
                     }, new MyListener<Boolean>() {

@@ -43,5 +43,7 @@ public class Constant {
     public static final String COLLECTION_JOBS = "Jobs";
 
 
+    public static final String TOKEN = "token";
+    public static final String COLLECTION_NOTIFICATION = "Notifications";
 
 }

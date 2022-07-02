@@ -32,7 +32,4 @@ public class ShowAndEditAdsViewModel extends AndroidViewModel {
         repository.editAdsDataWithoutImage(adsId, adsTitle, major, adsRequirements, adsDescription, isSuccessful, isFailure);
     }
 
-    public void deleteAds(String adsId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
-        repository.deleteAds(adsId, isSuccessful, isFailure);
-    }
 }

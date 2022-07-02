@@ -1,203 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Fragments.BottomNavigationScreens.ProfileFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/profileLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingBottom="@dimen/_16sdp">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:contentScrim="@color/basic"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
-                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-                app:toolbarId="@+id/toolbar">
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/appbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp">
+
+                        <ImageView
+                            android:id="@+id/app_bar_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@android:drawable/sym_def_app_icon" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/company_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                        android:gravity="right"
+                        android:text="@string/company_name"
+                        android:textColor="@color/title_text"
+                        android:textSize="@dimen/_30sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                            android:gravity="center_vertical"
+                            android:text="@string/company_location"
+                            android:textColor="@color/title_text"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_location_gray" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/category_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                            android:gravity="center_vertical"
+                            android:text="@string/company_major"
+                            android:textColor="@color/title_text"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_category" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/company_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                            android:gravity="center_vertical"
+                            android:text="@string/email_address"
+                            android:textColor="@color/title_text"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_email" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/company_whatsapp_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/company_whatsapp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                            android:gravity="center_vertical"
+                            android:text="@string/whatsapp_num"
+                            android:textColor="@color/title_text"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_whatsapp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/company_btn_edit_profile"
+                        style="@style/blue_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:background="@drawable/btn_small"
+                        android:text="@string/edit_profile" />
+
+                    <View
+                        style="@style/divider"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_ads"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:minHeight="@dimen/_400sdp"
+                        tools:listitem="@layout/custom_post_item" />
+
+
+
+                </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/app_bar_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@android:drawable/sym_def_app_icon"
-                    app:layout_collapseMode="parallax" />
-
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <!--        android:layout_marginBottom="@dimen/_48sdp"  ^^^    -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/nasted_corner"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_16sdp">
-
-                <TextView
-                    android:id="@+id/company_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/verified"
+                    android:layout_width="@dimen/_52sdp"
+                    android:layout_height="@dimen/_52sdp"
+                    android:src="@drawable/verified"
+                    android:layout_marginTop="@dimen/_174sdp"
                     android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:fontFamily="@font/ibm_plex_sans_arabic_regular"
-                    android:gravity="right"
-                    android:text="@string/company_name"
-                    android:textColor="@color/title_text"
-                    android:textSize="@dimen/_30sdp" />
+                    android:visibility="gone"/>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
-
-                    <TextView
-                        android:id="@+id/address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
-                        android:gravity="center_vertical"
-                        android:text="@string/company_location"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_location_gray" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
-
-                    <TextView
-                        android:id="@+id/category_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
-                        android:gravity="center_vertical"
-                        android:text="@string/company_major"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_category" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
-
-                    <TextView
-                        android:id="@+id/company_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
-                        android:gravity="center_vertical"
-                        android:text="@string/email_address"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_email" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/company_whatsapp_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp"
-                    android:gravity="right|center_vertical">
-
-                    <TextView
-                        android:id="@+id/company_whatsapp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_8sdp"
-                        android:fontFamily="@font/ibm_plex_sans_arabic_light"
-                        android:gravity="center_vertical"
-                        android:text="@string/whatsapp_num"
-                        android:textColor="@color/title_text"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:src="@drawable/ic_whatsapp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/company_btn_edit_profile"
-                    style="@style/blue_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginLeft="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_24sdp"
-                    android:background="@drawable/btn_small"
-                    android:text="@string/edit_profile" />
-
-                <View
-                    style="@style/divider"
-                    android:layout_marginLeft="@dimen/_16sdp"
-                    android:layout_marginRight="@dimen/_16sdp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_ads"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_4sdp"
-                    tools:listitem="@layout/custom_post_item" />
-
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-
+        </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_ads"
@@ -227,4 +221,4 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

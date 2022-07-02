@@ -9,6 +9,7 @@ import static com.example.drrbnicompany.Constant.ADS_TITLE;
 import static com.example.drrbnicompany.Constant.COLLECTION_ADS;
 import static com.example.drrbnicompany.Constant.COLLECTION_JOBS;
 import static com.example.drrbnicompany.Constant.COLLECTION_MAJORS;
+import static com.example.drrbnicompany.Constant.COLLECTION_NOTIFICATION;
 import static com.example.drrbnicompany.Constant.COLLECTION_STUDENT_PROFILES;
 import static com.example.drrbnicompany.Constant.COLLECTION_USERS_PROFILES;
 import static com.example.drrbnicompany.Constant.EMAIL;
@@ -18,6 +19,7 @@ import static com.example.drrbnicompany.Constant.CATEGORY;
 import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.TOKEN;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
 import static com.example.drrbnicompany.Constant.UID;
 import static com.example.drrbnicompany.Constant.USER_ID;
@@ -26,6 +28,7 @@ import static com.example.drrbnicompany.Constant.WHATSAPP;
 
 import android.app.Application;
 import android.net.Uri;
+import android.os.Message;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,7 @@ import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Major;
 import com.example.drrbnicompany.Models.Company;
+import com.example.drrbnicompany.Models.Notification;
 import com.example.drrbnicompany.Models.Student;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -55,6 +59,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
 
@@ -70,6 +75,7 @@ public class Repository {
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage firebaseStorage;
+    private FirebaseMessaging firebaseMessaging;
     private MutableLiveData<Company> profileInfo;
     private MutableLiveData<List<Ads>> adsData;
 
@@ -79,6 +85,7 @@ public class Repository {
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        firebaseMessaging = FirebaseMessaging.getInstance();
         profileInfo = new MutableLiveData<>();
         adsData = new MutableLiveData<>();
     }
@@ -102,23 +109,32 @@ public class Repository {
 
     public void storeSignUpData(FirebaseUser firebaseUser, String name, String category
             , MyListener<Boolean> isSuccessful) {
-        HashMap<String, Object> data = new HashMap<>();
-        data.put(UID, firebaseUser.getUid());
-        data.put(NAME, name);
-        data.put(EMAIL, firebaseUser.getEmail());
-        data.put(TYPE_USER, COMPANY_TYPE);
-        data.put(ACTIVATED, false);
-        data.put(VERIFIED, false);
-        data.put(CATEGORY, category);
 
-        firebaseFirestore.collection(COLLECTION_USERS_PROFILES).document(firebaseUser.getUid())
-                .set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+        getToken(new MyListener<String>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                    isSuccessful.onValuePosted(true);
-                else
-                    Log.d("kkkkk" , task.getException().toString());
+            public void onValuePosted(String value) {
+
+                HashMap<String, Object> data = new HashMap<>();
+                data.put(UID, firebaseUser.getUid());
+                data.put(NAME, name);
+                data.put(EMAIL, firebaseUser.getEmail());
+                data.put(TYPE_USER, COMPANY_TYPE);
+                data.put(ACTIVATED, false);
+                data.put(VERIFIED, false);
+                data.put(CATEGORY, category);
+                data.put(TOKEN , value);
+
+                firebaseFirestore.collection(COLLECTION_USERS_PROFILES).document(firebaseUser.getUid())
+                        .set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful())
+                            isSuccessful.onValuePosted(true);
+                        else
+                            Log.d("kkkkk" , task.getException().toString());
+                    }
+                });
+
             }
         });
     }
@@ -254,7 +270,7 @@ public class Repository {
     }
 
     public void storeAdsData(String uid, Uri image, String adsName, String major, String adsRequirements,
-                             String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+                             String adsDescription, MyListener<String> isSuccessful, MyListener<Boolean> isFailure) {
 
         firebaseStorage.getReference().child("AdsImages/").putFile(image).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -265,10 +281,10 @@ public class Repository {
 
                         DocumentReference docRef = firebaseFirestore.collection(COLLECTION_ADS).document();
                         Ads ads = new Ads(docRef.getId(), uid, adsName, major, adsRequirements, adsDescription
-                                , uri.toString() , new Timestamp(new Date()));
+                                , uri.toString() , new Timestamp(new Date()) , new ArrayList<>());
                         docRef.set(ads);
 
-                        isSuccessful.onValuePosted(true);
+                        isSuccessful.onValuePosted(docRef.getId());
                     }
                 });
             }
@@ -403,7 +419,6 @@ public class Repository {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Log.d("ddddddddd" , "sucss");
                     firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                             .document(firebaseUser.getUid())
                             .update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -653,4 +668,67 @@ public class Repository {
                     }
                 });
     }
+
+    public void getToken(MyListener<String> isSuccessful){
+
+        firebaseMessaging.getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()){
+                    isSuccessful.onValuePosted(task.getResult());
+                }
+            }
+        });
+    }
+
+    public void updateToken(String newToken){
+
+        if (firebaseUser != null){
+            firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                    .document(firebaseUser.getUid())
+                    .update(TOKEN , newToken);
+        }
+
+    }
+
+    public void getTokenByStudentId(String studentId, MyListener<String> isSuccessful){
+
+        firebaseFirestore.collection(COLLECTION_STUDENT_PROFILES)
+                .document(studentId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    String token = document.getString(TOKEN);
+                    isSuccessful.onValuePosted(token);
+                }
+            }
+        });
+    }
+
+    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
+
+        firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
+                .document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    String name = document.getString(NAME);
+                    isSuccessful.onValuePosted(name);
+                }
+            }
+        });
+
+    }
+
+    public void storeNotification(String senderUid, String title, String body, String adsId){
+
+        DocumentReference docRef = firebaseFirestore.collection(COLLECTION_NOTIFICATION).document();
+        Notification notification = new Notification(docRef.getId(), senderUid, firebaseUser.getUid(),
+                title, body, adsId);
+        docRef.set(notification);
+
+    }
+
 }

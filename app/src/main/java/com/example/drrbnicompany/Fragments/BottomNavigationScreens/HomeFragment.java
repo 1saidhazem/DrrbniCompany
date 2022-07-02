@@ -156,4 +156,15 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
                 .actionHomeFragmentToShowPostFragment(job));
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        homeAdapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homeAdapter.startListening();
+    }
 }

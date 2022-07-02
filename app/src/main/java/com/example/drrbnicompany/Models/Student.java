@@ -1,11 +1,14 @@
 package com.example.drrbnicompany.Models;
 
+import java.util.ArrayList;
+
 public class Student {
     private String UserId , name , email , college ,
             major , address , governorate , whatsApp , img ;
-    private int typeUser ;
+    private int typeUser , recommenderNum ;
+    private ArrayList<String> recommenders;
 
-    public Student(String userId, String name, String email, String college, String major, String address, String governorate, String whatsApp, String img, int typeUser) {
+    public Student(String userId, String name, String email, String college, String major, String address, String governorate, String whatsApp, String img, int typeUser, int recommenderNum, ArrayList<String> recommenders) {
         UserId = userId;
         this.name = name;
         this.email = email;
@@ -16,6 +19,8 @@ public class Student {
         this.whatsApp = whatsApp;
         this.img = img;
         this.typeUser = typeUser;
+        this.recommenderNum = recommenderNum;
+        this.recommenders = recommenders;
     }
 
     public Student() {
@@ -99,5 +104,21 @@ public class Student {
 
     public void setTypeUser(int typeUser) {
         this.typeUser = typeUser;
+    }
+
+    public int getRecommenderNum() {
+        return recommenderNum;
+    }
+
+    public void setRecommenderNum(int recommenderNum) {
+        this.recommenderNum = recommenderNum;
+    }
+
+    public ArrayList<String> getRecommenders() {
+        return recommenders;
+    }
+
+    public void setRecommenders(ArrayList<String> recommenders) {
+        this.recommenders = recommenders;
     }
 }

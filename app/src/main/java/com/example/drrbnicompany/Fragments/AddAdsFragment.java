@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.drrbnicompany.MajorTopic;
+import com.example.drrbnicompany.Notification.FcmNotificationsSender;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentAddAdsBinding;
@@ -29,6 +31,8 @@ public class AddAdsFragment extends Fragment {
     private ActivityResultLauncher<String> getImg;
     private ActivityResultLauncher<String> permission;
     private Uri image;
+    private FcmNotificationsSender notificationsSender;
+    MajorTopic majorTopic ;
 
     public AddAdsFragment() {}
 
@@ -66,6 +70,7 @@ public class AddAdsFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        majorTopic = MajorTopic.getInstance();
 
         binding.adsImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +112,11 @@ public class AddAdsFragment extends Fragment {
                 }
 
                 profileViewModel.storeAdsData(auth.getCurrentUser().getUid(), image, adsName, major,
-                        adsRequirements, adsDescription, new MyListener<Boolean>() {
+                        adsRequirements, adsDescription, new MyListener<String>() {
                             @Override
-                            public void onValuePosted(Boolean value) {
+                            public void onValuePosted(String value) {
                                 stopLoad();
+                                sendNotification(value , majorTopic.getMajorTopic(major));
                                 Navigation.findNavController(binding.getRoot()).popBackStack();
                             }
                         }, new MyListener<Boolean>() {
@@ -137,6 +143,11 @@ public class AddAdsFragment extends Fragment {
         binding.progressBar.setVisibility(View.GONE);
         binding.btnAddAds.setEnabled(true);
         binding.btnAddAds.setClickable(true);
+    }
+
+    public void sendNotification(String adsId , String recipientTopic){
+        notificationsSender = new FcmNotificationsSender(recipientTopic ,adsId , requireActivity());
+        notificationsSender.SendNewAdsNotifications();
     }
 
     @Override

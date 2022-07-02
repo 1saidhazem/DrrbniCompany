@@ -26,6 +26,5 @@
 
     <color name="inActive">#FFFFFFFF</color>
     <color name="purple">#665EFF</color>
-
-
+    <color name="link">#3838F5</color>
 </resources>

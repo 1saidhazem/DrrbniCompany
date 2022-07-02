@@ -30,8 +30,7 @@ public class SignUpFragment extends Fragment {
     public SignUpFragment() {}
 
     public static SignUpFragment newInstance() {
-        SignUpFragment fragment = new SignUpFragment();
-        return fragment;
+        return new SignUpFragment();
     }
 
     @Override

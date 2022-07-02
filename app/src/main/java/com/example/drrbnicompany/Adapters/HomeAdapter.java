@@ -24,6 +24,7 @@ import com.google.firebase.firestore.Query;
 
 public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
 
+    private OnJobSelectedListener mListener;
 
     public interface OnJobSelectedListener {
 
@@ -31,12 +32,13 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
 
     }
 
-    private OnJobSelectedListener mListener;
+
 
     public HomeAdapter(Query query, OnJobSelectedListener mListener) {
         super(query);
         this.mListener = mListener;
     }
+
 
     @NonNull
     @Override

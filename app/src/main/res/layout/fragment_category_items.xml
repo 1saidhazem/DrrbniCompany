@@ -8,6 +8,12 @@ android:orientation="vertical"
 tools:context=".Fragments.CategoryItemFragment">
 
 
+    <ImageView
+        android:id="@+id/noData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/nodata" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -32,6 +38,7 @@ tools:context=".Fragments.CategoryItemFragment">
         android:layout_height="match_parent"
         android:layout_margin="@dimen/_4sdp"
         tools:listitem="@layout/custom_student_item"/>
+
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_view"

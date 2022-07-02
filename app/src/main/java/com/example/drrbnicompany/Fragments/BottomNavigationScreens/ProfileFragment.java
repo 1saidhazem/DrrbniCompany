@@ -1,5 +1,7 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.AdsAdapter;
-import com.example.drrbnicompany.Adapters.JobAdapter;
 import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.R;
-import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,15 +67,37 @@ public class ProfileFragment extends Fragment {
                     return;
 
                 if (company.getImg() == null) {
-                    binding.appBarImage.setImageResource(R.drawable.company_defult_image);
+                    binding.appBarImage.setImageResource(R.drawable.company_default_image);
                 } else {
                     Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 }
                 binding.companyName.setText(company.getName());
                 binding.companyEmail.setText(company.getEmail());
                 binding.companyWhatsapp.setText(company.getWhatsApp());
-                binding.address.setText(company.getGovernorate() + " _ " +company.getAddress() );
+                if (company.isVerified())
+                    binding.verified.setVisibility(View.VISIBLE);
+                binding.address.setText(company.getGovernorate() + " _ " +company.getAddress());
                 stopLoad();
+
+                binding.companyEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        Uri email = Uri.fromParts("mailto" , company.getEmail() , null);
+                        intent.setData(email);
+                        startActivity(intent);
+                    }
+                });
+
+                binding.companyWhatsapp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String url = "https://api.whatsapp.com/send?phone="+company.getWhatsApp();
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                });
             }
         });
 

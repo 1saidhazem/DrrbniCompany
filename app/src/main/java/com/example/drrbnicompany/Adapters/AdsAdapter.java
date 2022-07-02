@@ -25,7 +25,6 @@ import com.example.drrbnicompany.databinding.CustomPostItemBinding;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
@@ -80,7 +79,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
                 public void onValuePosted(Company value) {
                     binding.companyName.setText(value.getName());
                     if (value.getImg() == null) {
-                        binding.companyAvatar.setImageResource(R.drawable.company_defult_image);
+                        binding.companyAvatar.setImageResource(R.drawable.company_default_image);
                     } else {
                         Glide.with(context).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.companyAvatar);
                     }

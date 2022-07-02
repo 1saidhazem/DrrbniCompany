@@ -1,4 +1,4 @@
-package com.example.drrbnicompany.Fragments;
+package com.example.drrbnicompany.Fragments.EditProfile;
 
 import android.os.Bundle;
 

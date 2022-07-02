@@ -14,14 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.JobAdapter;
-import com.example.drrbnicompany.Adapters.StudentAdapter;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Student;
 import com.example.drrbnicompany.R;
-import com.example.drrbnicompany.ViewModels.CategoryItemViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.StudentProfileViewModel;
-
 import com.example.drrbnicompany.databinding.FragmentStudentProfileBinding;
 
 import java.util.List;
@@ -56,7 +53,7 @@ public class StudentProfileFragment extends Fragment {
                 if (getActivity() == null) return;
 
                 if (value.getImg() == null) {
-                    binding.studentImage.setImageResource(R.drawable.company_defult_image);
+                    binding.studentImage.setImageResource(R.drawable.company_default_image);
                 } else {
                     Glide.with(getActivity()).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.studentImage);
                 }

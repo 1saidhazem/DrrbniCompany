@@ -53,7 +53,7 @@ public class StudentProfileFragment2 extends Fragment {
                 if (getActivity() == null) return;
 
                 if (value.getImg() == null) {
-                    binding.studentImage.setImageResource(R.drawable.company_defult_image);
+                    binding.studentImage.setImageResource(R.drawable.company_default_image);
                 } else {
                     Glide.with(getActivity()).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.studentImage);
                 }

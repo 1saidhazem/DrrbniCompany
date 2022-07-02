@@ -1,7 +1,7 @@
 package com.example.drrbnicompany.Models;
 
 public class Company {
-    private String email, img, name, category , governorate, address, whatsApp, UserId;
+    private String email, img, name, category , governorate, address, whatsApp, UserId , token;
     private boolean activated , verified;
     private int typeUser;
 
@@ -9,8 +9,8 @@ public class Company {
     }
 
     public Company(String email, String img, String name, String category,
-                   String governorate, String address, String whatsApp, String
-                           userId, boolean activated, boolean verified, int typeUser) {
+                   String governorate, String address, String whatsApp,
+                   String userId, String token, boolean activated, boolean verified, int typeUser) {
         this.email = email;
         this.img = img;
         this.name = name;
@@ -19,9 +19,18 @@ public class Company {
         this.address = address;
         this.whatsApp = whatsApp;
         UserId = userId;
+        this.token = token;
         this.activated = activated;
         this.verified = verified;
         this.typeUser = typeUser;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getEmail() {

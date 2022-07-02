@@ -31,7 +31,7 @@ public class ProfileViewModel extends AndroidViewModel {
     }
 
     public void storeAdsData(String uid, Uri image, String adsName, String major, String adsRequirements,
-                             String adsDescription, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
+                             String adsDescription, MyListener<String> isSuccessful, MyListener<Boolean> isFailure) {
         repository.storeAdsData(uid, image, adsName, major, adsRequirements, adsDescription, isSuccessful, isFailure);
     }
     public void requestAdsJobs(String uid) {
@@ -52,6 +52,14 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public void deleteAds(String adsId, MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
         repository.deleteAds(adsId, isSuccessful, isFailure);
+    }
+
+    public void getTokenByStudentId(String studentId, MyListener<String> isSuccessful){
+        repository.getTokenByStudentId(studentId , isSuccessful);
+    }
+
+    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
+        repository.getNameByUid(Uid , isSuccessful);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.example.drrbnicompany.Fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -72,6 +74,20 @@ public class ShowJobFragment extends Fragment {
                 NavController navController = Navigation.findNavController(binding.getRoot());
                 navController.navigate(ShowJobFragmentDirections
                 .actionShowPostFragmentToStudentProfileFragment2(job.getUserId()));
+            }
+        });
+
+        binding.jobLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    String url = job.getJobLink();
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }catch(Exception e) {
+
+                };
             }
         });
         return binding.getRoot();
