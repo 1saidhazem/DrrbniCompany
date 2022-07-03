@@ -33,7 +33,6 @@ public class ShowAndEditAdsFragment extends Fragment {
 
     private FragmentShowAndEditAdsBinding binding;
     private ShowAndEditAdsViewModel adsViewModel;
-    private FirebaseAuth auth;
     private ActivityResultLauncher<String> getImg;
     private ActivityResultLauncher<String> permission;
     private Uri image;
@@ -79,7 +78,6 @@ public class ShowAndEditAdsFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
         load();
 
-        auth = FirebaseAuth.getInstance();
         adsViewModel = new ViewModelProvider(this).get(ShowAndEditAdsViewModel.class);
         spinnerPosition = new SpinnerPosition();
 
@@ -156,7 +154,6 @@ public class ShowAndEditAdsFragment extends Fragment {
                             });
 
                 }else {
-
                     adsViewModel.editAdsData(adsId, image, adsTitle, adsMajor, adsRequirements
                             , adsDescription, new MyListener<Boolean>() {
                                 @Override

@@ -51,7 +51,9 @@
         <fragment
             android:id="@+id/studentProfileFragment2"
             android:name="com.example.drrbnicompany.Fragments.StudentProfileFragment2"
-            android:label="StudentProfileFragment2" >
+            android:label="StudentProfileFragment2"
+            tools:layout="@layout/fragment_student_profile"
+            >
             <argument
                 android:name="userId"
                 app:argType="string" />
@@ -78,7 +80,6 @@
                 app:destination="@id/editProfileFragment" />
             <action
                 android:id="@+id/action_profileFragment_to_showAndEditAdsFragment"
-
                 app:destination="@id/showAndEditAdsFragment" />
         </fragment>
 
@@ -196,7 +197,28 @@
             android:id="@+id/notificationsFragment"
             android:name="com.example.drrbnicompany.Fragments.BottomNavigationScreens.NotificationsFragment"
             android:label="notificationsFragment"
-            tools:layout="@layout/fragment_notifications" />
+            tools:layout="@layout/fragment_notifications" >
+
+            <action
+                android:id="@+id/action_notificationsFragment_to_studentProfileFragment2"
+                app:destination="@id/studentProfileFragment2" >
+                <argument
+                    android:name="userId"
+                    app:argType="string" />
+            </action>
+        </fragment>
+
+        <fragment
+            android:id="@+id/studentProfileFragment2"
+            android:name="com.example.drrbnicompany.Fragments.StudentProfileFragment2"
+            android:label="StudentProfileFragment2"
+            tools:layout="@layout/fragment_student_profile"
+            >
+            <argument
+                android:name="userId"
+                app:argType="string" />
+        </fragment>
+
     </navigation>
 
 

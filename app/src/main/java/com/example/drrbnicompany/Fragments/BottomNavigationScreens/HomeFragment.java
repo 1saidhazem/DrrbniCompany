@@ -1,31 +1,26 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
+import static com.example.drrbnicompany.Constant.COLLECTION_JOBS;
+import static com.example.drrbnicompany.Constant.MAJOR;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.drrbnicompany.Adapters.HomeAdapter;
 import com.example.drrbnicompany.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbnicompany.Models.Filters;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.databinding.FragmentHomeBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-
-import io.grpc.inprocess.AnonymousInProcessSocketAddress;
 
 public class HomeFragment extends Fragment implements FilterDialogFragment.FilterListener
 , HomeAdapter.OnJobSelectedListener{
@@ -47,7 +42,6 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
     }
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding
@@ -57,7 +51,6 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         FirebaseFirestore.setLoggingEnabled(true);
         initFirestore();
         initRecyclerView();
-
 
         filter = new FilterDialogFragment(this);
 
@@ -81,7 +74,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
     private void initFirestore() {
         mFirestore = FirebaseFirestore.getInstance();
-        mQuery = mFirestore.collection("Jobs");
+        mQuery = mFirestore.collection(COLLECTION_JOBS);
     }
 
     private void initRecyclerView() {
@@ -91,10 +84,10 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
                 // Show/hide content if the query returns empty.
                 stopLoad();
                 if (getItemCount() == 0) {
-                    binding.rvPostItems.setVisibility(View.GONE);
+                    binding.rvJobItems.setVisibility(View.GONE);
                     binding.noData.setVisibility(View.VISIBLE);
                 } else {
-                    binding.rvPostItems.setVisibility(View.VISIBLE);
+                    binding.rvJobItems.setVisibility(View.VISIBLE);
                     binding.noData.setVisibility(View.GONE);
                 }
             }
@@ -106,9 +99,9 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
         };
 
-        binding.rvPostItems.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.rvPostItems.setHasFixedSize(true);
-        binding.rvPostItems.setAdapter(homeAdapter);
+        binding.rvJobItems.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.rvJobItems.setHasFixedSize(true);
+        binding.rvJobItems.setAdapter(homeAdapter);
 
         homeAdapter.startListening();
     }
@@ -116,10 +109,10 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
     @Override
     public void onFilter(Filters filters) {
 
-        Query query = mFirestore.collection("Jobs");
+        Query query = mFirestore.collection(COLLECTION_JOBS);
 
         if (filters.hasMajor()) {
-            query = query.whereEqualTo("major", filters.getMajor());
+            query = query.whereEqualTo(MAJOR, filters.getMajor());
             binding.textCurrentSortBy.setVisibility(View.VISIBLE);
             binding.textCurrentSortBy.setText(filters.getMajor() );
             binding.buttonClearFilter.setVisibility(View.VISIBLE);
@@ -144,7 +137,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
     public void onClearFilter(){
         filter.resetFilters();
-        mQuery = mFirestore.collection("Jobs");
+        mQuery = mFirestore.collection(COLLECTION_JOBS);
         homeAdapter.setQuery(mQuery);
         binding.textCurrentSortBy.setVisibility(View.GONE);
     }

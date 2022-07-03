@@ -29,6 +29,7 @@ public class FcmNotificationsSender {
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey = "AAAAyXR_2Eg:APA91bFYCAG39OqbR55m90JlcUahrhOtaJ4tXJlkHzZwE399nNdmWU1lScFEhko4isWpOrd471sEasFDPtmCfyhr1AKZUUHQezUjkAbDn0MUS14Dkl82OYgM1HfI6-aUQ_PAZK9Eg9b7";
 
+    // القبول
     public FcmNotificationsSender(String recipientToken, String date, String senderName,
                                   String adsId, Activity mActivity) {
         this.recipientToken = recipientToken;
@@ -38,6 +39,7 @@ public class FcmNotificationsSender {
         this.mActivity = mActivity;
     }
 
+    // الرفض
     public FcmNotificationsSender(String recipientToken, String senderName, String adsId, Activity mActivity) {
         this.recipientToken = recipientToken;
         this.senderName = senderName;
@@ -69,7 +71,6 @@ public class FcmNotificationsSender {
             dataObject.put("body" , "هناك فرصة تدريب جديدة أطلع عليها");
             dataObject.put("senderUid" , senderUid);
             dataObject.put("adsId" , adsId);
-
             mainObject.put("data", dataObject);
 
 
@@ -190,7 +191,6 @@ public class FcmNotificationsSender {
                 }
             };
             requestQueue.add(request);
-
 
         } catch (JSONException e) {
             e.printStackTrace();

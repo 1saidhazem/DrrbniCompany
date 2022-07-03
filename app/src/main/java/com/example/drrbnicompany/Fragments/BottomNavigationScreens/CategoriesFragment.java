@@ -44,8 +44,6 @@ public class CategoriesFragment extends Fragment {
         binding = FragmentCategoriesBinding
                 .inflate(inflater, container, false);
 
-
-
         load();
         majorViewModel.getMajors(new MyListener<List<Major>>() {
             @Override

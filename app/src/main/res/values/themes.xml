@@ -84,6 +84,19 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="editText_dialog" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_52sdp</item>
+        <item name="android:fontFamily">@font/ibm_plex_sans_arabic_regular</item>
+        <item name="android:textColor">@color/basic</item>
+        <item name="android:paddingRight">@dimen/_16sdp</item>
+        <item name="android:paddingLeft">@dimen/_16sdp</item>
+        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:elevation">@dimen/_8sdp</item>
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
     <style name="bottomNav">
         <item name="fontFamily">@font/ibm_plex_sans_arabic_regular</item>
     </style>

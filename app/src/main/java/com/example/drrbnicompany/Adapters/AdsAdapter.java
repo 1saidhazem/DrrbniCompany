@@ -1,5 +1,6 @@
 package com.example.drrbnicompany.Adapters;
 
+import static com.example.drrbnicompany.Constant.COMPANY_DEFAULT_IMAGE;
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -7,13 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Fragments.BottomNavigationScreens.ProfileFragmentDirections;
 import com.example.drrbnicompany.Models.Ads;
@@ -23,7 +22,6 @@ import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.CustomPostItemBinding;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -34,8 +32,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
     private ProfileViewModel profileViewModel;
     private String uid;
 
-    public AdsAdapter() {
-    }
+    public AdsAdapter() {}
 
     public AdsAdapter(List<Ads> adsList, ProfileViewModel profileViewModel , String uid) {
         this.adsList = adsList;
@@ -79,7 +76,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> {
                 public void onValuePosted(Company value) {
                     binding.companyName.setText(value.getName());
                     if (value.getImg() == null) {
-                        binding.companyAvatar.setImageResource(R.drawable.company_default_image);
+                        Glide.with(itemView.getContext()).load(COMPANY_DEFAULT_IMAGE).placeholder(R.drawable.anim_progress).into(binding.companyAvatar);
                     } else {
                         Glide.with(context).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.companyAvatar);
                     }

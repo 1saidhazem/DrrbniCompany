@@ -37,7 +37,6 @@ public class SpinnerPosition {
     }
 
     public int getMajorPosition(String major){
-
         return  this.major.get(major);
     }
 
@@ -50,7 +49,6 @@ public class SpinnerPosition {
     }
 
     public int getGovernoratePosition(String governorate){
-
         return  this.governorate.get(governorate);
     }
 

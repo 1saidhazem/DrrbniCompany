@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/image_profile_student"
         android:layout_width="@dimen/_64sdp"
         android:layout_height="@dimen/_64sdp"
         android:layout_marginTop="@dimen/_8sdp"
@@ -14,7 +14,7 @@
         android:background="@drawable/corner_reduis"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/company"
+        tools:src="@drawable/onboarding3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,16 +27,16 @@
         android:layout_marginLeft="@dimen/_8sdp"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/image_profile_student"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
-            android:id="@+id/company_name"
+            android:id="@+id/student_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/company_name"
+            android:text="@string/student_name"
             android:textSize="@dimen/_16sdp"
             android:fontFamily="@font/ibm_plex_sans_arabic_light"
             android:textColor="@color/basic"/>
@@ -46,10 +46,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="@string/notification_description"
+            android:text="@string/Send_a_training_request"
             android:textSize="@dimen/_12sdp"
             android:fontFamily="@font/ibm_plex_sans_arabic_light"
             android:textColor="@color/title_text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/image_profile_student">
+
+        <Button
+            android:id="@+id/btn_reject"
+            android:layout_width="@dimen/_64sdp"
+            style="@style/blue_btn"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:backgroundTint="@color/btn_cancel"
+            android:text="@string/not_accept" />
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="@dimen/_64sdp"
+            style="@style/blue_btn"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:backgroundTint="@color/purple"
+            android:text="@string/accept" />
+
+        <Button
+            android:id="@+id/btn_visit_profile"
+            android:layout_width="@dimen/_130sdp"
+            style="@style/blue_btn"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:text="@string/visit_profile" />
 
     </LinearLayout>
 
@@ -58,9 +93,9 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_1sdp"
         android:background="@color/subtitle_text"
-        android:layout_margin="@dimen/_8sdp"
+        android:layout_margin="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

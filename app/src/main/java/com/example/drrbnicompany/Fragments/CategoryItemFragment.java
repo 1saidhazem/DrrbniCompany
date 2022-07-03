@@ -1,25 +1,18 @@
 package com.example.drrbnicompany.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.drrbnicompany.Adapters.JobAdapter;
 import com.example.drrbnicompany.Adapters.StudentAdapter;
-import com.example.drrbnicompany.Fragments.BottomNavigationScreens.CategoriesFragmentDirections;
-import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.Models.Student;
 import com.example.drrbnicompany.ViewModels.CategoryItemViewModel;
-import com.example.drrbnicompany.ViewModels.MajorViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.databinding.FragmentCategoryItemsBinding;
 import com.google.android.material.snackbar.Snackbar;

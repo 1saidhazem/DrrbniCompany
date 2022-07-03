@@ -45,5 +45,12 @@ public class Constant {
 
     public static final String TOKEN = "token";
     public static final String COLLECTION_NOTIFICATION = "Notifications";
+    public static final String NOTIFICATION_RECIPIENT = "recipientUid";
+
+    public static final String STUDENT_DEFAULT_IMAGE ="https://defualtimage.s3.amazonaws.com/studentDefualtImage.png";
+    public static final String STUDENT_DEFAULT_IMAGE_PROFILE ="https://defualtimage.s3.amazonaws.com/studentDefualtProfileImage.png";
+    public static final String COMPANY_DEFAULT_IMAGE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultIamge.png";
+    public static final String COMPANY_DEFAULT_IMAGE_PROFILE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultProfileIamge.png";
+
 
 }

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.BottomNavigationScreens.NotificationsFragment">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:background="@drawable/corner_reduis"
+        android:backgroundTint="@color/gray_bg"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_72sdp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/image1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/student_name"
+            android:background="@color/gray_bg"
+            android:textColor="@color/gray_bg"
+            android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+            />
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@string/Send_a_training_request"
+            android:background="@color/gray_bg"
+            android:textColor="@color/gray_bg"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/ibm_plex_sans_arabic_light"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/image1">
+
+        <Button
+            android:layout_width="@dimen/_64sdp"
+            style="@style/blue_btn"
+            android:background="@color/gray_bg"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            />
+
+        <Button
+            android:layout_width="@dimen/_64sdp"
+            style="@style/blue_btn"
+            android:background="@color/gray_bg"
+            android:layout_marginRight="@dimen/_8sdp"
+            />
+
+        <Button
+            android:layout_width="@dimen/_130sdp"
+            style="@style/blue_btn"
+            android:background="@color/gray_bg"
+            android:layout_marginRight="@dimen/_8sdp"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/gray_bg"
+        android:layout_margin="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:backgroundTint="@color/gray_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/student_name"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+            <TextView
+                android:id="@+id/body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/Send_a_training_request"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/image2">
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_130sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:backgroundTint="@color/gray_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/name3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/student_name"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+            <TextView
+                android:id="@+id/body3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/Send_a_training_request"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/image3">
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_130sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image4"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:backgroundTint="@color/gray_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/name4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/student_name"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+            <TextView
+                android:id="@+id/body4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/Send_a_training_request"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/image4">
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_130sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image5"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/corner_reduis"
+            android:backgroundTint="@color/gray_bg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_72sdp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/name5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/student_name"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+            <TextView
+                android:id="@+id/body5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/Send_a_training_request"
+                android:background="@color/gray_bg"
+                android:textColor="@color/gray_bg"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/ibm_plex_sans_arabic_light"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/image5">
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_64sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+            <Button
+                android:layout_width="@dimen/_130sdp"
+                style="@style/blue_btn"
+                android:background="@color/gray_bg"
+                android:layout_marginRight="@dimen/_8sdp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray_bg"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

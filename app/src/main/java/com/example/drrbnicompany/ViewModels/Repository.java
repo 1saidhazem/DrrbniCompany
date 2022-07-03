@@ -19,6 +19,7 @@ import static com.example.drrbnicompany.Constant.CATEGORY;
 import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.NOTIFICATION_RECIPIENT;
 import static com.example.drrbnicompany.Constant.TOKEN;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
 import static com.example.drrbnicompany.Constant.UID;
@@ -299,7 +300,7 @@ public class Repository {
     public void requestGetAds(String uid) {
         firebaseFirestore.collection(COLLECTION_ADS)
                 .whereEqualTo(USER_ID, uid)
-                .orderBy("timestamp" , Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .orderBy("timestamp" , Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value,
                                 @Nullable FirebaseFirestoreException error) {
@@ -729,6 +730,47 @@ public class Repository {
                 title, body, adsId);
         docRef.set(notification);
 
+    }
+
+    public void getNotificationsByUid(String uid , MyListener<List<Notification>> isSuccessful
+            , MyListener<Boolean> isFailure){
+
+        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
+                .whereEqualTo(NOTIFICATION_RECIPIENT , uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+
+                            List<Notification> notificationList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Notification notification = document.toObject(Notification.class);
+                                notificationList.add(notification);
+                            }
+                            isSuccessful.onValuePosted(notificationList);
+                        }else
+                            isFailure.onValuePosted(true);
+                    }
+                });
+    }
+
+
+    public void getStudentNameAndImageByUid(String uid , MyListener<Student> listener){
+        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
+                .whereEqualTo(UID, uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Student student = document.toObject(Student.class);
+                                listener.onValuePosted(student);
+                            }
+                        }
+                    }
+                });
     }
 
 }

@@ -130,12 +130,12 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_post_items"
+            android:id="@+id/rv_job_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginRight="@dimen/_4sdp"
-            tools:listitem="@layout/custom_post_item" />
+            tools:listitem="@layout/custom_job_item" />
 
         <ImageView
             android:id="@+id/noData"

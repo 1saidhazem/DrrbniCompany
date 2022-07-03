@@ -1,12 +1,12 @@
 package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
+import static com.example.drrbnicompany.Constant.COMPANY_DEFAULT_IMAGE_PROFILE;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -15,7 +15,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.AdsAdapter;
 import com.example.drrbnicompany.Models.Ads;
@@ -24,7 +23,6 @@ import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
@@ -67,7 +65,7 @@ public class ProfileFragment extends Fragment {
                     return;
 
                 if (company.getImg() == null) {
-                    binding.appBarImage.setImageResource(R.drawable.company_default_image);
+                    Glide.with(getActivity()).load(COMPANY_DEFAULT_IMAGE_PROFILE).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 } else {
                     Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
                 }
@@ -76,7 +74,7 @@ public class ProfileFragment extends Fragment {
                 binding.companyWhatsapp.setText(company.getWhatsApp());
                 if (company.isVerified())
                     binding.verified.setVisibility(View.VISIBLE);
-                binding.address.setText(company.getGovernorate() + " _ " +company.getAddress());
+                binding.address.setText(company.getGovernorate() + " - " +company.getAddress());
                 stopLoad();
 
                 binding.companyEmail.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +103,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(List<Ads> ads) {
                 if (getActivity() == null) return;
-                adsAdapter = new AdsAdapter(ads,profileViewModel,auth.getCurrentUser().getUid() );
+                adsAdapter = new AdsAdapter(ads,profileViewModel,auth.getCurrentUser().getUid());
                 initRV();
             }
         });

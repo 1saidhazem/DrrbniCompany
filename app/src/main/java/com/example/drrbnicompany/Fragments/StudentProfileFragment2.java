@@ -1,17 +1,17 @@
 package com.example.drrbnicompany.Fragments;
 
+import static com.example.drrbnicompany.Constant.STUDENT_DEFAULT_IMAGE_PROFILE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.drrbnicompany.Adapters.JobAdapter;
 import com.example.drrbnicompany.Models.Job;
@@ -20,9 +20,7 @@ import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.ViewModels.MyListener;
 import com.example.drrbnicompany.ViewModels.StudentProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentStudentProfileBinding;
-
 import java.util.List;
-
 
 public class StudentProfileFragment2 extends Fragment {
 
@@ -40,7 +38,7 @@ public class StudentProfileFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentStudentProfileBinding
-                .inflate(getLayoutInflater(),container,false);
+                .inflate(getLayoutInflater(), container, false);
 
         String studentId = getArguments().getString("userId").trim();
 
@@ -53,7 +51,7 @@ public class StudentProfileFragment2 extends Fragment {
                 if (getActivity() == null) return;
 
                 if (value.getImg() == null) {
-                    binding.studentImage.setImageResource(R.drawable.company_default_image);
+                    Glide.with(getActivity()).load(STUDENT_DEFAULT_IMAGE_PROFILE).placeholder(R.drawable.anim_progress).into(binding.studentImage);
                 } else {
                     Glide.with(getActivity()).load(value.getImg()).placeholder(R.drawable.anim_progress).into(binding.studentImage);
                 }
@@ -81,7 +79,7 @@ public class StudentProfileFragment2 extends Fragment {
                     public void onValuePosted(Job value) {
                         NavController navController = Navigation.findNavController(binding.getRoot());
                         navController.navigate(StudentProfileFragment2Directions
-                        .actionStudentProfileFragment2ToShowJobFragment22(value));
+                                .actionStudentProfileFragment2ToShowJobFragment22(value));
                     }
                 });
                 initRV();
@@ -103,7 +101,7 @@ public class StudentProfileFragment2 extends Fragment {
         binding = null;
     }
 
-    void initRV(){
+    void initRV() {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getActivity());
         binding.studentRv.setLayoutManager(lm);
         binding.studentRv.setHasFixedSize(true);

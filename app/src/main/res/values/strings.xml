@@ -106,6 +106,13 @@
     <string name="edit">تعديل</string>
     <string name="delete">حذف</string>
     <string name="move">إنتقال الى الملف الشخصي</string>
+    <string name="Send_a_training_request">أرسل طلب تدريب</string>
+    <string name="visit_profile">زيارة الملف الشخصي</string>
+    <string name="accept">قبول</string>
+    <string name="not_accept">رفض</string>
+    <string name="select_interview_date">تحديد موعد المقابلة</string>
+    <string name="date">حدد التاريخ</string>
+    <string name="time">حدد الوقت</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

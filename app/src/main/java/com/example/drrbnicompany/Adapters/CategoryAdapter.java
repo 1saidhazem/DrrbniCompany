@@ -1,5 +1,7 @@
 package com.example.drrbnicompany.Adapters;
 
+import static com.example.drrbnicompany.Constant.COMPANY_DEFAULT_IMAGE;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -73,21 +75,39 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             this.major = major;
             binding.tvCategoryName.setText(major.getName());
             binding.progressBar.setVisibility(View.VISIBLE);
-            Glide.with(context)
-                    .load(major.getImage())
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            return false;
-                        }
+            if (major.getImage() != null) {
+                Glide.with(context)
+                        .load(major.getImage())
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
 
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            binding.progressBar.setVisibility(View.GONE);
-                            return false;
-                        }
-                    })
-                    .into(binding.imgBg);
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                binding.progressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        })
+                        .into(binding.imgBg);
+            }else {
+                Glide.with(context)
+                        .load(COMPANY_DEFAULT_IMAGE)
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                binding.progressBar.setVisibility(View.GONE);
+                                return false;
+                            }
+                        })
+                        .into(binding.imgBg);
+            }
 
         }
     }

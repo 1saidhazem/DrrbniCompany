@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.StudentProfileFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -14,6 +15,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -39,13 +53,6 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -182,10 +189,11 @@
 
             </LinearLayout>
 
+            </LinearLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -204,5 +212,5 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 

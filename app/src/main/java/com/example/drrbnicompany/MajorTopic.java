@@ -40,7 +40,6 @@ public class MajorTopic {
     }
 
     public String getMajorTopic(String major){
-
         return  this.major.get(major);
     }
 }
