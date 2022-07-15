@@ -4,5 +4,5 @@
     <item
         android:id="@+id/homeMenuLogout"
         android:title="@string/logOut"
-        app:showAsAction="never"/>
+        />
 </menu>

@@ -47,7 +47,7 @@ public class SignInFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
-        stateAuth = getActivity().getPreferences(Context.MODE_PRIVATE);
+        stateAuth = requireContext().getSharedPreferences(STATE_AUTH,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = stateAuth.edit();
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {

@@ -818,7 +818,7 @@ public class Repository {
     }
 
     public void SignOut(Activity activity) {
-        stateAuth = activity.getPreferences(Context.MODE_PRIVATE);
+        stateAuth = activity.getSharedPreferences(STATE_AUTH,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = stateAuth.edit();
         editor.putBoolean(STATE_AUTH, false);
         firebaseAuth.signOut();

@@ -3,6 +3,7 @@ package com.example.drrbnicompany.Fragments;
 import static com.example.drrbnicompany.Constant.SPLASH_SCREEN_TIME_OUT;
 import static com.example.drrbnicompany.Constant.STATE_AUTH;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,7 @@ public class SplashScreenFragment extends Fragment {
         binding = FragmentSplashScreenBinding.inflate
                 (getLayoutInflater(), container, false);
 
+        stateAuth = requireContext().getSharedPreferences(STATE_AUTH, Context.MODE_PRIVATE);
 
 //        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
