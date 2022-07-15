@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/onboarding4" />
+            android:background="@color/gray_bg" />
 
         <TextView
             android:id="@+id/tv_category_name"

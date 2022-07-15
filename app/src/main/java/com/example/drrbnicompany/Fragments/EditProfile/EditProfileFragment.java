@@ -82,7 +82,7 @@ public class EditProfileFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         editProfileViewModel = new ViewModelProvider(this).get(EditProfileViewModel.class);
         editProfileViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-        spinnerPosition = new SpinnerPosition();
+        spinnerPosition = SpinnerPosition.getInstance();
 
         editProfileViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override

@@ -50,7 +50,7 @@ public class EditAddressFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         editAddressViewModel = new ViewModelProvider(this).get(EditAddressViewModel.class);
         editAddressViewModel.requestProfileInfo(auth.getCurrentUser().getUid());
-        spinnerPosition = new SpinnerPosition();
+        spinnerPosition = SpinnerPosition.getInstance();
 
         editAddressViewModel.getProfileInfo().observe(requireActivity(), new Observer<Company>() {
             @Override

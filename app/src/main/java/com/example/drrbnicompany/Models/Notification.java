@@ -13,7 +13,8 @@ public class Notification {
         this.adsId = adsId;
     }
 
-    public Notification() {}
+    public Notification() {
+    }
 
     public String getNotificationId() {
         return notificationId;

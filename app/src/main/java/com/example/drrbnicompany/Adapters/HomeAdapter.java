@@ -1,13 +1,16 @@
 package com.example.drrbnicompany.Adapters;
 
-import static com.example.drrbnicompany.Constant.STUDENT_DEFAULT_IMAGE_PROFILE;
+
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import static com.example.drrbnicompany.Constant.STUDENT_DEFAULT_IMAGE_PROFILE;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -24,13 +27,18 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
     private OnJobSelectedListener mListener;
 
     public interface OnJobSelectedListener {
+
         void onJobSelected(Job job);
+
     }
+
+
 
     public HomeAdapter(Query query, OnJobSelectedListener mListener) {
         super(query);
         this.mListener = mListener;
     }
+
 
     @NonNull
     @Override
@@ -41,6 +49,7 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getSnapshot(position), mListener);
+
     }
 
 
@@ -52,42 +61,30 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
             binding = CustomJobItemBinding.bind(itemView);
         }
 
+
+
         public void bind(final DocumentSnapshot snapshot,
                          final OnJobSelectedListener listener) {
 
             load();
 
             Job job = snapshot.toObject(Job.class);
+
             binding.jobTitle.setText(job.getJobName());
             binding.jobDescription.setText(job.getJobDescription());
             binding.progressBar.setVisibility(View.VISIBLE);
-            if (job.getImg() != null) {
-                Glide.with(binding.jobImage.getContext()).load(job.getImg()).listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
-                    }
+            Glide.with(binding.jobImage.getContext()).load(job.getImg()).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        binding.progressBar.setVisibility(View.GONE);
-                        return false;
-                    }
-                }).into(binding.jobImage);
-            }else {
-                Glide.with(binding.jobImage.getContext()).load(STUDENT_DEFAULT_IMAGE_PROFILE).listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        binding.progressBar.setVisibility(View.GONE);
-                        return false;
-                    }
-                }).into(binding.jobImage);
-            }
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    binding.progressBar.setVisibility(View.GONE);
+                    return false;
+                }
+            }).into(binding.jobImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -5,6 +5,8 @@ import static com.example.drrbnicompany.Constant.MAJOR;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import com.example.drrbnicompany.Adapters.HomeAdapter;
 import com.example.drrbnicompany.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbnicompany.Models.Filters;
 import com.example.drrbnicompany.Models.Job;
+import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -39,7 +42,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -147,6 +150,12 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         NavController navController = Navigation.findNavController(binding.getRoot());
         navController.navigate(HomeFragmentDirections
                 .actionHomeFragmentToShowPostFragment(job));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.home_menu , menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

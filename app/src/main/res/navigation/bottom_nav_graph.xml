@@ -206,6 +206,9 @@
                     android:name="userId"
                     app:argType="string" />
             </action>
+            <action
+                android:id="@+id/action_notificationsFragment_to_showAndEditAdsFragment2"
+                app:destination="@id/showAndEditAdsFragment2" />
         </fragment>
 
         <fragment
@@ -216,6 +219,15 @@
             >
             <argument
                 android:name="userId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/showAndEditAdsFragment2"
+            android:name="com.example.drrbnicompany.Fragments.ShowAndEditAdsFragment"
+            android:label="fragment_show_and_edit_ads"
+            tools:layout="@layout/fragment_show_and_edit_ads" >
+            <argument
+                android:name="adsId"
                 app:argType="string" />
         </fragment>
 

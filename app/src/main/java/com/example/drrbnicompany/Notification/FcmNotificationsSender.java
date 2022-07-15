@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class FcmNotificationsSender {
 
-     String recipientToken, date, senderName, adsId, recipientTopic ;
+     String recipientToken, senderName, adsId, recipientTopic ;
      Activity mActivity;
      FirebaseUser firebaseUser;
 
@@ -29,17 +29,8 @@ public class FcmNotificationsSender {
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey = "AAAAyXR_2Eg:APA91bFYCAG39OqbR55m90JlcUahrhOtaJ4tXJlkHzZwE399nNdmWU1lScFEhko4isWpOrd471sEasFDPtmCfyhr1AKZUUHQezUjkAbDn0MUS14Dkl82OYgM1HfI6-aUQ_PAZK9Eg9b7";
 
-    // القبول
-    public FcmNotificationsSender(String recipientToken, String date, String senderName,
-                                  String adsId, Activity mActivity) {
-        this.recipientToken = recipientToken;
-        this.date = date;
-        this.senderName = senderName;
-        this.adsId = adsId;
-        this.mActivity = mActivity;
-    }
 
-    // الرفض
+
     public FcmNotificationsSender(String recipientToken, String senderName, String adsId, Activity mActivity) {
         this.recipientToken = recipientToken;
         this.senderName = senderName;
@@ -71,18 +62,19 @@ public class FcmNotificationsSender {
             dataObject.put("body" , "هناك فرصة تدريب جديدة أطلع عليها");
             dataObject.put("senderUid" , senderUid);
             dataObject.put("adsId" , adsId);
+
             mainObject.put("data", dataObject);
 
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.d("ffffffff" , response.toString());
+
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("ffffffff" , error.toString());
+
                 }
             }) {
                 @Override
@@ -102,7 +94,7 @@ public class FcmNotificationsSender {
 
     }
 
-    public void SendAcceptNotifications() {
+    public void SendMessageNotifications() {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String senderUid = firebaseUser.getUid();
@@ -114,8 +106,8 @@ public class FcmNotificationsSender {
             mainObject.put("to", recipientToken);
 
             JSONObject dataObject = new JSONObject();
-            dataObject.put("title", "فرصة تدريب جديدة");
-            dataObject.put("body", "قام "+senderName+" بقبول تدريبك في تاريخ "+ date);
+            dataObject.put("title", "تفقد بريدك الإلكتروني");
+            dataObject.put("body", "قام "+senderName+" بإرسال رد حول طلب التدريب الذي تقدمت به ");
             dataObject.put("senderUid" , senderUid);
             dataObject.put("adsId" , adsId);
 
@@ -126,7 +118,7 @@ public class FcmNotificationsSender {
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-
+                    Log.d("ddddd" , response.toString());
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -151,50 +143,4 @@ public class FcmNotificationsSender {
 
     }
 
-    public void SendRejectNotifications() {
-
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        String senderUid = firebaseUser.getUid();
-
-        requestQueue = Volley.newRequestQueue(mActivity);
-
-        JSONObject mainObject = new JSONObject();
-        try {
-            mainObject.put("to", recipientToken);
-
-            JSONObject dataObject = new JSONObject();
-            dataObject.put("title", "فرصة تدريب جديدة");
-            dataObject.put("body", "قام "+senderName+" برفض طلب تدريبك");
-            dataObject.put("senderUid" , senderUid);
-            dataObject.put("adsId" , adsId);
-
-            mainObject.put("data", dataObject);
-
-
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postUrl, mainObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> header = new HashMap<>();
-                    header.put("content-type", "application/json");
-                    header.put("authorization", "key=" + fcmServerKey);
-                    return header;
-                }
-            };
-            requestQueue.add(request);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

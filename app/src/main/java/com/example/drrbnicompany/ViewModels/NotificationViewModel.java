@@ -1,10 +1,14 @@
 package com.example.drrbnicompany.ViewModels;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+
+import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.Models.Notification;
 import com.example.drrbnicompany.Models.Student;
+
 import java.util.List;
 
 public class NotificationViewModel extends AndroidViewModel {
@@ -16,21 +20,20 @@ public class NotificationViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
-    public void getNotificationsByUid(String uid , MyListener<List<Notification>> isSuccessful
+    public void getNotificationByUid(String uid , MyListener<List<Notification>> isSuccessful
             , MyListener<Boolean> isFailure){
-        repository.getNotificationsByUid(uid, isSuccessful, isFailure);
+        repository.getNotificationByUid(uid, isSuccessful, isFailure);
     }
 
-    public void getStudentNameAndImageByUid(String uid , MyListener<Student> listener){
-        repository.getStudentNameAndImageByUid(uid, listener);
+    public void getSender(String senderUid , MyListener<Student> student){
+        repository.getSender(senderUid , student);
+    }
+
+    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
+        repository.getNameByUid(Uid, isSuccessful);
     }
 
     public void getTokenByStudentId(String studentId, MyListener<String> isSuccessful){
         repository.getTokenByStudentId(studentId , isSuccessful);
     }
-
-    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
-        repository.getNameByUid(Uid , isSuccessful);
-    }
-
 }

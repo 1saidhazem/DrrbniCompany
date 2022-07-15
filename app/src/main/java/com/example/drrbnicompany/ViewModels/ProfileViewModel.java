@@ -54,4 +54,12 @@ public class ProfileViewModel extends AndroidViewModel {
         repository.deleteAds(adsId, isSuccessful, isFailure);
     }
 
+    public void getTokenByStudentId(String studentId, MyListener<String> isSuccessful){
+        repository.getTokenByStudentId(studentId , isSuccessful);
+    }
+
+    public void getNameByUid(String Uid , MyListener<String> isSuccessful){
+        repository.getNameByUid(Uid , isSuccessful);
+    }
+
 }

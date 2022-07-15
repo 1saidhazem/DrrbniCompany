@@ -27,19 +27,33 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.google.android.material.appbar.AppBarLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/appbar"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_200sdp">
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progressBar"
+                            style="@style/ProgressBar"
+                            app:indicatorColor="@color/basic"
+                            app:indicatorSize="30dp"
+                            app:trackCornerRadius="3dp"
+                            android:layout_marginEnd="0dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/app_bar_image"
+                            app:layout_constraintEnd_toEndOf="@+id/app_bar_image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
                             android:id="@+id/app_bar_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@android:drawable/sym_def_app_icon" />
+                            android:background="@color/gray_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </com.google.android.material.appbar.AppBarLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

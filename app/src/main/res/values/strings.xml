@@ -57,7 +57,7 @@
     <string name="company_location">غزة - مفترق الصناعة</string>
     <string name="company_major">تكنولوجيا المعلومات</string>
     <string name="category_title">اسم التصنيف</string>
-    <string name="notification_description">رفضت شركة المستقبل طلب التدريب الخاص بك نتمنى لك حظا اوفر في المرة القادمة</string>
+    <string name="notification_description">رفضت شركة المستقبل طلب التدريب الخاص بك نتمنى لك حظا اوفر في المرة القادمةfffffffffffdddddddddddddddddddddddddddddddddddddddddddddd</string>
     <string name="notification_subtitle">قامت شركة المستقبل بتحديد موعد المقابلة يوم الاربعاء 24 اكتوبر الساعة 9:00 صباحا</string>
     <string name="notification_title">موعد المقابلة</string>
     <string name="confirm">تأكيد الحضور</string>
@@ -108,11 +108,11 @@
     <string name="move">إنتقال الى الملف الشخصي</string>
     <string name="Send_a_training_request">أرسل طلب تدريب</string>
     <string name="visit_profile">زيارة الملف الشخصي</string>
-    <string name="accept">قبول</string>
-    <string name="not_accept">رفض</string>
+    <string name="message">مراسلة</string>
     <string name="select_interview_date">تحديد موعد المقابلة</string>
     <string name="date">حدد التاريخ</string>
     <string name="time">حدد الوقت</string>
+    <string name="logOut">تسجيل الخروج</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

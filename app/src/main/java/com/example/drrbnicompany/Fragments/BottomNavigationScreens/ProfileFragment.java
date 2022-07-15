@@ -2,6 +2,7 @@ package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
 import static com.example.drrbnicompany.Constant.COMPANY_DEFAULT_IMAGE_PROFILE;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,10 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.drrbnicompany.Adapters.AdsAdapter;
 import com.example.drrbnicompany.Models.Ads;
 import com.example.drrbnicompany.Models.Company;
@@ -65,16 +70,39 @@ public class ProfileFragment extends Fragment {
                     return;
 
                 if (company.getImg() == null) {
-                    Glide.with(getActivity()).load(COMPANY_DEFAULT_IMAGE_PROFILE).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    Glide.with(getActivity()).load(COMPANY_DEFAULT_IMAGE_PROFILE).listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    }).into(binding.appBarImage);
                 } else {
-                    Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.appBarImage);
+                    Glide.with(getActivity()).load(company.getImg()).listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    }).into(binding.appBarImage);
                 }
                 binding.companyName.setText(company.getName());
                 binding.companyEmail.setText(company.getEmail());
                 binding.companyWhatsapp.setText(company.getWhatsApp());
                 if (company.isVerified())
                     binding.verified.setVisibility(View.VISIBLE);
-                binding.address.setText(company.getGovernorate() + " - " +company.getAddress());
+                binding.address.setText(company.getGovernorate() + " _ " +company.getAddress());
                 stopLoad();
 
                 binding.companyEmail.setOnClickListener(new View.OnClickListener() {

@@ -8,6 +8,15 @@ public class SpinnerPosition {
     private HashMap<String , Integer> category ;
     private HashMap<String , Integer> governorate ;
 
+    private static SpinnerPosition instance;
+
+    public static SpinnerPosition getInstance() {
+        if (instance == null) {
+            instance = new SpinnerPosition();
+        }
+        return instance;
+    }
+
     public SpinnerPosition() {
         this.major = new HashMap<>();
         this.category = new HashMap<>();

@@ -79,7 +79,7 @@ public class ShowAndEditAdsFragment extends Fragment {
         load();
 
         adsViewModel = new ViewModelProvider(this).get(ShowAndEditAdsViewModel.class);
-        spinnerPosition = new SpinnerPosition();
+        spinnerPosition = SpinnerPosition.getInstance();
 
         String adsId = getArguments().getString("adsId");
         adsViewModel.getAdsById(adsId, new MyListener<Ads>() {

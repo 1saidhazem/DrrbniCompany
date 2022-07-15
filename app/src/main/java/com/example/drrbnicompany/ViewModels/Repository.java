@@ -16,16 +16,17 @@ import static com.example.drrbnicompany.Constant.EMAIL;
 import static com.example.drrbnicompany.Constant.GOVERNORATE;
 import static com.example.drrbnicompany.Constant.IMG;
 import static com.example.drrbnicompany.Constant.CATEGORY;
+import static com.example.drrbnicompany.Constant.JOB_ID;
 import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
-import static com.example.drrbnicompany.Constant.NOTIFICATION_RECIPIENT;
 import static com.example.drrbnicompany.Constant.TOKEN;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
 import static com.example.drrbnicompany.Constant.UID;
 import static com.example.drrbnicompany.Constant.USER_ID;
 import static com.example.drrbnicompany.Constant.VERIFIED;
 import static com.example.drrbnicompany.Constant.WHATSAPP;
+import static com.example.drrbnicompany.Constant.NOTIFICATION_RECIPIENT;
 
 import android.app.Application;
 import android.net.Uri;
@@ -300,7 +301,7 @@ public class Repository {
     public void requestGetAds(String uid) {
         firebaseFirestore.collection(COLLECTION_ADS)
                 .whereEqualTo(USER_ID, uid)
-                .orderBy("timestamp" , Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .orderBy("timestamp" , Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value,
                                 @Nullable FirebaseFirestoreException error) {
@@ -732,7 +733,7 @@ public class Repository {
 
     }
 
-    public void getNotificationsByUid(String uid , MyListener<List<Notification>> isSuccessful
+    public void getNotificationByUid(String uid , MyListener<List<Notification>> isSuccessful
             , MyListener<Boolean> isFailure){
 
         firebaseFirestore.collection(COLLECTION_NOTIFICATION)
@@ -741,36 +742,36 @@ public class Repository {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
 
-                            List<Notification> notificationList = new ArrayList<>();
+                        if (task.isSuccessful()){
+                            List<Notification> notifications = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Notification notification = document.toObject(Notification.class);
-                                notificationList.add(notification);
+                                notifications.add(notification);
                             }
-                            isSuccessful.onValuePosted(notificationList);
+                            isSuccessful.onValuePosted(notifications);
                         }else
                             isFailure.onValuePosted(true);
                     }
                 });
     }
 
-
-    public void getStudentNameAndImageByUid(String uid , MyListener<Student> listener){
-        firebaseFirestore.collection(COLLECTION_NOTIFICATION)
-                .whereEqualTo(UID, uid)
+    public void getSender(String senderUid , MyListener<Student> student){
+        firebaseFirestore.collection(COLLECTION_STUDENT_PROFILES)
+                .whereEqualTo(UID, senderUid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Student student = document.toObject(Student.class);
-                                listener.onValuePosted(student);
+                                Student stud = document.toObject(Student.class);
+                                student.onValuePosted(stud);
                             }
                         }
                     }
                 });
     }
+
 
 }
