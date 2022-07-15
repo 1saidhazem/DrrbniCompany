@@ -125,8 +125,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(List<Ads> ads) {
                 if (getActivity() == null) return;
-                adsAdapter = new AdsAdapter(ads,profileViewModel,auth.getCurrentUser().getUid());
-                initRV();
+                if (ads.isEmpty()){
+                    binding.emptyImg.setVisibility(View.VISIBLE);
+                    binding.rvAds.setVisibility(View.GONE);
+                }else {
+                    adsAdapter = new AdsAdapter(ads,profileViewModel,auth.getCurrentUser().getUid());
+                    initRV();
+                }
+
             }
         });
 

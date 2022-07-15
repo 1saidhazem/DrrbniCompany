@@ -8,13 +8,6 @@ android:orientation="vertical"
 tools:context=".Fragments.CategoryItemFragment">
 
 
-    <ImageView
-        android:id="@+id/noData"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:src="@drawable/nodata" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -32,12 +25,32 @@ tools:context=".Fragments.CategoryItemFragment">
             android:text="@string/category_name"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category_items"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_4sdp"
-        tools:listitem="@layout/custom_student_item"/>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/empty_img"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/empty_list"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:gravity="center"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_4sdp"
+            tools:listitem="@layout/custom_student_item"/>
+
+    </RelativeLayout>
+
+
 
 
     <com.facebook.shimmer.ShimmerFrameLayout

@@ -182,6 +182,21 @@
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginRight="@dimen/_16sdp" />
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/empty_img"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:src="@drawable/empty_list"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_ads"
                         android:layout_width="match_parent"
@@ -191,7 +206,7 @@
                         android:minHeight="@dimen/_400sdp"
                         tools:listitem="@layout/custom_post_item" />
 
-
+                    </RelativeLayout>
 
                 </LinearLayout>
 
