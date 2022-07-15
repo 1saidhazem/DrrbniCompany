@@ -33,7 +33,7 @@
             style="@style/editText"
             android:layout_marginTop="@dimen/_24sdp"
             android:hint="@string/whatsapp"
-            android:inputType="textEmailAddress"/>
+            android:inputType="phone"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

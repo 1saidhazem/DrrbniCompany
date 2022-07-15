@@ -5,15 +5,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.drrbnicompany.Models.Company;
 import com.example.drrbnicompany.ViewModels.EditContactInformationViewModel;
 import com.example.drrbnicompany.ViewModels.MyListener;
-import com.example.drrbnicompany.ViewModels.ProfileViewModel;
 import com.example.drrbnicompany.databinding.FragmentEditContactInformationBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,10 +71,11 @@ public class EditContactInformationFragment extends Fragment {
                 contactInformationViewModel.editContactInformation(whatsapp, new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
+                        if (value = true){
+                            stopUpdate();
                             Snackbar.make(view , "تم التعديل بنجاح" , Snackbar.LENGTH_LONG).show();
-
-                        stopUpdate();
+                            Navigation.findNavController(binding.getRoot()).popBackStack();
+                        }
                     }
                 }, new MyListener<Boolean>() {
                     @Override

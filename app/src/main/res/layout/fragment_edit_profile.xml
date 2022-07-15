@@ -60,21 +60,13 @@
                         android:hint="@string/name"
                         android:inputType="textEmailAddress" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_profile_et_email"
-                        style="@style/editText"
-                        android:layout_below="@+id/edit_profile_et_name"
-                        android:layout_marginTop="@dimen/_16sdp"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress" />
-
 
                     <FrameLayout
                         android:id="@+id/frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_52sdp"
                         android:background="@drawable/edittext_background"
-                        android:layout_below="@+id/edit_profile_et_email"
+                        android:layout_below="@+id/edit_profile_et_name"
                         android:layout_marginTop="@dimen/_24sdp"
                         android:layout_marginLeft="@dimen/_24sdp"
                         android:layout_marginRight="@dimen/_24sdp"
@@ -90,12 +82,23 @@
                     </FrameLayout>
 
                     <TextView
-                        android:id="@+id/tv_edit_contact_information"
+                        android:id="@+id/tv_edit_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/frame"
                         android:layout_alignEnd="@+id/frame"
                         android:layout_marginTop="@dimen/_16sdp"
+                        android:fontFamily="@font/ibm_plex_sans_arabic_regular"
+                        android:text="@string/edit_email"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_edit_contact_information"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_edit_email"
+                        android:layout_alignEnd="@+id/frame"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/ibm_plex_sans_arabic_regular"
                         android:text="@string/edit_contact_information"
                         android:textSize="@dimen/_14sdp" />

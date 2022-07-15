@@ -25,15 +25,7 @@ public class ChangePasswordFragment extends Fragment {
     private FragmentChangePasswordBinding binding;
     private ChangePasswordViewModel changePasswordViewModel;
 
-    public ChangePasswordFragment() {
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    public ChangePasswordFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,8 +34,6 @@ public class ChangePasswordFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         changePasswordViewModel = new ViewModelProvider(this).get(ChangePasswordViewModel.class);
-
-
 
        binding.btnOk.setOnClickListener(new View.OnClickListener() {
            @Override

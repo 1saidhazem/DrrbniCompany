@@ -2,11 +2,9 @@ package com.example.drrbnicompany.ViewModels;
 
 import android.app.Application;
 import android.net.Uri;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.drrbnicompany.Models.Company;
 
 public class EditProfileViewModel extends AndroidViewModel {
@@ -28,16 +26,28 @@ public class EditProfileViewModel extends AndroidViewModel {
         return profileInfo;
     }
 
-    public void editProfileData(Uri image, String companyName, String email, String category
+    public void editProfileData(Uri image, String companyName, String category
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        repository.editProfileData(image, companyName, email, category, isSuccessful, isFailure);
+        repository.editProfileData(image, companyName, category, isSuccessful, isFailure);
     }
 
-    public void editProfileDataWithoutImage(String companyName, String email, String category
+    public void editProfileDataWithoutImage(String companyName, String category
             , MyListener<Boolean> isSuccessful, MyListener<Boolean> isFailure) {
 
-        repository.editProfileDataWithoutImage(companyName, email, category, isSuccessful, isFailure);
+        repository.editProfileDataWithoutImage(companyName, category, isSuccessful, isFailure);
+    }
+
+    public void getEmail(String uid, MyListener<String> isSuccessful
+            , MyListener<Boolean> isFailure) {
+
+        repository.getEmail(uid, isSuccessful, isFailure);
+    }
+
+    public void changeEmail(String currentPassword, String newEmail, String uid, MyListener<Boolean> isSuccessful
+            , MyListener<String> isFailure) {
+
+        repository.changeEmail(currentPassword, newEmail, uid, isSuccessful, isFailure);
     }
 
 }

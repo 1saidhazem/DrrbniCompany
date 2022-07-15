@@ -103,6 +103,9 @@
             <action
                 android:id="@+id/action_editProfileFragment_to_changePasswordFragment"
                 app:destination="@id/changePasswordFragment" />
+            <action
+                android:id="@+id/action_editProfileFragment_to_editEmailFragment"
+                app:destination="@id/editEmailFragment" />
         </fragment>
 
         <fragment
@@ -132,6 +135,11 @@
             android:name="com.example.drrbnicompany.Fragments.EditProfile.ChangePasswordFragment"
             android:label="fragment_change_password"
             tools:layout="@layout/fragment_change_password" />
+        <fragment
+            android:id="@+id/editEmailFragment"
+            android:name="com.example.drrbnicompany.Fragments.EditProfile.EditEmailFragment"
+            android:label="fragment_edit_email"
+            tools:layout="@layout/fragment_edit_email" />
 
     </navigation>
 

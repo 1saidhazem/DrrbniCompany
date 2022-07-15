@@ -62,7 +62,6 @@ public class HomeAdapter extends FirestoreAdapter<HomeAdapter.ViewHolder> {
         }
 
 
-
         public void bind(final DocumentSnapshot snapshot,
                          final OnJobSelectedListener listener) {
 

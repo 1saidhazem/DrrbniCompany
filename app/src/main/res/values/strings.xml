@@ -113,6 +113,7 @@
     <string name="date">حدد التاريخ</string>
     <string name="time">حدد الوقت</string>
     <string name="logOut">تسجيل الخروج</string>
+    <string name="edit_email">تعديل البريد الالكتروني</string>
 
     <string-array name="category_array">
         <item>أختر التصنيف</item>

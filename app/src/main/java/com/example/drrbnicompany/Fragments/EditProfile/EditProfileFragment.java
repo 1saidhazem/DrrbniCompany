@@ -39,8 +39,7 @@ public class EditProfileFragment extends Fragment {
     private Company thiCompany;
     private SpinnerPosition spinnerPosition;
 
-    public EditProfileFragment() {
-    }
+    public EditProfileFragment() {}
 
     public static EditProfileFragment newInstance() {
         return new EditProfileFragment();
@@ -95,7 +94,6 @@ public class EditProfileFragment extends Fragment {
                     Glide.with(getActivity()).load(company.getImg()).placeholder(R.drawable.anim_progress).into(binding.profileImage);
                 }
                 binding.editProfileEtName.setText(company.getName());
-                binding.editProfileEtEmail.setText(company.getEmail());
                 binding.editProfileSpCategories.setSelection(spinnerPosition.getCategoryPosition(company.getCategory()));
                 stopLoad();
             }
@@ -115,20 +113,15 @@ public class EditProfileFragment extends Fragment {
                 update();
 
                 String name = binding.editProfileEtName.getText().toString().trim();
-                String email = binding.editProfileEtEmail.getText().toString().trim();
-                //TODO change ET to spinnerPosition
                 String category = binding.editProfileSpCategories.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(name))
                     name = thiCompany.getName();
-                else if (TextUtils.isEmpty(email))
-                    email = thiCompany.getEmail();
                 else if (binding.editProfileSpCategories.getSelectedItemPosition() < 1)
                     category = thiCompany.getCategory();
 
                 if (image == null ){
-
-                    editProfileViewModel.editProfileDataWithoutImage(name, email, category, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfileDataWithoutImage(name, category, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value){
@@ -148,7 +141,7 @@ public class EditProfileFragment extends Fragment {
                     });
                 }else {
 
-                    editProfileViewModel.editProfileData(image, name, email, category, new MyListener<Boolean>() {
+                    editProfileViewModel.editProfileData(image, name, category, new MyListener<Boolean>() {
                         @Override
                         public void onValuePosted(Boolean value) {
                             if (value){
@@ -172,6 +165,14 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+        binding.tvEditEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(binding.getRoot());
+                navController.navigate(R.id.action_editProfileFragment_to_editEmailFragment);
+            }
+        });
+
         binding.tvEditContactInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,6 +180,7 @@ public class EditProfileFragment extends Fragment {
                 navController.navigate(R.id.action_editProfileFragment_to_editContactInformationFragment);
             }
         });
+
         binding.tvEditAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,6 +188,7 @@ public class EditProfileFragment extends Fragment {
                 navController.navigate(R.id.action_editProfileFragment_to_editAddressFragment);
             }
         });
+
         binding.tvChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
