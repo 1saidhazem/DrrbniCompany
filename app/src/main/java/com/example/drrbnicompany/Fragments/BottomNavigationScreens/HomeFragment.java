@@ -2,38 +2,48 @@ package com.example.drrbnicompany.Fragments.BottomNavigationScreens;
 
 import static com.example.drrbnicompany.Constant.COLLECTION_JOBS;
 import static com.example.drrbnicompany.Constant.MAJOR;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.drrbnicompany.Adapters.HomeAdapter;
 import com.example.drrbnicompany.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbnicompany.Models.Filters;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.R;
+import com.example.drrbnicompany.ViewModels.SignInViewModel;
 import com.example.drrbnicompany.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 public class HomeFragment extends Fragment implements FilterDialogFragment.FilterListener
-, HomeAdapter.OnJobSelectedListener{
+        , HomeAdapter.OnJobSelectedListener {
 
     private FragmentHomeBinding binding;
+    private SignInViewModel signInViewModel;
     private FilterDialogFragment filter;
     private FirebaseFirestore mFirestore;
     private Query mQuery;
     private HomeAdapter homeAdapter;
-    public HomeFragment() {}
+
+    public HomeFragment() {
+    }
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -41,8 +51,8 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,6 +62,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
         load();
         FirebaseFirestore.setLoggingEnabled(true);
+        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         initFirestore();
         initRecyclerView();
 
@@ -60,7 +71,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         binding.filterBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filter.show(getParentFragmentManager() , FilterDialogFragment.TAG);
+                filter.show(getParentFragmentManager(), FilterDialogFragment.TAG);
             }
         });
 
@@ -97,7 +108,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
             @Override
             protected void onError(FirebaseFirestoreException e) {
-                Log.d("sssssssss" , e.toString());
+                Log.d("sssssssss", e.toString());
             }
 
         };
@@ -117,7 +128,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         if (filters.hasMajor()) {
             query = query.whereEqualTo(MAJOR, filters.getMajor());
             binding.textCurrentSortBy.setVisibility(View.VISIBLE);
-            binding.textCurrentSortBy.setText(filters.getMajor() );
+            binding.textCurrentSortBy.setText(filters.getMajor());
             binding.buttonClearFilter.setVisibility(View.VISIBLE);
         }
 
@@ -138,7 +149,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         binding.homeLayout.setVisibility(View.VISIBLE);
     }
 
-    public void onClearFilter(){
+    public void onClearFilter() {
         filter.resetFilters();
         mQuery = mFirestore.collection(COLLECTION_JOBS);
         homeAdapter.setQuery(mQuery);
@@ -154,8 +165,17 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.home_menu , menu);
+        inflater.inflate(R.menu.home_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.homeMenuLogout) {
+            signInViewModel.SignOut(getActivity());
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

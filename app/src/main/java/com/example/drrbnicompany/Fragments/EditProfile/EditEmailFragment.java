@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -71,9 +72,10 @@ public class EditEmailFragment extends Fragment {
                 editProfileViewModel.changeEmail(currentPassword, email, auth.getCurrentUser().getUid(), new MyListener<Boolean>() {
                     @Override
                     public void onValuePosted(Boolean value) {
-                        if (value = true)
+                        if (value = true){
                             Snackbar.make(view, "تم التعديل بنجاح", Snackbar.LENGTH_LONG).show();
-
+                            Navigation.findNavController(binding.getRoot()).popBackStack();
+                        }
                     }
                 }, new MyListener<String>() {
                     @Override

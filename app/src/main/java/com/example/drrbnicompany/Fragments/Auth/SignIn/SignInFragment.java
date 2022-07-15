@@ -3,7 +3,10 @@ package com.example.drrbnicompany.Fragments.Auth.SignIn;
 
 
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.STATE_AUTH;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -28,17 +31,12 @@ public class SignInFragment extends Fragment {
 
     private FragmentSignInBinding binding;
     private SignInViewModel signInViewModel;
+    private SharedPreferences stateAuth;
 
     public SignInFragment() {}
 
     public static SignInFragment newInstance() {
         return new SignInFragment();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
 
@@ -49,6 +47,8 @@ public class SignInFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
+        stateAuth = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = stateAuth.edit();
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,6 @@ public class SignInFragment extends Fragment {
                     public void onValuePosted(Boolean value) {
 
                         if (value){
-
                             signInViewModel.checkSignInData(email, new MyListener<Company>() {
                                 @Override
                                 public void onValuePosted(Company value) {
@@ -96,6 +95,7 @@ public class SignInFragment extends Fragment {
                                             stopLoad();
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_mainFragment);
+                                            editor.putBoolean(STATE_AUTH,true);
                                             return;
                                         }
 

@@ -54,4 +54,6 @@ public class Constant {
     public static final String COMPANY_DEFAULT_IMAGE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultIamge.png";
     public static final String COMPANY_DEFAULT_IMAGE_PROFILE ="https://defualtimage.s3.amazonaws.com/CompanyDefaultProfileIamge.png";
 
+    public static final String STATE_AUTH = "stateAuth";
+
 }

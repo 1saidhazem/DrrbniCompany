@@ -16,10 +16,10 @@ import static com.example.drrbnicompany.Constant.EMAIL;
 import static com.example.drrbnicompany.Constant.GOVERNORATE;
 import static com.example.drrbnicompany.Constant.IMG;
 import static com.example.drrbnicompany.Constant.CATEGORY;
-import static com.example.drrbnicompany.Constant.JOB_ID;
 import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.STATE_AUTH;
 import static com.example.drrbnicompany.Constant.TOKEN;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
 import static com.example.drrbnicompany.Constant.UID;
@@ -28,9 +28,11 @@ import static com.example.drrbnicompany.Constant.VERIFIED;
 import static com.example.drrbnicompany.Constant.WHATSAPP;
 import static com.example.drrbnicompany.Constant.NOTIFICATION_RECIPIENT;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Message;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -80,6 +82,8 @@ public class Repository {
     private FirebaseMessaging firebaseMessaging;
     private MutableLiveData<Company> profileInfo;
     private MutableLiveData<List<Ads>> adsData;
+    private SharedPreferences stateAuth;
+
 
     public Repository(Application application) {
         this.application = application;
@@ -767,12 +771,10 @@ public class Repository {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                HashMap<String, Object> data = new HashMap<>();
-                                data.put(EMAIL, firebaseUser.getEmail());
 
                                 firebaseFirestore.collection(COLLECTION_USERS_PROFILES)
                                         .document(uid)
-                                        .set(data)
+                                        .update(EMAIL, firebaseUser.getEmail())
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -813,6 +815,13 @@ public class Repository {
                         }
                     }
                 });
+    }
+
+    public void SignOut(Activity activity) {
+        stateAuth = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = stateAuth.edit();
+        editor.putBoolean(STATE_AUTH, false);
+        firebaseAuth.signOut();
     }
 
 

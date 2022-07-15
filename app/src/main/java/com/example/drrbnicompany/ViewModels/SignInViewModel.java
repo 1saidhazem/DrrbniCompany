@@ -1,5 +1,6 @@
 package com.example.drrbnicompany.ViewModels;
 
+import android.app.Activity;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,10 @@ public class SignInViewModel extends AndroidViewModel {
 
     public void resetPassword(String email, MyListener<Boolean> isSuccessful, MyListener<String > isFailure){
         repository.resetPassword(email, isSuccessful, isFailure);
+    }
+
+    public void SignOut(Activity activity){
+        repository.SignOut(activity);
     }
 
 }
