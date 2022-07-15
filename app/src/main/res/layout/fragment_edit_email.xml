@@ -34,25 +34,37 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_52sdp"
-                android:hint="@string/current_password"
-                app:boxStrokeWidthFocused="0dp"
-                app:boxStrokeWidth="0dp"
-                app:hintTextColor="@color/subtitle_text"
-                app:passwordToggleEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_4sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/current_password"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword"
-                    android:textCursorDrawable="@drawable/text_cursor"/>
+                    android:layout_height="@dimen/_52sdp"
+                    android:hint="@string/current_password"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:boxStrokeWidth="0dp"
+                    app:hintTextColor="@color/subtitle_text"
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/current_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword"
+                        android:textCursorDrawable="@drawable/text_cursor"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"

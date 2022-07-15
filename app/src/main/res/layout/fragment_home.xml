@@ -7,36 +7,52 @@
     android:background="@color/white"
     tools:context=".Fragments.BottomNavigationScreens.HomeFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/basic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:logo="@drawable/ic_logo"
-        app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
-        app:title="@string/app_name"
-        app:titleMarginStart="24dp"
-        app:titleTextColor="@android:color/white" >
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/basic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:logo="@drawable/ic_logo"
+            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
+            app:title="@string/app_name"
+            app:titleMarginStart="24dp"
+            app:titleTextColor="@android:color/white" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_exit"
+            android:layout_marginRight="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.appcompat.widget.Toolbar>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/filter_bar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/constraint"
         android:background="@color/basic"
         android:paddingLeft="@dimen/_12sdp"
         android:paddingRight="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/constraint">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/filter_bar"
