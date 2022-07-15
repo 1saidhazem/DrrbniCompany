@@ -3,6 +3,7 @@ package com.example.drrbnicompany.Fragments.Auth.SignIn;
 
 
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.PREF_STATE_AUTH;
 import static com.example.drrbnicompany.Constant.STATE_AUTH;
 
 import android.content.Context;
@@ -47,7 +48,7 @@ public class SignInFragment extends Fragment {
                 .inflate(getLayoutInflater(), container, false);
 
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
-        stateAuth = requireContext().getSharedPreferences(STATE_AUTH,Context.MODE_PRIVATE);
+        stateAuth = getActivity().getSharedPreferences(PREF_STATE_AUTH,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = stateAuth.edit();
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +97,7 @@ public class SignInFragment extends Fragment {
                                             NavController navController = Navigation.findNavController(binding.getRoot());
                                             navController.navigate(R.id.action_loginFragment_to_mainFragment);
                                             editor.putBoolean(STATE_AUTH,true);
+                                            editor.commit();
                                             return;
                                         }
 

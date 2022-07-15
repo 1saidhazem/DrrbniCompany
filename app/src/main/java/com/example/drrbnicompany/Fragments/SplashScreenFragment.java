@@ -1,8 +1,8 @@
 package com.example.drrbnicompany.Fragments;
 
+import static com.example.drrbnicompany.Constant.PREF_STATE_AUTH;
 import static com.example.drrbnicompany.Constant.SPLASH_SCREEN_TIME_OUT;
 import static com.example.drrbnicompany.Constant.STATE_AUTH;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,14 +10,11 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import com.example.drrbnicompany.R;
 import com.example.drrbnicompany.databinding.FragmentSplashScreenBinding;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreenFragment extends Fragment {
 
@@ -25,8 +22,7 @@ public class SplashScreenFragment extends Fragment {
     private SharedPreferences stateAuth;
     private boolean state;
 
-    public SplashScreenFragment() {
-    }
+    public SplashScreenFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +31,7 @@ public class SplashScreenFragment extends Fragment {
         binding = FragmentSplashScreenBinding.inflate
                 (getLayoutInflater(), container, false);
 
-        stateAuth = requireContext().getSharedPreferences(STATE_AUTH, Context.MODE_PRIVATE);
+        stateAuth = requireContext().getSharedPreferences(PREF_STATE_AUTH, Context.MODE_PRIVATE);
 
 //        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);

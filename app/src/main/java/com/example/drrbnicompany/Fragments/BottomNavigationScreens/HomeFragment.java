@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.example.drrbnicompany.Fragments.Dialogs.FilterDialogFragment;
 import com.example.drrbnicompany.Models.Filters;
 import com.example.drrbnicompany.Models.Job;
 import com.example.drrbnicompany.R;
+import com.example.drrbnicompany.ViewModels.SignInViewModel;
 import com.example.drrbnicompany.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -33,17 +35,13 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
     private FirebaseFirestore mFirestore;
     private Query mQuery;
     private HomeAdapter homeAdapter;
+    private SignInViewModel signInViewModel;
     public HomeFragment() {}
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +50,7 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
 
         load();
         FirebaseFirestore.setLoggingEnabled(true);
+        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         initFirestore();
         initRecyclerView();
 
@@ -69,6 +68,15 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
             public void onClick(View view) {
                 onClearFilter();
                 binding.buttonClearFilter.setVisibility(View.GONE);
+            }
+        });
+
+        binding.iconLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInViewModel.SignOut(getActivity());
+                NavController navController = Navigation.findNavController(requireActivity(),R.id.fragmentContainerView);
+                navController.navigate(R.id.action_mainFragment_to_loginFragment);
             }
         });
 
@@ -151,8 +159,6 @@ public class HomeFragment extends Fragment implements FilterDialogFragment.Filte
         navController.navigate(HomeFragmentDirections
                 .actionHomeFragmentToShowPostFragment(job));
     }
-
-
 
     @Override
     public void onStop() {

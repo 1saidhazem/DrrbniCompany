@@ -30,7 +30,7 @@
             app:titleTextColor="@android:color/white" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/icon_Log_out"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_exit"

@@ -19,6 +19,7 @@ import static com.example.drrbnicompany.Constant.CATEGORY;
 import static com.example.drrbnicompany.Constant.MAJOR;
 import static com.example.drrbnicompany.Constant.NAME;
 import static com.example.drrbnicompany.Constant.COMPANY_TYPE;
+import static com.example.drrbnicompany.Constant.PREF_STATE_AUTH;
 import static com.example.drrbnicompany.Constant.STATE_AUTH;
 import static com.example.drrbnicompany.Constant.TOKEN;
 import static com.example.drrbnicompany.Constant.TYPE_USER;
@@ -422,7 +423,6 @@ public class Repository {
                     }
                 });
 
-
     }
 
     public void editContactInformation(String whatsapp, MyListener<Boolean> isSuccessful
@@ -818,9 +818,10 @@ public class Repository {
     }
 
     public void SignOut(Activity activity) {
-        stateAuth = activity.getSharedPreferences(STATE_AUTH,Context.MODE_PRIVATE);
+        stateAuth = activity.getSharedPreferences(PREF_STATE_AUTH,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = stateAuth.edit();
         editor.putBoolean(STATE_AUTH, false);
+        editor.commit();
         firebaseAuth.signOut();
     }
 
